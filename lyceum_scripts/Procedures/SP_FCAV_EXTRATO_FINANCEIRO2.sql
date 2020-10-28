@@ -30,24 +30,6 @@ AS
             -- Histórico de matrícula, para determinação da turma    
             ----------------------------------------------------    
 
-   --         SELECT -- Há mais de um registro de histórico para o aluno/turma no mesmo dia    
-   --             hist.ALUNO,
-   --             trm.TURMA,
-   --             trm.CURRICULO,
-   --             trm.CENTRO_DE_CUSTO,
-   --             hist.DT_ULTALT 
-			--	INTO #hist_mat
-   --         FROM dbo.VW_MATR_PRE_E_HIST hist
-   --         INNER JOIN dbo.LY_TURMA trm
-   --             ON trm.TURMA = hist.TURMA
-			--group by hist.ALUNO,
-   --             trm.TURMA,
-   --             trm.CURRICULO,
-   --             trm.CENTRO_DE_CUSTO,
-   --             hist.DT_ULTALT 
-
-   --         UNION ALL
-
             SELECT 
                 al.ALUNO,
                 trm.TURMA,
