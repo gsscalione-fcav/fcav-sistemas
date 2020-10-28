@@ -1,0 +1,52 @@
+IF EXISTS (SELECT * 
+           FROM   SYS.VIEWS 
+           WHERE  NAME = 'VW_FCAV_EXTFIN_LY') 
+  DROP VIEW VW_FCAV_EXTFIN_LY 
+
+GO 
+
+/*   
+ESTA VIEW ACRESCENTA A DATA DE FATURAMENTO, FOI CRIADO PARA NÃO GERAR POSSIVEL PROBLEMA NA OUTRA VIEW QUE É UTILIZADA PARA RELATÓRIO DO ROGÉRIO  
+*/ 
+CREATE VIEW VW_FCAV_EXTFIN_LY 
+AS 
+  SELECT VW.ALUNO, 
+         VW.NOME_COMPL, 
+         VW.SIT_ALUNO, 
+         VW.CURSO, 
+         VW.TURNO, 
+         VW.CURRICULO, 
+         VW.TURMA, 
+         CENTRO_DE_CUSTO, 
+         ANO_REF, 
+         PERIODO_REF, 
+         RESP, 
+         TITULAR, 
+         CPF_TITULAR, 
+         CGC_TITULAR, 
+         LANC_DEB, 
+         CODIGO_LANC, 
+         DESCRICAO, 
+         CONTA_BANCO, 
+         COBRANCA, 
+         ANO, 
+         MES, 
+         DATA_DE_EMISSAO, 
+         DATA_DE_VENCIMENTO, 
+         VALOR_PAGAR, 
+         ANO_INICIAL, 
+         MES_INICIAL, 
+         NUM_PARCELAS, 
+         BOLETO, 
+         SITUACAO_BOLETO, 
+         VALOR_PAGO, 
+         DATA_DE_PAGAMENTO, 
+         JUROS_MULTA, 
+         DESCONT, 
+         NUMERO_RPS, 
+         DATA_EMISSAO_RPS, 
+         NUMERO_NFE, 
+         DATA_EMISSAO_NFE, 
+         DT_ENVIO_CONTAB 
+  FROM   FCAV_EXTRATO_FINANCEIRO2 AS VW 
+  WHERE  VW.NOME_COMPL NOT LIKE '%TESTE%' 

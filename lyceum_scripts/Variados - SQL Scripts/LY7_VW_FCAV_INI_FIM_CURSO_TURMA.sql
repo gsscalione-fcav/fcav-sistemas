@@ -1,0 +1,61 @@
+ALTER VIEW VW_FCAV_INI_FIM_CURSO_TURMA
+AS
+
+SELECT
+    oc.OFERTA_DE_CURSO,
+    tu.CURSO,
+    tu.TURNO,
+    oc.CURRICULO,
+    OC.UNIDADE_FISICA,
+    CASE
+        WHEN oc.CONCURSO IS NULL THEN tu.TURMA
+        ELSE oc.CONCURSO
+    END AS CONCURSO,
+    CASE
+        WHEN oc.CONCURSO IS NULL THEN 'VD'
+        WHEN oc.CONCURSO IS NOT NULL THEN 'PS'
+    END AS TP_INGRESSO,
+    op.TURMA AS TURMA_PREF,
+    tu.CENTRO_DE_CUSTO,
+    tu.TURMA,
+    (SELECT
+        CAST(CAST(CUR.AULAS_PREVISTAS AS int) AS varchar) + ' horas'
+    FROM LY_CURRICULO CUR
+    INNER JOIN LY_OFERTA_CURSO OFC
+        ON (CUR.CURSO = OFC.CURSO
+        AND CUR.TURNO = OFC.TURNO
+        AND CUR.CURRICULO = OFC.CURRICULO)
+    WHERE OFERTA_DE_CURSO = oc.OFERTA_DE_CURSO)
+    AS CARGA_HORARIA,
+    MIN(tu.DT_INICIO) AS DT_INICIO,
+    MAX(tu.DT_FIM) AS DT_FIM,
+    TU.UNIDADE_RESPONSAVEL,
+    (SELECT TOP 1
+        CASE
+            WHEN CURSO IN ('ATUALIZACAO', 'PALESTRA') THEN T2.DISCIPLINA
+            ELSE CURSO
+        END
+    FROM LY_TURMA T2
+    WHERE T2.TURMA = TU.TURMA)
+    AS COD_CURSO
+FROM LY_TURMA AS tu
+FULL JOIN LY_OPCOES_OFERTA op
+    ON op.TURMA = tu.TURMA
+FULL JOIN LY_OFERTA_CURSO oc
+    ON oc.OFERTA_DE_CURSO = op.OFERTA_DE_CURSO
+-------------------------------      
+--Apenas para filtro      
+--WHERE       
+-- oc.OFERTA_DE_CURSO = '396'       
+-- tu.turma = 'CEPSNG T 02'      
+-------------------------------      
+GROUP BY oc.OFERTA_DE_CURSO,
+         tu.CURSO,
+         tu.TURNO,
+         oc.CURRICULO,
+         op.TURMA,
+         oc.CONCURSO,
+         tu.CENTRO_DE_CUSTO,
+         tu.TURMA,
+         TU.UNIDADE_RESPONSAVEL,
+         OC.UNIDADE_FISICA

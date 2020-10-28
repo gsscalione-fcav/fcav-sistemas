@@ -1,0 +1,53 @@
+select distinct
+	CASE WHEN CUR_ARCID = '29' THEN 'ATUALIZACAO'
+		WHEN CUR_ARCID = '31' THEN 'CAPACITACAO'
+		WHEN CUR_ARCID = '33' THEN 'ESPECIALIZACAO'
+		WHEN CUR_ARCID = '35' THEN 'PALESTRA'
+	END AS AREA_CONHECIMENTO,
+	cur_codcur AS CURSO,
+	cur_nomcur AS NOME_CURSO,
+	tur_codtur AS TURMA,
+	TUR_STATUS as STATUS_TURMA,
+	tur_numproj AS CENTRO_CUSTO,
+	ISNULL(coord.pes_nome,'NÃO INFORMADO') AS COORDENADOR,
+	tur_datini AS DATA_INICIO,
+	tur_datfin AS DATA_FIM,
+	tur_maxvag AS MAX_VAGAS,
+	tur_minvag AS MIN_VAGAS,
+	ISNULL((VANZOLINI_ICORUJA.DBO.FUNC_FCAV_TOTAL_INSC_TURMA (TUR_CODTUR)),'0') AS TOTAL_INSCRITOS,
+	ISNULL((VANZOLINI_ICORUJA.DBO.FUNC_FCAV_TOTAL_MAT_TURMA (TUR_CODTUR)),'0') AS TOTAL_MATRICULADOS,
+	ISNULL((VANZOLINI_ICORUJA.DBO.FUNC_FCAV_TOTAL_ATI_TURMA (TUR_CODTUR)),'0') AS TOTAL_ATIVOS,
+	ISNULL((VANZOLINI_ICORUJA.DBO.FUNC_FCAV_TOTAL_TRA_TURMA (TUR_CODTUR)),'0') AS TOTAL_TRANCADOS,
+	ISNULL((VANZOLINI_ICORUJA.DBO.FUNC_FCAV_TOTAL_CAN_TURMA (TUR_CODTUR)),'0') AS TOTAL_CANCELADOS,
+	VANZOLINI_ICORUJA.DBO.FUNC_FCAV_CARGA_HOR_TURMA (TUR_ID) AS CARGA_HORARIA, 
+	PLP_VALTOT AS VALOR_TOTAL_PLANO
+	
+from
+	TB_INSC_INSCRICOES_REALIZADAS
+	inner join TB_INSC_INSREAL_OPC on (inr_id = iro_inrid)
+	inner join tb_insc_inscricao_opcao on (ict_id = iro_ictid)
+	inner join tb_turma on (ict_turid = tur_id)
+	LEFT OUTER join tb_pessoa as coord on (coord.pes_id = TUR_RESACAID)
+	inner join TB_PLANO_PAGAMENTO p on (IRO_PLPID = PLP_ID)
+	inner join tb_curso on (tur_curid = cur_id)
+
+
+
+	
+group by
+	CUR_ARCID,
+	tur_descri,
+	TUR_ID,
+	TUR_STATUS,
+	tur_numproj,
+	cur_codcur,
+	cur_nomcur,
+	tur_codtur,
+	coord.pes_nome,
+	tur_datini,
+	tur_datfin,
+	tur_maxvag,
+	tur_minvag,
+	
+	--PLP_DESCRI,
+	PLP_VALTOT

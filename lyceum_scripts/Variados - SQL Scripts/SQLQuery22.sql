@@ -1,0 +1,8 @@
+SELECT 
+* 
+FROM 
+	LY_EMPRESA 
+WHERE 
+	EMPRESA in ('Emp22','45309606000141')
+
+select * from LY_EMPRESA where RAZAO_SOCIAL like 'Unimed%'

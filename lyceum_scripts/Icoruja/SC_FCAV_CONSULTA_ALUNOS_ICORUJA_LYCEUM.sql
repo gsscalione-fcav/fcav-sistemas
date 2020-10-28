@@ -1,0 +1,134 @@
+USE LYCEUM
+GO
+
+DECLARE @curso VARCHAR (20)
+
+SET @curso = 'MBA%'
+
+SELECT DISTINCT
+	'ICORUJA' AS SISTEMA,
+	CASE WHEN TUR_DATFIN <= GETDATE() THEN 'Ex-aluno'
+		ELSE 'Aluno'
+	END SIT_ALUNO,
+	PES_CODTEL collate Latin1_General_CI_AI AS ALUNO,
+	PES_NOME collate Latin1_General_CI_AI AS NOME_COMPL,
+	PES_DATNAS AS DT_NASC,
+	YEAR (GETDATE()) - YEAR(PES_DATNAS) AS IDADE_ATUAL,
+	PAI_NACION collate Latin1_General_CI_AI AS NACIONALIDADE,
+	CASE WHEN PES_SEXO = 'F' THEN 'Feminino'
+		 WHEN PES_SEXO = 'M' THEN 'Masculino'
+	END collate Latin1_General_CI_AI AS SEXO,
+	PES_ESTCIV collate Latin1_General_CI_AI AS EST_CIVIL,
+	PES_ENDERE collate Latin1_General_CI_AI AS ENDERECO,
+	NULL AS END_NUM,
+	PES_COMEND collate Latin1_General_CI_AI AS END_COMPL,
+	PES_BAIRRO collate Latin1_General_CI_AI AS BAIRRO,
+	MUN_NOME collate Latin1_General_CI_AI AS END_MUNICIPIO,
+	PAI_NOME collate Latin1_General_CI_AI AS END_PAIS,
+	PES_CEP collate Latin1_General_CI_AI AS CEP,
+	PES_FONE collate Latin1_General_CI_AI AS FONE,
+	PES_FONCEL collate Latin1_General_CI_AI AS CELULAR,
+	LOWER(PES_EMAIL) collate Latin1_General_CI_AI AS E_MAIL,
+	PES_NRODOC2 collate Latin1_General_CI_AI AS RG_NUM,
+	'RG' AS RG_TIPO,
+	PES_ORGEMIDOC2 collate Latin1_General_CI_AI AS RG_EMISSOR,
+	NULL AS RG_UF,
+	PES_DATDOC2 AS RG_DTEXP,
+	PES_NRODOC1 collate Latin1_General_CI_AI AS CPF,
+	(SELECT TOP 1 FPP_FUNCAO FROM tb_formacao_profissional_pes  WHERE fpp_pesid = pes_id) collate Latin1_General_CI_AI AS PROFISSAO,
+	(SELECT TOP 1 FPP_EMPRESA FROM tb_formacao_profissional_pes  WHERE fpp_pesid = pes_id)collate Latin1_General_CI_AI AS NOME_EMPRESA,
+	CUR_CODCUR collate Latin1_General_CI_AI AS CURSO,
+	TUR_DESCRI collate Latin1_General_CI_AI AS TURMA,
+	TUR_DATINI AS DT_INICIO,
+	TUR_DATFIN AS DT_FIM,
+	CASE WHEN TUR_DATFIN <= GETDATE() THEN 'Encerrada'
+		ELSE 'Aberta'
+	END STATUS_TURMA,
+	ING_DATENT AS DATA_MATRICULA,
+	CASE WHEN MAL_SITMAT = 'ATIVO' THEN 'Matriculado'		-- 'MATRICULADO','APROVADO','REP FREQ','REP NOTA','CANCELADO','TRANCADO','DISPENSADO','ESPERA','INCONCLUIDO'
+		 WHEN MAL_SITMAT = 'CANCEL' THEN 'Cancelado'
+		 WHEN MAL_SITMAT = 'TRANCA' THEN 'Trancado'
+		 WHEN MAL_SITMAT = 'DESIST' THEN 'Cancelado'
+		 WHEN MAL_SITMAT = 'TRAEXT' THEN 'Trancado'
+	END collate Latin1_General_CI_AI AS SIT_MATRICULA,
+	
+	des_descri collate Latin1_General_CI_AI  TIPO_BOLSA,
+	1 NUM_BOLSA,
+	CASE WHEN pda_percen IS NOT NULL THEN 'Percentual' 
+		 WHEN pda_valor IS NOT NULL THEN 'Valor'
+	END collate Latin1_General_CI_AI AS PERC_VALOR,
+	
+	CASE WHEN pda_percen IS NOT NULL THEN pda_percen 
+		 WHEN pda_valor IS NOT NULL THEN pda_valor
+	END AS VALOR,
+	NULL  MOTIVO
+
+FROM 
+	VANZOLINI_ICORUJA.dbo.TB_PESSOA
+	INNER JOIN VANZOLINI_ICORUJA.dbo.tb_ingresso on (ing_pesid = pes_id)
+	INNER JOIN vanzolini_icoruja.dbo.tb_curso on (ing_curid=cur_id)
+	INNER JOIN VANZOLINI_ICORUJA.dbo.tb_mestre_aluno on (ing_id = mal_ingid)
+	INNER JOIN VANZOLINI_ICORUJA.dbo.tb_turma on (mal_turid = tur_id)
+	INNER JOIN VANZOLINI_ICORUJA.dbo.TB_MUNICIPIO ON PES_CODMUN = MUN_ID
+	INNER JOIN VANZOLINI_ICORUJA.dbo.TB_UNIDADE_FEDERACAO ON MUN_UFID = UFE_ID
+	INNER JOIN VANZOLINI_ICORUJA.dbo.TB_PAIS ON UFE_PAISID = PAI_ID
+	inner join VANZOLINI_ICORUJA.dbo.tb_contrato_fin on (cfi_pesid = pes_id AND cfi_turid = tur_id)
+	inner join VANZOLINI_ICORUJA.dbo.tb_responsavel_fin on (rfi_cfiid = cfi_id)
+	inner join VANZOLINI_ICORUJA.dbo.tb_responsavel_desacr on (pda_rfiid = rfi_id)
+	inner join VANZOLINI_ICORUJA.dbo.tb_desconto on (pda_desid = des_id)
+	
+WHERE
+	CUR_CODCUR collate Latin1_General_CI_AI like @curso
+
+UNION
+
+SELECT 
+	'LYCEUM' AS SISTEMA,
+	CASE WHEN DT_FIM <= GETDATE() THEN 'Ex-aluno'
+		ELSE 'Aluno'
+	END SIT_ALUNO,
+	M.ALUNO,
+	P.NOME_COMPL,
+	DT_NASC,
+	YEAR (GETDATE()) - YEAR(DT_NASC) AS IDADE_ATUAL,
+	NACIONALIDADE,
+	SEXO,
+	EST_CIVIL,
+	ENDERECO,
+	END_NUM,
+	END_COMPL,
+	BAIRRO,
+	END_MUNICIPIO,
+	END_PAIS,
+	CEP,
+	FONE,
+	CELULAR,
+	E_MAIL,
+	RG_NUM,
+	RG_TIPO,
+	RG_EMISSOR,
+	RG_UF,
+	RG_DTEXP,
+	CPF,
+	PROFISSAO,
+	NOME_EMPRESA,
+	M.CURSO,
+	M.TURMA,
+	V.DT_INICIO,
+	V.DT_FIM,
+	(SELECT TOP 1 CLASSIFICACAO FROM LY_TURMA WHERE SERIE = 1 AND CLASSIFICACAO IS NOT NULL AND TURMA = v.TURMA GROUP BY turma, CLASSIFICACAO )STATUS_TURMA,
+	M.DT_MATRICULA,
+	M.SIT_MATRICULA,
+	BL.TIPO_BOLSA,
+	BL.NUM_BOLSA,
+	BL.PERC_VALOR,
+	BL.VALOR * 100 AS VALOR,
+	BL.MOTIVO
+FROM
+	LY_PESSOA P
+	INNER JOIN VW_FCAV_RESUMO_MATRICULA_E_PRE_MATRICULA M ON p.pessoa = m.PESSOA
+	INNER JOIN VW_FCAV_INI_FIM_CURSO_TURMA V on v.turma = m.turma
+	LEFT JOIN LY_BOLSA BL ON BL.ALUNO = M.ALUNO
+
+WHERE
+	M.CURSO like @curso

@@ -1,0 +1,117 @@
+with inscritos_turma
+as 
+(
+SELECT
+	cur_codcur as CURSO,
+	TUR_CODTUR AS TURMA,
+	count(PES_NOME) as TOTALDEINSCRITOS
+FROM TB_INSC_INSCRICOES_REALIZADAS 
+	inner join TB_INSC_INSREAL_OPC on (inr_id = iro_inrid)
+	inner join tb_insc_inscricao_opcao on (ict_id = iro_ictid)
+	inner join tb_turma on (ict_turid = tur_id)
+	inner join TB_PESSOA on (PES_ID = INR_PESID)
+	inner join TB_CURSO on cur_id = TUR_CURID
+--WHERE 
+	--TUR_CODTUR like 'P-NIPSP T01'
+	--PES_NOME NOT LIKE '%teste%'
+	and CUR_ARCID = '33'
+	--AND INR_DATHOR BETWEEN '2013-09-01 00:00:00.000' AND '2013-09-30 23:59:59.999'
+	--AND PES_EMAIL NOT LIKE '%@vanzolini%'
+GROUP BY cur_codcur,
+	TUR_CODTUR
+),
+matricualdos_turma as (
+SELECT
+	CUR_CODCUR AS CURSO,
+	TUR_CODTUR AS TURMA,
+	PEL_DESCRI AS PERIODO,
+	YEAR(TUR_DATINI) AS ANO,
+	CASE WHEN (MONTH(TUR_DATINI)) IN ('1','2','3') THEN '1' 
+		 WHEN (MONTH(TUR_DATINI)) IN ('4','5','6','7') THEN '2'
+		 WHEN (MONTH(TUR_DATINI)) IN ('8','9','10','11','12') THEN '3'
+		END AS SEMESTRE , 
+	alu.pes_id AS ALUNOS_MATRICULADOS
+   
+FROM  
+ TB_TURMA AS TURP  
+ INNER JOIN TB_MESTRE_ALUNO AS MAL ON (TURP.TUR_ID = MAL.MAL_TURID AND TURP.TUR_CODTUR NOT LIKE '20%')  
+ INNER JOIN TB_INGRESSO AS ING ON (ING.ING_ID = MAL.MAL_INGID)  
+ INNER JOIN TB_PESSOA ALU ON (ALU.PES_ID = ING.ING_PESID)
+ INNER JOIN TB_CURSO ON (ING_CURID=CUR_ID AND CUR_ARCID = '33') 
+ inner join TB_TURMA_DISCIP on TDI_TURID = turp.TUR_ID
+ inner join TB_PERIODO_LETIVO on PEL_PERID = TUR_PERID
+ INNER JOIN TB_CONTRATO_FIN ON (CFI_PESID = PES_ID)
+ INNER JOIN TB_PARCELA ON (PAR_CFIID = CFI_ID)
+ inner JOIN TB_PARCELA_PAG ON (PPA_PARID = PAR_ID)
+
+WHERE
+	PPA_DATPAG IS NOT NULL
+	AND MAL_SITMAT = 'ATIVO'	
+	
+GROUP BY  
+ CUR_CODCUR,TURP.TUR_CODTUR,TUR_DATINI, PEL_DESCRI,
+ alu.pes_id
+ )
+
+SELECT   
+ CASE WHEN CUR_CODCUR IN ('CEQP', 'MBA-GO', 'CELOG', 'CEAS', 'CEGPS' ,'CEAI') THEN 'USP'  
+  ELSE 'Paulista' END AS UNIDADE,  
+  CUR_CODCUR collate Latin1_General_CI_AI  AS CURSO,  
+ TUR1.TUR_CODTUR collate Latin1_General_CI_AI AS CONCURSO,  
+ 'Concurso Encerrado' as SIT_PROC_SELETIVO,   
+ TUR1.TUR_CODTUR collate Latin1_General_CI_AI AS TURMA,  
+ TUR1.TUR_DATINI AS DT_INICIO_TURMA,  
+ TUR1.TUR_DATFIN AS DT_FIM_TURMA,  
+ PEL_DESCRI collate Latin1_General_CI_AI AS ANO_PERIODO,  
+
+ ( SELECT   
+  COUNT(STATUS_MATRICULA)   
+   FROM   
+  VW_FCAV_SIT_ALUNOS_ICORUJA TM   
+   WHERE   
+  STATUS_MATRICULA = 'Matriculado'  
+  AND TM.TURMA = TUR1.TUR_CODTUR collate Latin1_General_CI_AI   
+     AND TM.DISCIPLINA = DISC1.DIS_DISTEL collate Latin1_General_CI_AI  
+ ) AS MATRICULADOS,  
+ ( SELECT   
+  COUNT(STATUS_MATRICULA)   
+   FROM   
+  VW_FCAV_SIT_ALUNOS_ICORUJA TM   
+   WHERE   
+  STATUS_MATRICULA = 'Cancelado'  
+  AND TM.TURMA = TUR1.TUR_CODTUR collate Latin1_General_CI_AI   
+     AND TM.DISCIPLINA = DISC1.DIS_DISTEL collate Latin1_General_CI_AI  
+ ) AS CANCELADOS  
+
+   
+   
+FROM  
+ tb_turma as TUR1  
+ INNER JOIN tb_turma_discip on (TUR1.TUR_ID = TDI_TURID)  
+ INNER JOIN tb_mestre_disciplina on (mdi_turdisid = tdi_turdisid)  
+ --INNER JOIN tb_turma as TUR_D ON (TDI_TURID = TUR_D.TUR_ID)  
+ INNER JOIN tb_disciplina DISC1 on (tdi_discid = dis_disid)  
+ INNER JOIN tb_cronograma_aula_mestre on (tdi_turdisid = cam_tdiid)  
+ INNER JOIN tb_cronograma_aula_data on (cam_id = cad_camid)  
+ INNER JOIN tb_cronograma_aula on (cad_id = cau_cadid)  
+ INNER JOIN tb_cronograma_aula_prof AS CRONOP on (cau_id = CRONOP.CAP_CAUID)  
+ LEFT  JOIN tb_pessoa AS PROF on (cap_pesid = PROF.pes_id)  
+ LEFT  JOIN tb_sala on (CRONOP.CAP_SALIID = sal_id)  
+ LEFT  JOIN tb_horario on (cau_horid = hor_id)  
+ INNER JOIN tb_CURSO ON (TUR1.TUR_CURID = CUR_ID AND CUR_ARCID = '33')  
+ INNER JOIN tb_AREA_CONHECIMENTO ON (CUR_ARCID = ARC_ID)  
+ INNER JOIN TB_PERIODO_LETIVO ON (TUR1.TUR_PERID = PEL_PERID)  
+ INNER JOIN inscritos_turma IT ON IT.TURMA = TUR1.TUR_CODTUR
+						AND IT.CURSO = CUR_CODCUR
+
+  
+WHERE  
+ YEAR(CAD_DATA)>= 2010  
+
+ --AND TUR1.TUR_DATFIN >= GETDATE()  
+   
+GROUP BY   
+ CUR_CODCUR , TUR1.TUR_CODTUR , PEL_DESCRI , DIS_DESDIS , DIS_DISTEL,   
+ PROF.PES_NOME , PROF.PES_NRODOC1 , PROF.PES_EMAIL , CAD_DATA ,   
+ TUR1.TUR_DATINI , TUR1.TUR_DATFIN  , TUR1.TUR_STATUS , CAU_NROAULA ,   
+ CAD_DIASEM , CUR_ARCID , SAL_CODSAL, HOR_HORINI, HOR_HORFIN,TUR_DESCRI  

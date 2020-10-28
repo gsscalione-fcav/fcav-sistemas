@@ -1,0 +1,48 @@
+SELECT
+	MP.UNIDADE_RESPONSAVEL,
+	mp.CURSO,
+	CS.NOME AS NOME_CURSO,
+	mp.TURMA,
+	MP.STATUS_TURMA,
+	MP.FACULDADE AS UNIDADE_FISICA,
+	MP.ALUNO,
+	PE.NOME_COMPL AS NOME,
+	pe.CPF AS CPF,
+	pe.RG_NUM,
+	LOWER(pe.E_MAIL) AS E_MAIL,
+
+	case when PE.DDD_FONE_CELULAR is null AND LEN(replace(replace(pe.CELULAR,'-',''),' ','')) > 9 then left(replace(replace(pe.CELULAR,'-',''),' ',''),2)
+	else PE.DDD_FONE_CELULAR END AS DDD_CELULAR,
+	RIGHT(replace(replace(pe.CELULAR,'-',''),' ',''),9) as CELULAR,
+
+	case when PE.DDD_FONE is null AND LEN(replace(replace(pe.FONE,'-',''),' ','')) > 8 then left(replace(replace(pe.FONE,'-',''),' ',''),2)
+	else PE.DDD_FONE END AS DDD_FONE,
+	RIGHT(replace(replace(pe.FONE,'-',''),' ',''),8) as TELEFONE,
+
+	mp.SIT_MATRICULA AS SIT_MATRICULA,
+	CONVERT(VARCHAR,DT_MATRICULA,103)DT_MATRICULA
+FROM
+	VW_FCAV_RESUMO_MATRICULA_E_PRE_MATRICULA mp 
+	INNER JOIN LY_PESSOA pe on (PE.PESSOA= MP.PESSOA)
+	INNER JOIN LY_CURSO CS 
+		ON CS.CURSO = MP.CURSO
+GROUP BY
+	MP.UNIDADE_RESPONSAVEL,
+	mp.CURSO,
+	CS.NOME,
+	mp.TURMA,
+	MP.STATUS_TURMA,
+	MP.FACULDADE,
+	MP.ALUNO,
+	PE.NOME_COMPL,
+	pe.RG_NUM,
+	pe.CPF,
+	pe.E_MAIL,
+	PE.DDD_FONE_CELULAR,
+	pe.CELULAR,
+	PE.DDD_FONE,
+	pe.FONE,
+	mp.SIT_MATRICULA,
+	DT_MATRICULA
+ORDER BY
+	mp.CURSO, mp.TURMA, MP.ALUNO

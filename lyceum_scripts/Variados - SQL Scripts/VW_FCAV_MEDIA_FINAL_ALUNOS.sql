@@ -1,0 +1,135 @@
+/*
+	VIEW VW_FCAV_MEDIA_FINAL_ALUNOS
+	
+	Finalidade: View que traz o histórico do aluno somente por disciplina.
+	
+	Utilizado: É utilizada para auxiliar a planilha de alunos concluintes.
+	
+	Autor: Gabriel S Scalione
+	Data: 16/10/2017
+*/
+
+ALTER VIEW VW_FCAV_MEDIA_FINAL_ALUNOS
+
+AS
+
+
+SELECT  
+	cs.FACULDADE as UNID_RESP,
+	AL.CURSO,  
+    MA.TURMA,
+    AL.TURMA_PREF,  
+    (SELECT  
+        ISNULL(CONVERT(varchar, MIN(CT.DT_INICIO), 103), '-')  
+    FROM VW_FCAV_INI_FIM_CURSO_TURMA CT  
+    WHERE CT.TURMA = MA.TURMA)  
+    AS DT_INICIO,  
+    (SELECT  
+        ISNULL(CONVERT(varchar, MAX(CT.DT_FIM), 103), '-')  
+    FROM VW_FCAV_INI_FIM_CURSO_TURMA CT  
+    WHERE CT.TURMA = MA.TURMA)  
+    AS DT_FIM,  
+    AL.ALUNO,  
+    AL.NOME_COMPL,  
+    MA.ANO,  
+    MA.SEMESTRE,  
+    DI.NOME_COMPL AS DISCIPLINA,  
+    MA.SIT_MATRICULA AS SITUACAO_HIST,  
+    MA.SIT_DETALHE,  
+    CASE  
+        WHEN DI.TEM_NOTA = 'N' THEN 10.00  
+        WHEN MA.CONCEITO_FIM = 'A' THEN 10.00  
+        WHEN MA.CONCEITO_FIM = 'R' THEN 0.00  
+        ELSE CONVERT(decimal(10, 2), ISNULL(STR(MA.CONCEITO_FIM, 15, 2), 0))  
+    END AS NOTA_FINAL,  
+    CASE WHEN DI.TEM_FREQ = 'N' THEN 100.00  
+		 ELSE CONVERT(decimal(10, 2), ISNULL(MA.PERC_PRESFIM, 0) * 100)   
+	END AS FREQUENCIA  
+FROM LY_ALUNO AL  
+INNER JOIN LY_MATRICULA MA  
+    ON MA.ALUNO = AL.ALUNO  
+INNER JOIN LY_CURSO CS  
+    ON CS.CURSO = AL.CURSO  
+INNER JOIN LY_DISCIPLINA DI  
+    ON DI.DISCIPLINA = MA.DISCIPLINA  
+
+WHERE
+	CS.FACULDADE IN ('CAPAC', 'ESPEC')
+  
+GROUP BY AL.ALUNO,  
+         AL.NOME_COMPL,  
+         AL.CURSO, 
+         CS.FACULDADE , 
+         MA.TURMA, 
+         AL.TURMA_PREF,  
+         MA.ANO,  
+         MA.SEMESTRE,  
+         MA.DISCIPLINA,  
+         DI.TEM_NOTA,  
+         DI.TEM_FREQ,  
+         DI.NOME_COMPL,  
+         MA.SIT_MATRICULA,  
+         MA.SIT_DETALHE,  
+         MA.CONCEITO_FIM,  
+         MA.PERC_PRESFIM  
+  
+UNION ALL  
+  
+SELECT 
+	CS.FACULDADE AS UNID_RESP,
+	AL.CURSO,  
+    HI.TURMA,
+    AL.TURMA_PREF,    
+    (SELECT  
+        ISNULL(CONVERT(varchar, MIN(CT.DT_INICIO), 103), '-')  
+    FROM VW_FCAV_INI_FIM_CURSO_TURMA CT  
+    WHERE CT.TURMA = HI.TURMA)  
+    AS DT_INICIO,  
+    (SELECT  
+        ISNULL(CONVERT(varchar, MAX(CT.DT_FIM), 103), '-')  
+    FROM VW_FCAV_INI_FIM_CURSO_TURMA CT  
+    WHERE CT.TURMA = HI.TURMA)  
+    AS DT_FIM,   
+    AL.ALUNO,  
+    AL.NOME_COMPL,  
+    HI.ANO,  
+    HI.SEMESTRE,  
+    DI.NOME_COMPL AS DISCIPLINA,  
+    HI.SITUACAO_HIST,  
+    HI.SIT_DETALHE,  
+    CASE  
+  WHEN DI.TEM_NOTA = 'N' THEN 10.00  
+        WHEN HI.NOTA_FINAL = 'A' THEN 10.00  
+        WHEN HI.NOTA_FINAL = 'R' THEN 0.00  
+        ELSE CONVERT(decimal(10, 2), STR(HI.NOTA_FINAL, 15, 2))  
+    END AS NOTA_FINAL,  
+ CASE WHEN DI.TEM_FREQ = 'N' THEN 100.00   
+    ELSE CONVERT(decimal(10, 2), HI.PERC_PRESENCA * 100)   
+    END AS FREQUENCIA  
+FROM LY_ALUNO AL  
+INNER JOIN LY_HISTMATRICULA HI  
+    ON HI.ALUNO = AL.ALUNO  
+INNER JOIN LY_CURSO CS  
+    ON CS.CURSO = AL.CURSO  
+INNER JOIN LY_DISCIPLINA DI  
+    ON DI.DISCIPLINA = HI.DISCIPLINA  
+WHERE
+	CS.FACULDADE IN ('CAPAC', 'ESPEC')
+	
+GROUP BY AL.ALUNO,  
+         AL.NOME_COMPL,  
+         AL.CURSO,  
+         CS.FACULDADE ,
+         HI.TURMA,
+         AL.TURMA_PREF,    
+         HI.ANO,  
+         HI.SEMESTRE,  
+         DI.NOME_COMPL,  
+         DI.TEM_NOTA,  
+         DI.TEM_FREQ,  
+         HI.SITUACAO_HIST,  
+         HI.SIT_DETALHE,  
+         HI.NOTA_FINAL,  
+         HI.PERC_PRESENCA
+
+

@@ -1,0 +1,68 @@
+  
+/*  
+ VIEW VW_FCAV_ALUNOS_PALESTRAS  
+  
+ Finalidade: Relação de alunos que participaram da Palestra. Utilizada para Declaração do Participação nos relatórios do Lyceum  
+  
+Autor: Gabriel S Scalione.  
+Data: 03/07/2018.  
+  
+*/  
+  
+  
+CREATE VIEW VW_FCAV_PARTICIPANTES_PALESTRAS  
+AS  
+  
+SELECT  
+ MA.FACULDADE UNIDADE_FISICA,  
+ CS.CURSO,  
+ CS.NOME,  
+ MA.TURMA,  
+ TU.SIT_TURMA AS STATUS_TURMA,  
+ TU.DT_INICIO,  
+ OO.HORARIO_DESCRICAO AS HORARIO,  
+ ISNULL(  
+  CASE WHEN SEXO = 'M' THEN 'o palestrante Prof. ' + DO.NOME_COMPL  
+    WHEN SEXO = 'F' THEN 'a palestrante Profa. ' + DO.NOME_COMPL  
+    ELSE 'o palestrante Prof. ' + DO.NOME_COMPL  
+  END  
+  ,'') AS PALESTRANTE,  
+ MA.ALUNO,   
+ MA.NOME_COMPL,  
+ MA.SIT_ALUNO,  
+ MA.SIT_MATRICULA,  
+ MA.ALOCADO  
+FROM  
+ VW_FCAV_RESUMO_MATRICULA_E_PRE_MATRICULA MA  
+ INNER JOIN LY_CURSO CS  
+  ON CS.CURSO = MA.CURSO  
+ LEFT JOIN LY_TURMA TU  
+  ON TU.TURMA = MA.TURMA  
+ LEFT JOIN LY_DOCENTE DO  
+  ON DO.NUM_FUNC = TU.NUM_FUNC  
+ INNER JOIN LY_OPCOES_OFERTA OO  
+  ON OO.OFERTA_DE_CURSO = MA.OFERTA_DE_CURSO  
+WHERE  
+ TU.UNIDADE_RESPONSAVEL = 'PALES'  
+ AND MA.ANO_INGRESSO >=2018  
+ AND MA.ALOCADO = 'S'  
+ AND MA.SIT_MATRICULA != 'Pre-Matriculado'  
+ AND MA.SIT_ALUNO != 'Cancelado'  
+ AND (TU.SIT_TURMA = 'Finalizada'  
+  OR TU.SIT_TURMA = 'Desativada')  
+GROUP BY   
+ MA.FACULDADE,  
+ CS.CURSO,  
+ CS.NOME,  
+ MA.TURMA,  
+ TU.SIT_TURMA,  
+ TU.DT_INICIO,  
+ OO.HORARIO_DESCRICAO,  
+ DO.NOME_COMPL,  
+ DO.SEXO,  
+ MA.ALUNO,   
+ MA.NOME_COMPL,  
+ MA.SIT_ALUNO,  
+ MA.SIT_MATRICULA,  
+ MA.ALOCADO  
+  

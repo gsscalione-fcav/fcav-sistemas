@@ -1,0 +1,70 @@
+/-- EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,'gabriel.scalione@vanzolini.com.br',NULL,'E201920107'
+
+121727 - aluno editor
+
+
+
+DECLARE @v_email1 varchar(100)
+
+DECLARE @v_email2 varchar(100)
+
+DECLARE @v_pessoa1 varchar(20)
+
+DECLARE @v_pessoa2 varchar(20)
+
+
+SET @v_pessoa1 = (SELECT PESSOA FROM LY_PESSOA WHERE E_MAIL LIKE 'gabriel.scalione@vanzolini.com.br')
+
+SET @v_pessoa2 = (SELECT PESSOA FROM LY_ALUNO WHERE ALUNO = 'E201920107')
+
+
+
+
+SELECT PESSOA, NOME_COMPL, E_MAIL FROM LY_PESSOA WHERE PESSOA IN (@v_pessoa1,@v_pessoa2)
+
+
+SELECT 
+	@v_email1 = E_MAIL
+FROM
+	LY_PESSOA
+WHERE
+	PESSOA = @v_pessoa1
+
+SELECT 
+	@v_email2 = E_MAIL
+FROM
+	LY_PESSOA
+WHERE
+	PESSOA = @v_pessoa2
+	
+
+UPDATE LY_PESSOA
+SET
+	E_MAIL = @v_email2
+WHERE
+	PESSOA = @v_pessoa1
+
+
+UPDATE LY_PESSOA
+SET
+	E_MAIL = @v_email1
+WHERE
+	PESSOA = @v_pessoa2
+
+
+ALTER TABLE LY_CANDIDATO DISABLE TRIGGER ALL
+UPDATE LY_CANDIDATO		
+SET
+	E_MAIL = @v_email1
+WHERE
+	PESSOA = @v_pessoa2
+
+UPDATE LY_CANDIDATO		
+SET
+	E_MAIL = @v_email2
+WHERE
+	PESSOA = @v_pessoa1
+	
+ALTER TABLE LY_CANDIDATO ENABLE TRIGGER ALL
+
+SELECT PESSOA, NOME_COMPL, E_MAIL FROM LY_PESSOA WHERE PESSOA IN (@v_pessoa1,@v_pessoa2)

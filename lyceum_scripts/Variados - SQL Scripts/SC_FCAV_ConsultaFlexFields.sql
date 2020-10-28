@@ -1,0 +1,23 @@
+select 
+	CANDIDATO,
+	FL_FIELD_01,
+	FL_FIELD_02,
+	FL_FIELD_03,
+	FL_FIELD_04,
+	FL_FIELD_05,
+	FL_FIELD_06,
+	FL_FIELD_07,
+	FL_FIELD_08
+from 
+	LY_CANDIDATO 
+where 
+	CANDIDATO = '201710009'
+	
+	update LY_CANDIDATO
+	set
+		FL_FIELD_01= '02-28-2016',
+		FL_FIELD_04= null,
+		FL_FIELD_02='Com Restrição - Baixo Risco',
+		fl_field_06=null
+	where
+	CANDIDATO = '201710009'

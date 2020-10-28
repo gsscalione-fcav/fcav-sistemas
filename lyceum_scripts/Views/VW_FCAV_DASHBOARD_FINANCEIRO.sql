@@ -1,0 +1,109 @@
+/*
+		VIEW VW_FCAV_DASHBOARD_FINANCEIRO
+
+Finalidade: View para trazer todas as compras de cursos realizadas para o dashboard da educação.
+
+Autor: Gabriel S Scalione
+Data: 26/06/2019
+
+
+*/
+
+
+
+ALTER VIEW VW_FCAV_DASHBOARD_FINANCEIRO
+AS
+SELECT DISTINCT
+    CASE
+        WHEN CO.GRUPO = '-CERT' OR
+            co.NOME_COMPL = 'José Joaquim do Amaral Ferreira' THEN 'Certificação'
+        WHEN VT.UNIDADE_FISICA = 'Online' OR
+            VT.UNIDADE_FISICA = 'Semipresencial' THEN 'Paulista'
+        ELSE CO.UNID_FISICA
+    END AS GRUPO_RESP,
+    CASE
+        WHEN vt.UNIDADE_RESPONSAVEL = 'ATUAL' AND
+            VT.UNIDADE_FISICA = 'USP' THEN 'DIFUSAO'
+        ELSE vt.UNIDADE_RESPONSAVEL
+    END AS UNID_RESP,
+    UPPER(VT.CURSO) AS CURSO,
+    pm.TURMA,
+    (SELECT TOP 1
+        CASE
+            WHEN CLASSIFICACAO NOT LIKE 'Cancel%' AND
+                VT.DT_INICIO > GETDATE() THEN 'Em Inscrição'
+            WHEN CLASSIFICACAO NOT LIKE 'Cancel%' AND
+                (GETDATE() BETWEEN VT.DT_INICIO AND
+                VT.DT_FIM) THEN 'Em Andamento'
+            WHEN CLASSIFICACAO NOT LIKE 'Cancel%' AND
+                VT.DT_FIM < GETDATE() THEN 'Concluido'
+            WHEN CLASSIFICACAO LIKE 'Cancel%' THEN 'Cancelada'
+            ELSE 'NÃO CLASSIFICADA'
+        END
+    FROM LY_TURMA TU
+    WHERE TU.TURMA = VT.TURMA
+    AND TU.SERIE = 1
+    GROUP BY CLASSIFICACAO)
+    AS SITUACAO_TURMA,
+    (SELECT TOP 1
+        CASE
+            WHEN CLASSIFICACAO LIKE 'Cancel%' THEN 'Cancelada'
+            WHEN CLASSIFICACAO NOT LIKE 'Cancel%' AND
+                VT.DT_INICIO > GETDATE() THEN 'Em Inscrição'
+            ELSE 'Realizada'
+        END
+    FROM LY_TURMA TU
+    WHERE TU.TURMA = VT.TURMA
+    AND TU.SERIE = 1
+    GROUP BY CLASSIFICACAO)
+    AS REALIZACAO,
+    VT.DT_INICIO,
+    VT.DT_FIM,
+    (SELECT
+        SUM(CAST(VS.VALOR_CURSO AS decimal(10, 2)))
+    FROM VW_FCAV_VALOR_SERVICOS_CURRICULOS VS
+    WHERE VS.CURRICULO = CR.CURRICULO
+    AND VS.CURSO = CR.CURSO
+    AND VS.TURNO = CR.TURNO
+	AND VS.TURMA = VT.TURMA)
+    AS VALOR_CURSO,
+    EXT.ALUNO,
+    EXT.NOME_COMPL,
+    EXT.SIT_ALUNO,
+    ext.VALOR_FATURADO  AS VALOR_CONTRATADO,
+    EXT.VALOR_PAGO AS VALOR_PAGO,
+    EXT.DATA_DE_VENCIMENTO,
+    format(ext.DATA_DE_VENCIMENTO, 'MMM/yyyy', 'pt-br') AS MES_ANO_VENCTO
+FROM VW_FCAV_BOLETOS_EMITIDOS_CONTAB AS EXT
+inner join VW_FCAV_RESUMO_MATRICULA_E_PRE_MATRICULA pm
+	on pm.ALUNO = ext.ALUNO
+INNER JOIN VW_FCAV_COORDENADOR_TURMA CO
+    ON CO.TURMA = pm.TURMA
+INNER JOIN VW_FCAV_INI_FIM_CURSO_TURMA VT
+    ON VT.TURMA = pm.TURMA
+INNER JOIN LY_CURRICULO CR
+    ON CR.CURSO = VT.CURSO
+    AND CR.TURNO = VT.TURNO
+    AND CR.CURRICULO = VT.CURRICULO
+
+GROUP BY CO.GRUPO,
+         CO.NOME_COMPL,
+         CO.UNID_FISICA,
+         VT.UNIDADE_RESPONSAVEL,
+         VT.CURSO,
+         CR.CURRICULO,
+         CR.CURSO,
+         CR.TURNO,
+
+         pm.TURMA,
+         EXT.ALUNO,
+         EXT.NOME_COMPL,
+         EXT.SIT_ALUNO,
+		 ext.VALOR_FATURADO,
+         ext.VALOR_PAGO,
+         ext.DATA_DE_VENCIMENTO,
+         VT.TURMA,
+         VT.DT_INICIO,
+         VT.DT_FIM,
+         VT.UNIDADE_FISICA,
+         VT.UNIDADE_RESPONSAVEL

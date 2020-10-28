@@ -1,0 +1,57 @@
+ 
+--*   VW_FCAV_STATUS_ALUNO WHERE TURMA = 'A-PPA T 02'  
+--*  
+--*  Finalidade: 
+--*		- View criada para ser usada no certificado FCAV_certificado_atu.rpt
+--*  
+--*   Data de Criação: 28/09/2017  
+--*   Gabriel Serrano Scalione
+ 
+  
+ALTER VIEW VW_FCAV_STATUS_ALUNO AS  
+
+SELECT    
+ AL.CURSO,    
+ MP.TURMA,    
+ AL.ALUNO,    
+ AL.NOME_COMPL,    
+ MP.SIT_MATRICULA,
+ MP.SIT_DETALHE    
+FROM     
+ LY_MATRICULA MP
+ INNER JOIN LY_ALUNO AL
+	ON AL.ALUNO = MP.ALUNO
+ INNER JOIN LY_CURSO CS
+	ON CS.CURSO = AL.CURSO
+
+GROUP BY 
+	AL.CURSO,    
+	MP.TURMA,    
+	AL.ALUNO,    
+	AL.NOME_COMPL,    
+	MP.SIT_MATRICULA,   
+	MP.SIT_DETALHE    
+
+UNION ALL
+
+SELECT 
+ AL.CURSO,      
+ HIST.TURMA,      
+ AL.ALUNO,      
+ AL.NOME_COMPL,      
+ HIST.SITUACAO_HIST,     
+ HIST.SIT_DETALHE      
+FROM       
+ LY_HISTMATRICULA HIST      
+ INNER JOIN LY_ALUNO AL
+	ON (AL.ALUNO = HIST.ALUNO) 
+ INNER JOIN LY_CURSO CS
+	ON CS.CURSO = AL.CURSO
+
+GROUP BY 
+	 AL.CURSO,
+	 HIST.TURMA,
+	 AL.ALUNO,
+	 AL.NOME_COMPL,
+	 HIST.SITUACAO_HIST,
+	 HIST.SIT_DETALHE

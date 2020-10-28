@@ -1,0 +1,110 @@
+/*
+--* ***************************************************************    
+--*    
+--*  ***VIEW VW_FCAV_CANDIDATO_ALUNO_SITUACAO ***    
+--*     
+--* Finalidade: Consulta para trazer as situações do candidato e aluno com motivo e causa de desistencia e cancelamento
+--*    e aluno com motivo e causa de desistencia e cancelamento. Planilha utilizada pelo Cristiano.
+--*     
+--*  SELECT * FROM VW_FCAV_CANDIDATO_ALUNO_SITUACAO WHERE ALUNO = 'E201420082'    
+--*     
+--* Autor: Gabriel S. Scalione    
+--* Criado: 01/02/2018    
+--*    
+--* ***************************************************************    
+
+*/
+
+ALTER VIEW VW_FCAV_CANDIDATO_ALUNO_SITUACAO
+AS
+
+
+SELECT
+    CA.PESSOA,
+    CA.CPF,
+    CA.RG_NUM,
+    CA.RG_TIPO,
+    CA.PASSAPORTE,
+    CA.CANDIDATO AS INSCRITO,
+    CA.SIT_CANDIDATO_VEST AS SITUACAO,
+    CA.DT_INSCRICAO AS DT_INSCRICAO,
+    OC.CONCURSO,
+    OC.OFERTA_DE_CURSO,
+    OC.CURSO,
+    OC.TURNO,
+    OC.CURRICULO,
+    OC.ANO_INGRESSO,
+    OC.PER_INGRESSO,
+	VT.TURMA,
+	VT.DT_INICIO AS DT_INICIO_TURMA
+
+FROM LY_CANDIDATO CA
+INNER JOIN LY_OFERTA_CURSO OC
+    ON OC.CONCURSO = CA.CONCURSO
+INNER JOIN VW_FCAV_INI_FIM_CURSO_TURMA VT
+	ON VT.CONCURSO = OC.CONCURSO
+WHERE OC.CONCURSO IS NOT NULL
+GROUP BY CA.PESSOA,
+         CA.CANDIDATO,
+         CA.CPF,
+		 CA.RG_NUM,
+		 CA.RG_TIPO,
+		 CA.PASSAPORTE,
+         CA.SIT_CANDIDATO_VEST,
+         CA.DT_INSCRICAO,
+         OC.CONCURSO,
+         OC.OFERTA_DE_CURSO,
+         OC.CURSO,
+         OC.TURNO,
+         OC.CURRICULO,
+         OC.ANO_INGRESSO,
+         OC.PER_INGRESSO,
+		 VT.TURMA,
+		 VT.DT_INICIO
+
+UNION ALL
+
+SELECT
+    AL.PESSOA,
+    NULL AS CPF,
+    NULL AS RG_NUM,
+    NULL AS RG_TIPO,
+    NULL AS PASSAPORTE,
+    AL.ALUNO AS INSCRITO,
+    AL.SIT_ALUNO AS SITUACAO,
+    AL.DT_INGRESSO AS DT_INSCRICAO,
+    OC.CONCURSO,
+    OC.OFERTA_DE_CURSO,
+    OC.CURSO,
+    OC.TURNO,
+    OC.CURRICULO,
+    OC.ANO_INGRESSO,
+    OC.PER_INGRESSO,
+	VT.TURMA,
+	VT.DT_INICIO AS DT_INICIO_TURMA
+FROM LY_ALUNO AL
+INNER JOIN LY_OFERTA_CURSO OC
+    ON  OC.CURSO = AL.CURSO
+    AND OC.TURNO = AL.TURNO
+    AND OC.CURRICULO = AL.CURRICULO
+    AND OC.ANO_INGRESSO = AL.ANO_INGRESSO
+    AND OC.PER_INGRESSO = AL.SEM_INGRESSO
+    AND OC.TURMA_PREF = AL.TURMA_PREF
+INNER JOIN VW_FCAV_INI_FIM_CURSO_TURMA VT
+	ON VT.OFERTA_DE_CURSO = OC.OFERTA_DE_CURSO
+WHERE OC.CONCURSO IS NULL
+AND AL.CANDIDATO IS NULL
+AND AL.CONCURSO IS NULL
+GROUP BY AL.PESSOA,
+         AL.ALUNO,
+         AL.SIT_ALUNO,
+         AL.DT_INGRESSO,
+         OC.CONCURSO,
+         OC.OFERTA_DE_CURSO,
+         OC.CURSO,
+         OC.TURNO,
+         OC.CURRICULO,
+         OC.ANO_INGRESSO,
+         OC.PER_INGRESSO,
+		 VT.TURMA,
+		 VT.DT_INICIO

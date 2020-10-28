@@ -1,0 +1,26 @@
+SELECT 
+	RESP
+FROM LY_COBRANCA
+WHERE
+	ALUNO = 'E201810054'
+group by resp
+
+select 
+	SUBSTRING(TITULAR,1,40), 
+	CGC_TITULAR
+from 
+	LY_RESP_FINAN
+where
+	RESP in (SELECT 
+	RESP
+FROM LY_COBRANCA
+WHERE
+	ALUNO = 'E201810054'
+group by resp)
+
+
+update ly_resp_finan
+set
+	TITULAR = SUBSTRING(TITULAR,1,40)
+where
+	CGC_TITULAR = '25088757000100'

@@ -1,0 +1,27 @@
+
+SELECT 
+	PESSOA, 
+	NOME_COMPL,
+	CPF,
+	RG_NUM,
+	E_MAIL 
+FROM 
+	LY_PESSOA 
+WHERE 
+	E_MAIL IN (
+		SELECT 
+			E_MAIL
+		FROM 
+			LY_PESSOA
+		WHERE
+			E_MAIL IS NOT NULL
+			OR E_MAIL = ''
+		GROUP BY
+			E_MAIL
+		HAVING COUNT(*) > 1
+	)
+
+order by 
+	E_MAIL
+	
+	

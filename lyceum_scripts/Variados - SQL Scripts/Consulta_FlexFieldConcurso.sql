@@ -1,0 +1,22 @@
+SELECT 
+	CONCURSO, 
+	FL_FIELD_01, 
+	FL_FIELD_02, 
+	FL_FIELD_03, 
+	FL_FIELD_04, 
+	FL_FIELD_05, 
+	FL_FIELD_06, 
+	FL_FIELD_07
+FROM 
+	LY_CONCURSO
+WHERE 
+	   (FL_FIELD_01    = 'SIM' OR FL_FIELD_01    = 'NÃO')
+	OR (FL_FIELD_01    = 'S' OR FL_FIELD_01    = 'N')
+	OR (FL_FIELD_02    = 'SIM' OR FL_FIELD_02    = 'NÃO')
+	OR (FL_FIELD_02    = 'S' OR FL_FIELD_02    = 'N')
+	OR (FL_FIELD_03    = 'SIM' OR FL_FIELD_03    = 'NÃO')
+	OR (FL_FIELD_03    = 'S' OR FL_FIELD_03    = 'N')
+	OR (FL_FIELD_04    = 'SIM' OR FL_FIELD_04    = 'NÃO')
+	OR (FL_FIELD_04    = 'S' OR FL_FIELD_04    = 'N')
+	OR (FL_FIELD_05    = 'SIM' OR FL_FIELD_05    = 'NÃO')
+	OR (FL_FIELD_05    = 'S' OR FL_FIELD_05    = 'N')

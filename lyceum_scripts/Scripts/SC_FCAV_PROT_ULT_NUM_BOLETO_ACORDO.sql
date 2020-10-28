@@ -1,0 +1,8 @@
+SELECT TOP 1 
+	'Utilizar esse número para a SE1 ->' as A,
+	E1_NUM + 1 AS E1_NUM
+FROM SE1010
+WHERE D_E_L_E_T_ = ''
+AND E1_TIPO = 'BOL'
+AND E1_PREFIXO = 'ACO'
+ORDER BY E1_NUM DESC

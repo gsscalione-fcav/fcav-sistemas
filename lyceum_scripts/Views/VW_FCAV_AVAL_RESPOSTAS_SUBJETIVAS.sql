@@ -1,0 +1,41 @@
+
+/*
+	VIEW VW_FCAV_AVAL_RESPOSTAS_SUBJETIVAS
+
+Finalidade: Traz os comentários dos alunos sobre a disciplina e docente.
+
+
+Autor: Gabriel
+Data: 13/06/2018
+
+*/
+
+
+ALTER VIEW VW_FCAV_AVAL_RESPOSTAS_SUBJETIVAS
+AS
+SELECT   
+ CURSO,  
+ TURMA,  
+ TIPO_AVALIADO,  
+ NOME_AVALIADO,
+
+ TIPO_QUESTAO,
+ case when SUBSTRING(TITULO,1,5) like '1%Av%' THEN '1ª Avaliação'
+	  when SUBSTRING(TITULO,1,5) like '2%Av%' THEN '2ª Avaliação'
+ end  AS AVALIACAO,  
+ APLICACAO, 
+ RESPOSTA  
+FROM  
+ VW_FCAV_RESPOSTAS_AVAL_DOCENTE_DISCIPLINA  
+WHERE  
+ TIPO_QUESTAO = 'Subjetiva'  
+ AND RESPOSTA NOT LIKE ''
+ AND LEN(RESPOSTA)> 3 
+GROUP BY  CURSO,  
+ TURMA,  
+ TIPO_AVALIADO,  
+ NOME_AVALIADO,  
+ APLICACAO,
+ TIPO_QUESTAO,
+ TITULO,  
+ RESPOSTA

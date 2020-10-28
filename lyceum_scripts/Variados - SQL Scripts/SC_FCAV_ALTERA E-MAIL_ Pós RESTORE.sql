@@ -1,0 +1,21 @@
+agafgsdfgsdfgsdfg
+;
+update FCAV_EMAIL_AUX set DESTINATARIO = 'mail@mail.com.br' where isnull(DESTINATARIO, '') <> ''
+update FCAV_EMAIL_AUX set RESP = 'mail@mail.com.br' where isnull(RESP, '') <> ''
+update FCAV_WEBUSERS set EMAIL = 'mail@mail.com.br' where isnull(EMAIL, '') <> ''
+update LY_CANDIDATO set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update LY_EMAIL_LOTE_DEST set EMAIL_DESTINATARIO = 'mail@mail.com.br' where isnull(EMAIL_DESTINATARIO, '') <> ''
+update LY_EMAILS_BATCH set EMAIL_PARA = 'mail@mail.com.br' where isnull(EMAIL_PARA, '') <> ''
+update LY_ENVIO_EMAIL set DESTINATARIO = 'mail@mail.com.br' where isnull(DESTINATARIO, '') <> ''
+update LY_MANTENEDORA set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update LY_OFERTA_CURSO_INTERESSE set EMAIL = 'mail@mail.com.br' where isnull(EMAIL, '') <> ''
+--update LY_OPCOES set InstituicaoEmail = 'mail@mail.com.br' where isnull(InstituicaoEmail, '') <> ''
+--update LY_OPCOES set EmailLogin = 'mail@mail.com.br' where isnull(EmailLogin, '') <> ''
+update LY_REMETENTE_EMAIL set REMETENTE_EMAIL = 'mail@mail.com.br' where isnull(REMETENTE_EMAIL, '') <> ''
+update TEMPTABLE_FCAV_CANDIDATO_IMPORTA set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update LY_PESSOA set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update LY_DOCENTE set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update LY_DOCENTE set E_MAIL_COM = 'mail@mail.com.br' where isnull(E_MAIL_COM, '') <> ''
+update LY_UNIDADE_FISICA set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+update FCAV_LY_PESSOA set E_MAIL = 'mail@mail.com.br' where isnull(E_MAIL, '') <> ''
+====================================================

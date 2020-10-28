@@ -1,0 +1,42 @@
+select 
+	*
+from
+LY_ITEM_LANC
+  WHERE
+  --BOLETO IN (54713,54692,54905) and
+   (MOTIVO_DESCONTO in('Voucher', 'PlanoPagamento') OR NUM_BOLSA IS NOT NULL)
+  AND BOLETO IS NOT NULL
+order by COBRANCA desc
+
+---------------------------------------------
+
+SELECT
+	co.aluno,
+	CO.COBRANCA,
+	BO.BOLETO,
+	bo.DATA_PROC,
+	BO.OBS,
+	CASE WHEN NUM_BOLSA IS NOT NULL THEN 'Bolsa concedida no valor de: ' + REPLACE(CONVERT(VARCHAR,CAST(VALOR AS money)),'.',',')
+		 WHEN MOTIVO_DESCONTO IS NOT NULL THEN 'Desconto concedido no valor de: '+ REPLACE(CONVERT(VARCHAR,CAST(VALOR AS money)),'.',',')
+			ELSE 'SemDesconto'
+	END AS TIPO_DESCONTO
+  FROM LY_ITEM_LANC IL
+	INNER JOIN LY_COBRANCA CO
+		ON CO.COBRANCA = IL.COBRANCA
+	INNER JOIN LY_BOLETO BO
+		ON BO.BOLETO = IL.BOLETO
+  WHERE
+	--il.BOLETO IN (54713,54692,54905) and
+	(NUM_BOLSA IS NOT NULL 
+		 OR MOTIVO_DESCONTO in('Voucher', 'PlanoPagamento'))
+	and year(bo.DATA_PROC) >=2017
+GROUP BY co.ALUNO,co.COBRANCA,
+	BO.BOLETO,BO.OBS,bo.DATA_PROC,NUM_BOLSA,MOTIVO_DESCONTO, VALOR
+order by bo.boleto desc
+
+
+select 
+	* from 
+	LY_BOLETO
+where
+	BOLETO in (148217,148226,158305)
