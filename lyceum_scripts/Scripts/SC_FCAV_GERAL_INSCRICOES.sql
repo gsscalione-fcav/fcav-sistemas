@@ -20,11 +20,6 @@ Gera
 /*candidato		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,'202020179',NULL
 /*aluno			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,NULL,'A202002132'
 
-
-select * from ly_cobranca where aluno in ('A202002100',
-'A202002101')
-
-
 SELECT 
 	habilitado, 
 	NOME, 
