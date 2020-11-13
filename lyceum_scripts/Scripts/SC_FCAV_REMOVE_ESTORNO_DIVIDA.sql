@@ -7,14 +7,14 @@
 
 --Verificar se tem desconto válido na Dívida
 
---SELECT * FROM LY_LANC_DEBITO WHERE ALUNO = 'A201900754'
+--SELECT * FROM LY_LANC_DEBITO WHERE ALUNO = 'C202000129 '
 
 
 /********************************************************************************
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202000020'
+DECLARE @ALUNO VARCHAR(20) = 'C202000129'
 
 declare @lanc_debito numeric
 
@@ -22,9 +22,7 @@ select @lanc_debito = LANC_DEB from LY_LANC_DEBITO where ALUNO = @ALUNO
 
 select * 
 from  LY_DESCONTO_DEBITO 
-WHERE LANC_DEB in (SELECT LANC_DEB 
-				   FROM LY_LANC_DEBITO 
-				   WHERE ALUNO in (@ALUNO))
+WHERE LANC_DEB  = @lanc_debito
 
 
 --UPDATE  LY_DESCONTO_DEBITO 

@@ -1,15 +1,15 @@
 /*
 	REMOÇAO DOS DADOS DE RPS
 
-	SELECT * FROM ly_boleto where boleto in (192003)
+	SELECT * FROM ly_boleto where boleto in (select distinct boleto from ly_item_lanc where aluno = 'A202000797')
 	select * from vw_cobranca_boleto where cobranca = 208838
-	select * from ly_item_lanc where aluno = 'E202010152'
+	select distinct cobranca, boleto from ly_item_lanc where aluno = 'A202000797'
 */
 
 
 DECLARE @boleto T_NUMERO
 
-SET @boleto = 192003
+SET @boleto = 200217
 
 	SELECT BOLETO,
 		OBS ,
@@ -65,7 +65,7 @@ WHERE
 
 	update #tmp_boleto
 	set
-		BOLETO = 196442
+		BOLETO = 200339
 
 --- VOLTA COM OS DADOS DE RPS DO BOLETO ANTIGO
 UPDATE LY_BOLETO
@@ -96,7 +96,7 @@ from LY_BOLETO b
 		on b.BOLETO = t.BOLETO
 
 WHERE
-	b.BOLETO = 196442
+	b.BOLETO = 200339
 
 	SELECT BOLETO,
 		OBS ,
@@ -120,4 +120,4 @@ WHERE
 		DT_SOLICITA_CANCEL_RPS ,
 		MOTIVO_CANCEL_RPS  
 	FROM LY_BOLETO
-	WHERE BOLETO in (196442)
+	WHERE BOLETO in (200339)

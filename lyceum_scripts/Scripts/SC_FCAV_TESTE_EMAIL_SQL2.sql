@@ -1,3 +1,5 @@
+
+/***************************************************************************************************/		
 --Teste em Produção
 EXEC MSDB.dbo.SP_SEND_DBMAIL
 		@PROFILE_NAME =
@@ -15,8 +17,29 @@ EXEC MSDB.dbo.SP_SEND_DBMAIL
    @BODY = 'Desculpe, esse email está sendo enviado pelo sistema. <br> <br> Por favor confirme o recebimento para respondendo o e-mail para gabriel.scalione@vanzolini.com.br <br><br><br>Desde já agradeço.',
    @BODY_FORMAT = HTML;
 
-		
+/***************************************************************************************************/		
+--Teste em Homologação
+EXEC MSDB.dbo.SP_SEND_DBMAIL
+		@PROFILE_NAME = VANZOLINI_MAIL_V23,
+   
+   --EMAIL DO DESTINATÁRIO
+   @RECIPIENTS = 'gabriel.scalione@vanzolini.com.br',
+   
+   --@blind_copy_recipients = 'suporte_techne@vanzolini.org.br', 
+   
+   -- ASSUNTO DA MENSAGEM
+   @SUBJECT = 'Teste de envio pelo Lyceum Produção',
+   
+   -- TEXTO DA MENSAGEM
+   @BODY = 'Desculpe, esse email está sendo enviado pelo sistema. <br> <br> Por favor confirme o recebimento para respondendo o e-mail para gabriel.scalione@vanzolini.com.br <br><br><br>Desde já agradeço.',
+   @BODY_FORMAT = HTML;
 	
+/***************************************************************************************************/		
+
+
+
+
+
 
 --CONSULTA ENVIO DOS E-MAILS
 select items.sent_status,
