@@ -53,58 +53,13 @@ BEGIN
     END
     ELSE
     BEGIN
-    
-		----------------------------------------------------------------------------------
-		/* Não gerar novas cobranças para aluno de rematricula que está inadimplente.	*/
-		/* Identifica a última parcela gerada e soma + 1 para saber qual será a próxima */
-		/* parcela a ser gerada. Caso seja uma das parcelas abaixo, que representa o	*/ 
-		/* inicio de cada quadrimestre, irá verificar se existe cobranças anteriores	*/	
-		/* vencidas e não será gerado novas cobranças até a quitação das mesmas.		*/	
-		----------------------------------------------------------------------------------
-		IF(@prox_parcela = 5 or @prox_parcela = 9 or @prox_parcela = 13 
-		   or @prox_parcela = 17 or @prox_parcela = 21)
-		BEGIN
-			IF EXISTS (SELECT DISTINCT
-					1
-				FROM VW_FCAV_EXTFIN_LY EX
-					INNER JOIN LY_CURSO CS
-						ON CS.CURSO = EX.CURSO
-					INNER JOIN LY_BOLSA BO
-						ON BO.ALUNO = EX.ALUNO
-				WHERE CS.FACULDADE = 'ESPEC'
-				AND CONVERT(VARCHAR, DATA_DE_VENCIMENTO,112) < CONVERT(VARCHAR, GETDATE(),112)
-				AND DATA_DE_PAGAMENTO IS NULL
-				AND SITUACAO_BOLETO != 'Baixa por Acordo'
-				AND EX.ALUNO = @p_aluno
-				AND SIT_ALUNO !='Cancelado'
-				AND BO.PERC_VALOR != 'Percentual'
-				AND BO.VALOR != 1.000000
-				AND EX.VALOR_PAGAR > 0.00
-				)
-			BEGIN
-				SELECT
-					@p_retorno = 'N'
-				SELECT
-					@p_msg = 'Aluno inadimplente, há cobrança(s) e/ou acordo(s) vencido(os)!'
-
-			END
-			ELSE
-			BEGIN
-				SELECT
-					@p_retorno = 'S'
-				SELECT
-					@p_msg = ''
-			END
-		END
-	    ELSE
-		BEGIN
-    
-			SELECT
-				@p_retorno = 'S'
-			SELECT
-				@p_msg = ''
-		END
-  END
+  
+		SELECT
+			@p_retorno = 'S'
+		SELECT
+			@p_msg = ''
+	
+	END
   
   RETURN
 END
