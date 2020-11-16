@@ -65,8 +65,8 @@ AS
 	DECLARE @perfilaluno varchar(2000)
 	DECLARE @email_unidfisica varchar(200)
 
- 
-	declare @inicio_turma VARCHAR(10)
+	DECLARE	@link_manual_aluno varchar(500)
+	DECLARE @inicio_turma VARCHAR(10)
 
  
 	SET @encaminha_email = NULL
@@ -133,8 +133,14 @@ AS
 
 	END
 	-------------------------------------------------------------
-
-
+	-- LINK PARA O MANUAL DO ALUNO
+	SELECT 
+		@link_manual_aluno = '<a href="'+ISNULL(DESCR,'')+'">Clique aqui</a> para visualizar o Manual do Aluno. <br><br>'
+	FROM	
+		HD_TABELAITEM 
+	WHERE 
+		TABELA = 'LinkManualAluno'
+		AND ITEM = @unidade_ensino
 
 	-------------------------------------------------------------      
     -- INSERE O MANUAL DO ALUNO CONFORME A UNIDADE ENSINO
@@ -145,10 +151,10 @@ AS
 		
 		set @manual_aluno = CASE WHEN @unidade_ensino = 'ESPEC' THEN
 								--ESPEC	
-								'<a href="https://drive.google.com/file/d/1OkBac05cgGadQ5kZY4DwOClvmppCgOHi">Clique aqui</a> para visualizar o Manual do Aluno. <br><br>'
+								@link_manual_aluno
 							WHEN @unidade_ensino = 'CAPAC' THEN
 								--CAPAC
-								'<a href="https://drive.google.com/file/d/0B9B76T8yoyrZWENCdTBJZWNQN3J1aEs3aXpXNUExUTBjZzZB">Clique aqui</a> para visualizar o Manual do Aluno. <br><br>'
+								@link_manual_aluno
 							ELSE
 								''
 							END
@@ -421,7 +427,7 @@ AS
 	                   
       EXEC MSDB.dbo.SP_SEND_DBMAIL @PROFILE_NAME =    
                                  -- Desenvolvimento/homologação      
-                                 -- FCAV_HOMOLOGACAO,      
+                                  --VANZOLINI_MAIL_V23,      
                                  -- Produção      
 									VANZOLINI_BD,    
                                  @recipients = @destinatario,  
