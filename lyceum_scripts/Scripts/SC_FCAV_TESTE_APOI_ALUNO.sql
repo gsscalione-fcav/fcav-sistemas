@@ -1,13 +1,13 @@
 EXEC a_APoI_Ly_aluno ''
-,'E202110004'							--	@aluno varchar(20), 
+,'E202110003'							--@aluno varchar(20), 
 ,'CEIN T 17'							--@concurso varchar(20), 
-,'202110036'							--@candidato varchar(20), 
+,'202110035'							--@candidato varchar(20), 
 ,'CEIN'									--@curso varchar(20),    
 ,'INTEGRAL'								--@turno varchar(20), 
 ,'CEIN-17'								--@curriculo varchar(20), 
 ,1										--@serie numeric(3), 
-,'Levi Henry Murilo Gonçalves'			--@nome_compl varchar(100),    
-,'Levi Henry Murilo Gonçalves'			--@nome_abrev varchar(50), 
+,'César Raimundo Barbosa'			--@nome_compl varchar(100),    
+,'César Raimundo Barbosa'			--@nome_abrev varchar(50), 
 ,1900									--@anoconcl_2g numeric(4), 
 ,'Processo Seletivo'					--@tipo_ingresso varchar(20), 
 ,2021									--@ano_ingresso numeric(4),    
@@ -26,7 +26,7 @@ EXEC a_APoI_Ly_aluno ''
 ,NULL	--@num_chamada numeric(10), 
 ,NULL	--@curso_ant varchar(100), 
 ,'Paulista'	--@unidade_fisica varchar(20), 
-,129202	--@pessoa numeric(10),    
+,129201	--@pessoa numeric(10),    
 ,NULL	--@outra_faculdade varchar(100), 
 ,NULL	--@cidade_2g varchar(50), 
 ,NULL	--@pais_2g varchar(50), 
@@ -44,4 +44,4 @@ EXEC a_APoI_Ly_aluno ''
 
 
 
-	SELECT * FROM Ly_ALUNO WHERE UNIDADE_ENSINO = 'ESPEC' ORDER BY ALUNO DESC
+	--SELECT * FROM Ly_ALUNO WHERE UNIDADE_ENSINO = 'ESPEC' ORDER BY ALUNO DESC
