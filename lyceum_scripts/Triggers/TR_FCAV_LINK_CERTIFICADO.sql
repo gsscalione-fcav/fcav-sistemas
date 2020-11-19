@@ -11,7 +11,7 @@ GO
 -- Create date: 2020-11-18
 -- Description:	Trigger para disponibilizar o link do certificado na página de aviso na Central do Aluno.
 -- =============================================
-CREATE TRIGGER dbo.TR_FCAV_LINK_CERTIFICADO
+ALTER TRIGGER dbo.TR_FCAV_LINK_CERTIFICADO
    ON  dbo.certificados
    AFTER UPDATE
 AS 
@@ -44,16 +44,16 @@ BEGIN
 	BEGIN
 		INSERT INTO LYCEUM.DBO.LY_AVISO
 		(ALUNO,DTINI,DTFIM,MENSAGEM,CURSO,SERIE,TIPO_AVISO,UNID_RESPONSAVEL,UNID_FISICA,
-		 TURNO,CURRICULO,CONCURSO,DATA_INCLUSAO,USUARIO,DESTINO,ORDEM,LOTE,ANEXO_ID)
+			TURNO,CURRICULO,CONCURSO,DATA_INCLUSAO,USUARIO,DESTINO,ORDEM,LOTE,ANEXO_ID)
 		VALUES
-		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+500,102),'<p><a href="'+ @url_aprovado +'">Clique aqui para visualizar seu Certificado</a></p>',
-		@curso,NULL,'I',NULL,NULL,NULL,NULL,NULL,CONVERT(DATE,GETDATE(),102),'zeus',NULL,NULL,NULL,NULL)	
+		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+500,102),'<p><a href="'+ @url_aprovado +'">Link para o Certificado '+ @turma +'</a></p>',
+			@curso,NULL,'I',NULL,NULL,NULL,NULL,NULL,CONVERT(DATE,GETDATE(),102),'zeus',NULL,NULL,NULL,NULL)	
 	END
 	ELSE 
 	BEGIN
 		IF @url_aprovado IS NULL 
 		BEGIN
-			DELETE LYCEUM.DBO.LY_AVISO WHERE @aluno = ALUNO AND MENSAGEM LIKE '%Clique aqui para visualizar seu Certificado%' 
+			DELETE LYCEUM.DBO.LY_AVISO WHERE @aluno = ALUNO AND MENSAGEM LIKE '%Link para o Certificado%' 
 		END
 	END
 
