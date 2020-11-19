@@ -4,11 +4,11 @@ where ALUNO = 'C201800300'
 
 update certificados 
 set
-	URL_APROVACAO = 'http://200.196.228.204/tstvalidade/certificado.asp?0B448E91A86AC2E77E04877292F02055'
+	URL_APROVACAO = 'http://10.0.10.14/tstvalidade/teste_pdf.asp?B0657EFBDFC8329D96A77D8CBE192CF4'
 
 where ALUNO = 'C201800300'
 
-
+	--'http://10.0.10.14/tstvalidade/teste_pdf.asp?B0657EFBDFC8329D96A77D8CBE192CF4'
 
 select 
 	aluno, sit_aluno, Lyceum.dbo.Decrypt(p.SENHA_TAC) senha

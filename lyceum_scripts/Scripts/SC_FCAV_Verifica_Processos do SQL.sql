@@ -6,3 +6,4 @@ order by spid
 
 --sp_lock
 
+sp_who2
