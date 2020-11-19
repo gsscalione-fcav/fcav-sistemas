@@ -4,8 +4,8 @@
  SELECT ALUNO, VALOR_PAGAR, VALOR_PAGO FROM VW_fcav_EXTFIN_LY  
   
   SELECT * FROM #ic_data WHERE cobranca = '49997'  
-  SELECT * FROM #tp_ingresso WHERE ALUNO = 'A201900807'  
-  SELECT * FROM #il_ic WHERE cobranca = '49997'  
+  SELECT * FROM #tp_ingresso WHERE ALUNO = 'C202000118'  
+  SELECT * FROM #il_ic WHERE cobranca = '213847'  
   SELECT * FROM #il  WHERE cobranca = '198422'  
   SELECT * FROM #turma WHERE ALUNO = 'A201900807'  
   SELECT * FROM #hist_mat where ALUNO = 'A201900807'  
