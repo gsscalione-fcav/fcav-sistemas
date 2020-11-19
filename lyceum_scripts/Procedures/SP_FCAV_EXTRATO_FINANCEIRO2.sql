@@ -151,8 +151,8 @@ AS
 				INTO #IL_IC
                 FROM VW_FCAV_IL_NAO_ESTORNO il
                 WHERE ACORDO IS NULL
-			    AND VALOR > 0
-				--AND NUM_BOLSA IS NULL
+			    --AND VALOR > 0
+				AND NUM_BOLSA IS NULL
                 AND MOTIVO_DESCONTO IS NULL
                 AND DESCRICAO <> 'Acrescimo de IGPM'
                 AND VALOR IS NOT NULL
