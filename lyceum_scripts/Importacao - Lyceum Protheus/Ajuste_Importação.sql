@@ -8,7 +8,7 @@ CT2_DEBITO,CT2_CREDIT, CT2_HIST,CT2_VALOR, CT2_CCD,CT2_CCC, R_E_C_N_O_
  FROM		DADOSADVP12.dbo.CT2010
  WHERE	--D_E_L_E_T_ = '' and
   CT2_DATA >= '20190101'
-AND (  CT2_HIST LIKE '%205445%')
+AND (  CT2_HIST LIKE '%200173%')
 AND			CT2_LOTE in ('008871','008870')
 ORDER BY	CT2_LOTE,CT2_DOC DESC,CT2_LINHA
 
@@ -18,31 +18,27 @@ SELECT
 	CT2_DATA,
 	CT2_LOTE,
 	CT2_DOC 
-FROM		CT2010
+FROM		DADOSADVP12.dbo.CT2010
 WHERE	D_E_L_E_T_ = '' and
-  CT2_DATA >= '20190501'
-AND			CT2_LOTE in ('008871')
+  CT2_DATA >= '20200101'
+AND			CT2_LOTE in ('008870')
 GROUP BY
 		CT2_DATA,
 	CT2_LOTE,CT2_DOC
 ORDER BY	CT2_LOTE,CT2_DOC DESC
 
 
-
-
-
 --****************************************************************************
 --					LIBERACAO DO CENTRO DE CUSTO							--
 --****************************************************************************
-	USE DADOSADVP12
-	GO
-		BEGIN 
+
+	
 			declare @centro_custo varchar(9)
 
-			set @centro_custo = '502012215' -- INFORME O CENTRO DE CUSTO
+			set @centro_custo = '502013118' -- INFORME O CENTRO DE CUSTO
 
 			SELECT CTT_TX_GER, CTT_CLVL, *
-			FROM CTT010
+			FROM DADOSADVP12.dbo.CTT010
 			WHERE  D_E_L_E_T_ = ''
 			and CTT_CUSTO = @centro_custo
 
@@ -91,7 +87,7 @@ go
 	BEGIN
 		DECLARE @cobranca T_NUMERO
 
-		SET @cobranca = 203423
+		SET @cobranca = 207774
 
 	
 		SELECT DISTINCT TURMA, 
@@ -121,7 +117,7 @@ go
 	BEGIN
 		DECLARE @cobranca T_NUMERO
 
-		SET @cobranca = 203423   ---DIGITTE O NÚMERO DA COBRANÇA
+		SET @cobranca = 200173   ---DIGITTE O NÚMERO DA COBRANÇA
 
 		--lancamentos dos débitos da cobrança
 

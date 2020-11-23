@@ -1,0 +1,1754 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/31/2012 12:20:06 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ACER_NOTE"
+  DTS:CreatorName="ACER_NOTE\Marco"
+  DTS:DTSID="{E4457126-D3AC-44B5-B731-F6C4ADD1016C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="0906-Lookups"
+  DTS:PackageType="5"
+  DTS:VersionBuild="492"
+  DTS:VersionGUID="{CA9F968F-9D89-40D0-B74D-4E1948D34A17}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[20463]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C241073E-6BAA-4CE0-A51F-5B39E9C2156E}"
+      DTS:ObjectName="20463">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=AdventureWorks2016;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-9-Modulo4_Demo2-{C241073E-6BAA-4CE0-A51F-5B39E9C2156E}ACER_NOTE\SQL2008R2.AdventureWorks2008;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Cache Connection Manager]"
+      DTS:CreationName="CACHE"
+      DTS:DTSID="{4D369A94-37FE-4FA6-99EF-8ADA37DAD72C}"
+      DTS:ObjectName="Cache Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager>
+          <DTS:CacheColumns>
+            <DTS:CacheColumn
+              DTS:DataType="129"
+              DTS:Length="50"
+              DTS:CodePage="1252"
+              DTS:ObjectName="IDCache"
+              DTS:DTSID="{762C8CC6-49E5-4336-9927-71B2495F0FC7}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="129"
+              DTS:Length="50"
+              DTS:CodePage="1252"
+              DTS:IndexPosition="1"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{5BB2F37D-0D8F-4255-AE6C-9C2C5AC2B9C4}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="129"
+              DTS:Length="50"
+              DTS:CodePage="1252"
+              DTS:IndexPosition="2"
+              DTS:ObjectName="SEXO"
+              DTS:DTSID="{2957BE43-56D0-455F-A1B0-01942A799B7E}"
+              DTS:CreationName="" />
+            <DTS:CacheColumn
+              DTS:DataType="129"
+              DTS:Length="50"
+              DTS:CodePage="1252"
+              DTS:IndexPosition="3"
+              DTS:ObjectName="TELEFONE"
+              DTS:DTSID="{AD16D7FC-B28B-40C5-A376-C4940EBB3928}"
+              DTS:CreationName="" />
+          </DTS:CacheColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{5E9B4D5D-B7FE-49C1-A275-87E703B85F26}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\LOG_603.TXT">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID"
+              DTS:DTSID="{2B6E8367-52DC-44AD-AF2E-24D8E75A4DD2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{4B3789E2-3501-4770-A9F7-5560C3CF2CB9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SEXO"
+              DTS:DTSID="{1A7EF253-B157-47BB-A2D4-30BB4FFEBD63}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="FONE"
+              DTS:DTSID="{7CF3DD6C-3831-45BE-8154-ABF7FFC22AE3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{F0D37721-3CDC-442E-92E8-ED081F1D103E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{D8F9C7EB-1224-4EED-BF66-224D1441383B}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[fones]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{59730962-C52F-41EC-B80F-39E799D6FBEF}"
+      DTS:ObjectName="fones">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Fones.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID"
+              DTS:DTSID="{AB1669E7-0D64-4FCD-8E42-E99809D50AAF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{53563240-B815-4046-AF70-42F86C1FC513}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TELEFONE"
+              DTS:DTSID="{D4D09A08-AEE1-4152-A000-B9FB517C2BE9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SEXO"
+              DTS:DTSID="{9E546492-C0D1-44E8-B987-45446079E619}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Fones_LOG]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{93D6FC0B-F1E1-4ECC-8DFD-9DAA3738406A}"
+      DTS:ObjectName="Fones_LOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\20463C - Implementing a Data Warehouse with Microsoft SQL Server\0802_Erros.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ID"
+              DTS:DTSID="{030C508D-0690-43C4-B780-5FD4C28C5DE4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{9B31C50E-323F-45F4-BA0B-FE0100E63DE0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="SEXO"
+              DTS:DTSID="{2CC84EFE-2F82-47EC-B2E7-93F97BDB08BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TELEFONE"
+              DTS:DTSID="{9E634B56-4064-40B9-BC7F-97DABD2727D2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorCode"
+              DTS:DTSID="{8B46E6D5-2E95-49F9-BF43-E6CB91BEE25B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="3"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ErrorColumn"
+              DTS:DTSID="{DB3B9EE3-FE1E-44E1-87BD-110B12AFC996}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{357C5B4C-42C8-4ED8-BFDE-5B0F07EFB191}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="sTXT_File">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{4644BD06-B65C-44C5-822E-C6AAA212D031}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Importacao do TXT com CONVERSAO e LOOKUPS">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{F535C879-4E53-4AAA-98B1-103E5F75D43C}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task - Custom Transformation e LOOKUPs"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              BLOBTempStoragePath=""
+              bufferTempStoragePath=""
+              version="1">
+              <components>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1"
+                  componentClassID="Microsoft.DataConvert"
+                  contactInfo="Data Conversion;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Data Conversion"
+                  localeId="1046"
+                  name="Data Conversion 1"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input]"
+                      name="Data Conversion Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input].Columns[ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[ID]"
+                          name="ID" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input].Columns[FONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TELEFONE"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[TELEFONE]"
+                          name="FONE" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input].Columns[SEXO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SEXO"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[SEXO]"
+                          name="SEXO" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output]"
+                      exclusionGroup="1"
+                      name="Data Conversion Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="RedirectRow"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]"
+                          name="IDinteiro"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[ID]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="RedirectRow"
+                          length="12"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]"
+                          name="FONE12"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[TELEFONE]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="RedirectRow"
+                          length="1"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]"
+                          name="SEXO1"
+                          truncationRowDisposition="RedirectRow">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[SEXO]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Data Conversion Error Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination"
+                  componentClassID="Microsoft.FlatFileDestination"
+                  contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Flat File Destination"
+                  localeId="1033"
+                  name="Flat File Destination">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether the data will overwrite or append to the destination file."
+                      name="Overwrite">true</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the text to write to the destination file before any data is written."
+                      expressionType="Notify"
+                      name="Header" />
+                    <property
+                      dataType="System.Boolean"
+                      description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                      name="EscapeQualifier">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                      connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input]"
+                      hasSideEffects="true"
+                      name="Flat File Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[ID]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ID"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ID]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[ID]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[SEXO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="SEXO"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SEXO]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[SEXO]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[TELEFONE]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="TELEFONE"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FONE]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[TELEFONE]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorCode]"
+                          cachedDataType="i4"
+                          cachedName="ErrorCode"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].Columns[ErrorColumn]"
+                          cachedDataType="i4"
+                          cachedName="ErrorColumn"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SEXO" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="FONE" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorCode]"
+                          dataType="i4"
+                          name="ErrorCode" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ErrorColumn]"
+                          dataType="i4"
+                          name="ErrorColumn" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1046"
+                  name="Flat File Source - FONES"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[fones]"
+                      connectionManagerRefId="Package.ConnectionManagers[fones]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[ID]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[ID]"
+                          length="50"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[ID]"
+                          name="ID"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[NOME]"
+                          length="50"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]"
+                          name="NOME"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[SEXO]"
+                          length="50"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[SEXO]"
+                          name="SEXO"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[TELEFONE]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[TELEFONE]"
+                          length="50"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[TELEFONE]"
+                          name="TELEFONE"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[ID]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ID" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[NOME]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="NOME" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[SEXO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="SEXO" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].ExternalColumns[TELEFONE]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="TELEFONE" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="1252"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="INSERTS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Fones]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[20463]"
+                      connectionManagerRefId="Package.ConnectionManagers[20463]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[nome]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].Columns[IDinteiro]"
+                          cachedDataType="i4"
+                          cachedName="IDinteiro"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].Columns[FONE12]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="FONE12"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[fone]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].Columns[SEXO1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="SEXO1"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[sexo]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[id]"
+                          dataType="i4"
+                          name="id" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[nome]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="nome" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[fone]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="fone" />
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input].ExternalColumns[sexo]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="sexo" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
+                  description="Looks up values in a reference dataset by using exact matching."
+                  name="LKP - CHAVE PRIMARIA"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT ID FROM FONES</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT ID FROM FONES) [refTable]
+where [refTable].[ID] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">20</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[20463]"
+                      connectionManagerRefId="Package.ConnectionManagers[20463]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input].Columns[IDinteiro]"
+                          cachedDataType="i4"
+                          cachedName="IDinteiro"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">ID</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="LKP - Demais campos"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Fones]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Fones]) [refTable]
+where [refTable].[nome] = ? and [refTable].[id] = ? and [refTable].[fone] = ? and [refTable].[sexo] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="nome" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="fone" dataType="DT_STR" length="12" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="sexo" dataType="DT_STR" length="1" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]};#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]};#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]};#{Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[20463]"
+                      connectionManagerRefId="Package.ConnectionManagers[20463]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">nome</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input].Columns[FONE12]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="FONE12"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">fone</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input].Columns[SEXO1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="SEXO1"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">sexo</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input].Columns[IDinteiro]"
+                          cachedDataType="i4"
+                          cachedName="IDinteiro"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">id</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE FONES SET NOME =?, FONE=?, SEXO=? WHERE ID=?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[20463]"
+                      connectionManagerRefId="Package.ConnectionManagers[20463]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].Columns[NOME]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="NOME"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output].Columns[NOME]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].Columns[FONE12]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="FONE12"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[FONE12]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].Columns[SEXO1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1"
+                          cachedName="SEXO1"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[SEXO1]" />
+                        <inputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].Columns[IDinteiro]"
+                          cachedDataType="i4"
+                          cachedName="IDinteiro"
+                          externalMetadataColumnId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output].Columns[IDinteiro]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1"
+                          name="Param_2">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                          dataType="i4"
+                          name="Param_3">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">81</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Data Conversion Error Output]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination.Inputs[Flat File Destination Input]"
+                  name="Data Conversion Error Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Error Output]" />
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Data Conversion Output]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Inputs[Lookup Input]"
+                  name="Data Conversion Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Flat File Source Output]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1.Inputs[Data Conversion Input]"
+                  name="Flat File Source Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES.Outputs[Flat File Source Output]" />
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup Match Output]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup No Match Output]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS.Inputs[OLE DB Destination Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup No Match Output1]"
+                  endId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command.Inputs[OLE DB Command Input]"
+                  name="Lookup No Match Output"
+                  startId="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos.Outputs[Lookup No Match Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="328,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs"
+          TopLeft="5.5,5.50000000000007" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="339,103"
+          Size="339,146"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS"
+          TopLeft="41.2714217691995,88.8647061483258" />
+        <AnnotationLayout
+          Text="Module 9 - Demo 0904"
+          ParentId="Package"
+          Size="225,45"
+          Id="619d39fe-b2eb-4acd-9be5-139f1f9d47e9"
+          TopLeft="25.2681944009474,10.5352903511285">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="17.25"
+              Color="#FF0000FF"
+              Weight="Bold">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="- LOOKUPS"
+          ParentId="Package"
+          Size="94,39"
+          Id="715c8b8e-f1a9-4438-b7d8-e34ff5dd699c"
+          TopLeft="24.9285717594379,44.149940731006">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="12.75"
+              Color="#FF080000">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos"
+          TopLeft="457.857150654404,239.352944533305" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\OLE DB Command"
+          TopLeft="473.701306768384,332.245991904093" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS"
+          TopLeft="195.042856242705,306.723529283068" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Destination"
+          TopLeft="548.71428572645,103.521008027996" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA"
+          TopLeft="154.3,201.5" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Flat File Source - FONES"
+          TopLeft="247.9,5.49999999999995" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\Data Conversion 1"
+          TopLeft="262.819480528327,107.65614974042" />
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup No Match Output1]"
+          TopLeft="552.179228711394,280.952944533305">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,51.2930473707878"
+              Start="0,0"
+              End="0,43.7930473707878">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.7930473707878" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,16.0918361853939,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup No Match Output]"
+          TopLeft="252.271428121353,243.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,63.6235292830682"
+              Start="0,0"
+              End="0,56.1235292830682">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.1235292830682" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,22.2570771415341,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Lookup Match Output]"
+          TopLeft="344.7,222.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="113.157150654404,37.8529445333052"
+              Start="0,0"
+              End="105.657150654404,37.8529445333052">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="52.5785753272019,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="52.5785753272019,0"
+                    Point2="56.5785753272019,0"
+                    Point3="56.5785753272019,4" />
+                  <mssgle:LineSegment
+                    End="56.5785753272019,33.8529445333052" />
+                  <mssgle:CubicBezierSegment
+                    Point1="56.5785753272019,33.8529445333052"
+                    Point2="56.5785753272019,37.8529445333052"
+                    Point3="60.5785753272019,37.8529445333052" />
+                  <mssgle:LineSegment
+                    End="105.657150654404,37.8529445333052" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.38718860845189,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Flat File Source Output]"
+          TopLeft="344.959740264164,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,60.5561497404202"
+              Start="0,0"
+              End="0,53.0561497404202">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.0561497404202" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Data Conversion Output]"
+          TopLeft="345.219480528327,149.25614974042">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-95.7194805283273,52.2438502595799"
+              Start="0,0"
+              End="-95.7194805283273,44.7438502595799">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1219251297899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.1219251297899"
+                    Point2="0,26.1219251297899"
+                    Point3="-4,26.1219251297899" />
+                  <mssgle:LineSegment
+                    End="-91.7194805283273,26.1219251297899" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.7194805283273,26.1219251297899"
+                    Point2="-95.7194805283273,26.1219251297899"
+                    Point3="-95.7194805283273,30.1219251297899" />
+                  <mssgle:LineSegment
+                    End="-95.7194805283273,44.7438502595799" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs.Paths[Data Conversion Error Output]"
+          TopLeft="427.619480528327,126.388578884208">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="121.094805198123,0"
+              Start="0,0"
+              End="113.594805198123,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="113.594805198123,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-9.28898411968868,5,132.1727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - Demais campos">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[Fones]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\INSERTS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Importacao do TXT com CONVERSAO e LOOKUPS\Data Flow Task - Custom Transformation e LOOKUPs\LKP - CHAVE PRIMARIA">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

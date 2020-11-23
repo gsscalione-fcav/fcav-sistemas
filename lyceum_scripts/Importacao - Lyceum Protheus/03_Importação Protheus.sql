@@ -83,13 +83,19 @@ WHERE DESCRICAO  = 'Acrescimo de IGPM'
 AND VALOR  < '0.01'
 AND DATA BETWEEN @DATA_INI AND @DATA_FIM
 
-UPDATE LY_ITEM_LANC
-SET DT_ENVIO_CONTAB = GETDATE()
-WHERE DESCRICAO  = 'Ajuste de IGPM Bolsa'
-AND VALOR  < '0.01'
-AND DATA BETWEEN @DATA_INI AND @DATA_FIM
+--------------------------------------------------------------
 
- 
+-- Este bloco foi comentado, pois o Ajuste de IGPM Bolsa é sempre negativo 
+-- e precisa ser importado.
+-- verificar chamado 9763
+
+--UPDATE LY_ITEM_LANC
+--SET DT_ENVIO_CONTAB = GETDATE()
+--WHERE DESCRICAO  = 'Ajuste de IGPM Bolsa'
+--AND VALOR  < '0.01'
+--AND DATA BETWEEN @DATA_INI AND @DATA_FIM
+
+-------------------------------------------------------------- 
   
 -- CURSOR PARA UNIFICAÇÃO DAS DATAS NA TABELA LY_ITEM_CRED EVITANDO QUE JUROS E MULTAS
 -- FIQUEM EM UMA DATA E O PAGAMENTO EM OUTRA, SITUAÇÃO PROVENIENTE DE ARRASTOS DE BOLETO.
@@ -197,8 +203,8 @@ WHERE
 AND ILAN.DATA <= (select cast(@data_fim as varchar)+' 23:59:59.000')  
 AND ILAN.DT_ENVIO_CONTAB IS NULL
 AND ILAN.ITEM_ESTORNADO IS NULL 
---AND (ILAN.MOTIVO_DESCONTO != 'Estorno'  or ILAN.CODIGO_LANC = 'ACORDO')
-AND ILAN.DESCRICAO NOT LIKE '%REMOCAO%'
+-- AND (ILAN.MOTIVO_DESCONTO != 'Estorno'  or ILAN.CODIGO_LANC = 'ACORDO')
+-- AND ILAN.DESCRICAO NOT LIKE '%REMOCAO%' -- Retirado essa regra para atender a solicitação do David - chamado 42535
 
 UNION ALL
   

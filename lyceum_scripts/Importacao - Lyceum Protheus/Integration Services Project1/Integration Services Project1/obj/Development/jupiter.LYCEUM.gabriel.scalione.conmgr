@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="jupiter.LYCEUM.gabriel.scalione"
+  DTS:DTSID="{E89327EE-35A2-4302-9B1E-9390C6B9ED9C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=jupiter;User ID=gabriel.scalione;Initial Catalog=LYCEUM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

@@ -2,16 +2,17 @@ USE LYCEUM
 GO
 
 
-if OBJECT_ID('TempDB.dbo.#lyc_sa1') IS NOT NULL
+if OBJECT_ID('TempDB.dbo.#lyc_sa1') IS NOT NULL OR OBJECT_ID('TempDB.dbo.#ly_sa1novos') IS NOT NULL 
 	begin
 		DROP TABLE #lyc_sa1
+		DROP TABLE #lyc_sa1novos
 		--print ('Tabela temporária #lyc_sa1 removida.')
 	end
   
 DECLARE @DATA_INI DATE
 DECLARE @DATA_FIM DATE   
 
-SET @DATA_INI = cast((GETDATE()- 90) as date)
+SET @DATA_INI = cast((GETDATE()- 45) as date)
 SET @DATA_FIM = cast((GETDATE()+ 90) as date) 
 
 
@@ -23,27 +24,29 @@ SELECT DISTINCT
  ISNULL (RESP.CPF_TITULAR,'')					AS CPF,  
  ISNULL (RESP.CGC_TITULAR,'')					AS CNPJ,  
  '01'											AS LOJA,  
- ISNULL 
+ DBO.FN_FCAV_Remove_Acento(ISNULL 
 	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),40),';',',')
-		,'')									AS NOME,
- ISNULL 
+		,'')				)					AS NOME,
+ DBO.FN_FCAV_Remove_Acento(ISNULL 
 	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),20),';',',')
-		,'')									AS NOME_FANT,  
+		,'')				)					AS NOME_FANT,  
  ISNULL 
 	(REPLACE((LTRIM(RESP.ENDERECO)+', '+RESP.END_NUM),';',',') 
 		,'')									AS ENDERECO,  
  'F'											AS TIPO_CLI,  
  ISNULL (CASE WHEN MUN.UF = '00' THEN 'SP'
 			ELSE MUN.UF END ,'')				AS ESTADO,  
- ISNULL (REPLACE(MUN.NOME,';',','),'')			AS CIDADE,  
+ ISNULL (CASE WHEN MUN.UF = '00' THEN 'SAO PAULO'
+		 ELSE REPLACE(MUN.NOME,';',',')
+		 END ,'')								AS CIDADE,  
  
  ISNULL (RESP.CEP ,'')							AS CEP,  
  ISNULL (CASE WHEN RESP.CEP = '00000000' THEN 'NAO INFORMADO'
 			ELSE REPLACE(RESP.BAIRRO,';',',')END 
 			,'')								AS BAIRRO,  
- ISNULL 
+ DBO.FN_FCAV_Remove_Acento(ISNULL 
 	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),40),';',',')
-		,'')									AS CONTATO,  
+		,'')			)						AS CONTATO,  
  ISNULL (CASE WHEN RESP.CPF_TITULAR IS NULL THEN '501'  
 			ELSE '504' END,'')					AS NATUREZA  
   
@@ -70,13 +73,25 @@ AND ILAN.DATA <= (select cast(@data_fim as varchar)+' 23:59:59.000')
   
 
 
--- ******** ABAIXO - AREA DE TESTES  ***********  
+-- ******** ALIMENTA TABELA DE IMPORTACAO  ***********  
+BEGIN
+	BEGIN TRANSACTION
+		
+		SELECT ls.* INTO #ly_sa1novos FROM #LYC_SA1 LS
+		where not exists( SELECT A1_CGC FROM DADOSADVP12.dbo.SA1010 SA
+				where ls.COD_CAV = sa.A1_CGC collate Latin1_General_CI_AI)
 
-SELECT 
-	ls.*
-FROM #LYC_SA1 LS
+		TRUNCATE TABLE FCAV_IMPORTCONTABILSA1
 
-where not exists( SELECT A1_CGC FROM DADOSADVP12.dbo.SA1010 SA
-		where ls.COD_CAV = sa.A1_CGC collate Latin1_General_CI_AI)
+		INSERT INTO FCAV_IMPORTCONTABILSA1
+		SELECT 
+			*
+		FROM  #ly_sa1novos
 
-drop table #LYC_SA1
+	COMMIT
+
+	SELECT * FROM FCAV_IMPORTCONTABILSA1
+
+		drop table #ly_sa1novos
+		drop table #LYC_SA1
+END

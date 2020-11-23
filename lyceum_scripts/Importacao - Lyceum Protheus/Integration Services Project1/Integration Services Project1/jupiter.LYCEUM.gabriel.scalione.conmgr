@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="jupiter.LYCEUM.gabriel.scalione"
+  DTS:DTSID="{E89327EE-35A2-4302-9B1E-9390C6B9ED9C}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=jupiter;User ID=gabriel.scalione;Initial Catalog=LYCEUM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEDYk3zECaEO965yyufNnngAAAAACAAAAAAADZgAAwAAAABAAAABChbtRB2mqE1K2EZQ4jcwIAAAAAASAAACgAAAAEAAAAHmmF6XgbTg4A/8rw0F2qE54AAAAo4nZNRqeyC14+y6d/W/ngFXTffwR6aceJTrWhjffX4xN/wcDijLfOtC2tjvdhKNyRfcmD8g3klDswMq2bOVTxbVweRu3MhcGD82SP/tyahETt96EOs5USx0kPExNq+pYVeiddzsCM1myIry/Gmd1A4E/3porKlqzFAAAAB8Slzh3jYEQ7mlbziL1LvWgB8Ma</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

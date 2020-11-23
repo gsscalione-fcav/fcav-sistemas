@@ -9,9 +9,8 @@ Autor: Gabriel S. Scalione
 Data: 19/09/2019
 */
 
---select 
---	* from LY_AGREGA_ITEM_COBRANCA 
---SELECT * FROM LY_ITEM_LANC where ALUNO = 'E201830089'
+--select * from LY_AGREGA_ITEM_COBRANCA 
+--SELECT * FROM LY_ITEM_LANC where cobranca = 206671 --ALUNO = 'E201830089'
 
 
 
@@ -21,7 +20,7 @@ GO
 
 declare @DtVencIni datetime
 declare @DtVencFim datetime
-declare @date datetime = getdate(); 
+declare @date datetime = getdate()+10; 
 
 set @DtVencIni = cast((GETDATE()- 90) as date)
 set @DtVencFim = EOMONTH ( @date )
@@ -45,8 +44,11 @@ FROM
 	LEFT JOIN LY_LANC_DEBITO LD
 		ON LD.LANC_DEB = IL.LANC_DEB
 WHERE CO.DATA_DE_VENCIMENTO BETWEEN @DtVencIni AND @DtVencFim
+ --AND IL.COBRANCA = 206671
  AND il.DESCRICAO != 'VALOR ACORDADO'
- AND IL.BOLETO IS NULL
+ AND IL.COBRANCA IN (SELECT COBRANCA FROM LY_ITEM_LANC WHERE COBRANCA = IL.COBRANCA AND BOLETO IS NULL)
+ AND CO.DATA_DE_VENCIMENTO >= '2019-01-01 23:59:59.000'
+ AND IL.DT_ENVIO_CONTAB IS NULL
 
 
 

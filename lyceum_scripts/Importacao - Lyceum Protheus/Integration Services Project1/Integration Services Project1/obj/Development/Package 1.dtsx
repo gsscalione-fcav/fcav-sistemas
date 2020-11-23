@@ -1,0 +1,500 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/28/2019 2:35:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ABSTI003"
+  DTS:CreatorName="VANZOLINICORP\gabriel.scalione"
+  DTS:DTSID="{7FEAB0FB-30CA-46D4-A989-C8275B87A357}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="24"
+  DTS:VersionGUID="{5B2978A4-923F-4DF3-8F99-BB232E25B542}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[01_SC_FCAV_GERACAO_BOLETOS_FATURAMENTO.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{298B60B7-11FE-4771-B856-42BDD19D4326}"
+      DTS:ObjectName="01_SC_FCAV_GERACAO_BOLETOS_FATURAMENTO.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="O:\Corporativo\Tecnologia da Informacao\Sistemas\Arquivos de Importação Lyceum x TOTVS\Scripts Importacao - Lyceum Protheus\01_SC_FCAV_GERACAO_BOLETOS_FATURAMENTO.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[03_Importação Protheus.sql]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{6B7E93DD-F6F8-4AAD-9772-17F6227EBA14}"
+      DTS:ObjectName="03_Importação Protheus.sql">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="O:\Corporativo\Tecnologia da Informacao\Sistemas\Arquivos de Importação Lyceum x TOTVS\Scripts Importacao - Lyceum Protheus\03_Importação Protheus.sql" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ClientesExistentes]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{7E4986EB-143C-4ABC-A231-BDC24DB1A0B7}"
+      DTS:ObjectName="ClientesExistentes">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\gabriel.scalione\Desktop\clientesexistentes.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Lookup.COD_CAV"
+              DTS:DTSID="{834E873C-498A-4700-ADBB-5896835ECC93}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Lookup.COD_CAV (1)"
+              DTS:DTSID="{FA55C8B4-C29B-4D2B-8734-864F6B1C7A2C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPF"
+              DTS:DTSID="{FC64FECB-EDA7-411E-BC64-8B4D3BA99A48}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNPJ"
+              DTS:DTSID="{D6E2C31C-42C4-4EE7-B402-ABEFC87B2CA8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOJA"
+              DTS:DTSID="{38B202C4-3E30-4ACE-9765-FF59FDB9024A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{0CA73640-363E-42C0-AF8C-DA847D1F5AAB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME_FANT"
+              DTS:DTSID="{FD736AAF-31A0-4582-AE69-CDC41B16BFBF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ENDERECO"
+              DTS:DTSID="{B474E99D-6C67-4C30-9226-B24B10B17013}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TIPO_CLI"
+              DTS:DTSID="{05810CED-57E4-4F8D-9DA2-30D1DB69DE7F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ESTADO"
+              DTS:DTSID="{9A5BFA64-2F93-4667-A3ED-6D9F4EC62A06}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CIDADE"
+              DTS:DTSID="{6D3C470C-F6A0-44B6-A2B5-30D0643988AE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CEP"
+              DTS:DTSID="{B3AA60DF-3E4D-4A17-B78F-77F24227A133}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAIRRO"
+              DTS:DTSID="{1B7F5B60-9608-4C3E-8764-DE393054904C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CONTATO"
+              DTS:DTSID="{9E2A738E-CE33-43A2-97E2-173ABEADABBA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NATUREZA"
+              DTS:DTSID="{2A6D745E-DCF3-4A5A-92E0-2E5987CFF57E}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ClientesNovos]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{732970C5-DFB8-47F3-91C8-04CE627F6187}"
+      DTS:ObjectName="ClientesNovos">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\gabriel.scalione\Desktop\sa1.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COD_CAV"
+              DTS:DTSID="{4FED5825-A5A2-4407-9A35-5DD9F951244C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPF"
+              DTS:DTSID="{422C649C-7B9C-4AD3-85E9-FC6BD8274D95}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNPJ"
+              DTS:DTSID="{90308D7E-D4EE-477D-A305-DD99D635CDC6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOJA"
+              DTS:DTSID="{47327695-EFB6-4DAF-B293-B7AD2CBCD549}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{5944F9E6-B73A-411E-AB91-635827598A85}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME_FANT"
+              DTS:DTSID="{39BCB98D-838A-4F77-87E6-1831F6A08ABB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ENDERECO"
+              DTS:DTSID="{491C66CB-DE94-4971-8F4E-058FD1C5822C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TIPO_CLI"
+              DTS:DTSID="{AF591887-EF39-427D-9983-15BCD5466EF6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ESTADO"
+              DTS:DTSID="{FC254B61-0B99-485B-96EE-0E8FADEFCAE3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CIDADE"
+              DTS:DTSID="{8AC50403-4C87-4307-A521-D2FB57BF9887}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CEP"
+              DTS:DTSID="{647D7A52-A3C6-445B-A8C7-80ACCB9D2936}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAIRRO"
+              DTS:DTSID="{AE5223AA-D6F9-40E6-A677-D487D231E039}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CONTATO"
+              DTS:DTSID="{1ED18935-4309-43ED-AD83-A442F04C0E45}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NATUREZA"
+              DTS:DTSID="{733B3910-6FC0-4463-9379-4FB44F47794A}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[jupiter.DADOSADVP12.gabriel.scalione]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4FD04ACE-7898-4704-85C0-E394D54A1C21}"
+      DTS:ObjectName="jupiter.DADOSADVP12.gabriel.scalione">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=jupiter;User ID=gabriel.scalione;Initial Catalog=DADOSADVP12;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAijDhI/P8QUyUY+C2KrqYPwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADUFtTIm567AzT1/1yXqHwNAAAAAASAAACgAAAAEAAAAEYEaSAlhdg6A8dXlNcifEQYAAAALgEv4ZFpYMBuWa+rdTXsFGaWE59RnfwAFAAAAChrRuWHXZ/HfdINdqZILDUB237b</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[jupiter.LYCEUM.crystal]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2AB0C5A1-6B2B-4B33-A25A-CDCD31848F08}"
+      DTS:ObjectName="jupiter.LYCEUM.crystal">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=jupiter;User ID=crystal;Initial Catalog=LYCEUM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAijDhI/P8QUyUY+C2KrqYPwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABHuga9n4VbyU/u3Ue/rI4lAAAAAASAAACgAAAAEAAAALC2DxfH8UPH9p4O7jKHV3MQAAAA/lwYSfg/iSpDVq7CQHAmeRQAAADWOV/comlhEL062f/LIPEGYauHtQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[jupiter.LYCEUM.gabriel.scalione]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{41092F78-828D-4BAB-B1E7-233EF3786C6D}"
+      DTS:ObjectName="jupiter.LYCEUM.gabriel.scalione">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=jupiter;User ID=gabriel.scalione;Initial Catalog=LYCEUM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAijDhI/P8QUyUY+C2KrqYPwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAA1IOFjjFAOPTGJ83nxfkQ/AAAAAASAAACgAAAAEAAAAMyWAvOLDytCcKvc0Ss0GOAYAAAA5BD3QQjVRgM25gcgfo3sFgLtmRlXojvrFAAAAFHiYNZAoUq311oEXCEsNnPlLsbM</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Gera Boletos zerados"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{97520F06-5E42-4FB0-901D-90A206C904EE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Gera Boletos zerados"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{41092F78-828D-4BAB-B1E7-233EF3786C6D}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="01_SC_FCAV_GERACAO_BOLETOS_FATURAMENTO.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Gera Dados Lancamentos"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D6BDEAA4-3B97-4121-82BA-239B1D58F2D5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Gera Dados Lancamentos"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{41092F78-828D-4BAB-B1E7-233EF3786C6D}"
+          SQLTask:SqlStmtSourceType="FileConnection"
+          SQLTask:SqlStatementSource="03_Importação Protheus.sql" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{90CF93D4-9383-4B0A-A2D8-C48221EA98E5}"
+      DTS:From="Package\Gera Boletos zerados"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Gera Dados Lancamentos" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{CC3C4C84-DFBC-43C2-BD8E-5932706583A8}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{516DABDA-C8CB-4209-82B8-6D3E89B52F98}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Gera Dados Lancamentos"
+          TopLeft="74,136" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Gera Boletos zerados"
+          TopLeft="77,26" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="169.75,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

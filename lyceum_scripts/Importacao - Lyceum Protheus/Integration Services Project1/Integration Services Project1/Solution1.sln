@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Projetos PKGs FCAV", "Projetos PKGs FCAV.dtproj", "{9DBB908A-165F-4900-8F3E-67AEA0991000}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DBB908A-165F-4900-8F3E-67AEA0991000}.Development|Default.ActiveCfg = Development
+		{9DBB908A-165F-4900-8F3E-67AEA0991000}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F61F15BB-7533-4EE6-A1D3-B86F1E48B6FA}
+	EndGlobalSection
+EndGlobal

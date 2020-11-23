@@ -1,0 +1,1709 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/28/2019 2:35:58 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ABSTI003"
+  DTS:CreatorName="VANZOLINICORP\gabriel.scalione"
+  DTS:DTSID="{DA9181CC-789F-4A08-ADDE-835489FEDF4A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{00B3805D-5B68-47D6-91D2-F6BC8A063720}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ClientesExistentes]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{3A2DD52E-CFFC-4974-9BB2-CE9FC440A480}"
+      DTS:ObjectName="ClientesExistentes">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\gabriel.scalione\Desktop\clientesexistentes.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COD_CAV"
+              DTS:DTSID="{0840F114-4C76-4233-A975-BCAEEB72CFF6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPF"
+              DTS:DTSID="{A5D6F213-FAD8-498B-BE5D-6BDD5486C51D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNPJ"
+              DTS:DTSID="{D29956CE-286E-450B-8347-950975994252}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOJA"
+              DTS:DTSID="{90F0250F-3396-42DB-A92C-4042458086E0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{AA5CEC33-7598-4A9A-871D-83673DC82F76}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME_FANT"
+              DTS:DTSID="{1249D5BA-9A29-4C6F-8934-634F9BE763C1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ENDERECO"
+              DTS:DTSID="{BD1EDC93-4BBF-45CA-99D5-DC6253F1B7DA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TIPO_CLI"
+              DTS:DTSID="{79DAA9D5-716E-45AD-81E7-71F001E1F4B2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ESTADO"
+              DTS:DTSID="{B60F186E-3129-4D49-9387-272DFF234F26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CIDADE"
+              DTS:DTSID="{F082344C-29DD-481A-8445-31DBBAB715C5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CEP"
+              DTS:DTSID="{455CB34A-964E-4FF0-B0A5-F1987A2EE040}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAIRRO"
+              DTS:DTSID="{77A16A8E-E7FF-42D8-8CBA-574F82A9E974}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CONTATO"
+              DTS:DTSID="{7144ACEA-D271-4E12-91D9-B19DB7D0FAFD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NATUREZA"
+              DTS:DTSID="{2605FCD9-BB80-4689-B905-1EA7FDE3E1B9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="18"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="A1_XCODCAV"
+              DTS:DTSID="{67644B3B-D021-465D-B2C8-2720798A8411}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ClientesNovos]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{17B529FD-67E9-43B7-82EB-F817B0EDCD7C}"
+      DTS:ObjectName="ClientesNovos">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1046"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\Users\gabriel.scalione\Desktop\sa1.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="COD_CAV"
+              DTS:DTSID="{0340A667-C623-4F7E-8AA1-B4AA00A714F7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CPF"
+              DTS:DTSID="{2621A317-D734-4B32-AF0A-AD12B1F86379}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="19"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CNPJ"
+              DTS:DTSID="{F6213443-FB30-46B5-BC63-1AE9DE5838AA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="LOJA"
+              DTS:DTSID="{ACE29943-C898-4BAC-9B98-D1FC97A6B950}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME"
+              DTS:DTSID="{9A2BFD41-9483-4C78-8DC4-D6FFDE500A4F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NOME_FANT"
+              DTS:DTSID="{90315346-5E11-4619-9A05-936F2FFB5D96}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ENDERECO"
+              DTS:DTSID="{7EE137FF-6E2A-48C5-A1AE-22B540D03091}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="TIPO_CLI"
+              DTS:DTSID="{30445904-6985-40F0-B577-5E15700C450B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ESTADO"
+              DTS:DTSID="{AD6B5BA0-7500-4B11-9B40-BFD0CA1D6A21}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CIDADE"
+              DTS:DTSID="{1F9C4C8D-C013-4A93-86EC-EA597413DC86}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CEP"
+              DTS:DTSID="{F843EC94-80A1-487E-9D9C-3EBEEE558531}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BAIRRO"
+              DTS:DTSID="{7FBE9B95-07FD-4D87-8EC4-DE77DBBB0422}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x003B_"
+              DTS:MaximumWidth="8000"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CONTATO"
+              DTS:DTSID="{019CF4C1-507B-4502-B349-5B9FB4A1FB00}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="NATUREZA"
+              DTS:DTSID="{BBD50A63-EC0C-4493-8512-28A3883074A3}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[jupiter.DADOSADVP12.gabriel.scalione]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6A527BAF-CC2B-4803-AB61-FA028A7EB313}"
+      DTS:ObjectName="jupiter.DADOSADVP12.gabriel.scalione">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=jupiter;User ID=gabriel.scalione;Initial Catalog=DADOSADVP12;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAijDhI/P8QUyUY+C2KrqYPwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAABbRvChmxXQh4WZ7F3iFtmeAAAAAASAAACgAAAAEAAAANmfiFn9WdwmI8kCDEj7xEUYAAAA2fbMumSOeuR2qfLo8UrnhgSuIp/eVxKDFAAAAD2BFD+8+geUhMiZCi50rgU2PPw1</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[jupiter.LYCEUM.crystal]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{22568FEC-224A-4297-822D-7BFEDB4F4501}"
+      DTS:ObjectName="jupiter.LYCEUM.crystal">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=jupiter;User ID=crystal;Initial Catalog=LYCEUM;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAijDhI/P8QUyUY+C2KrqYPwAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADQCAsDqiut1EMK4nU86IPqAAAAAASAAACgAAAAEAAAAP7jN3WEiT4kiT0fnD+jCUYQAAAAG3VeChGiq+/bTx8lgX6DPhQAAAD76vuuqawVkzxyf/ePcszHND4OrQ</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SA1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{22C6BA0D-CE21-4B37-9368-94B404BBBB5B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SA1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SA1\Clientes Existentes"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1046"
+              name="Clientes Existentes">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SA1\Clientes Existentes.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ClientesExistentes]"
+                  connectionManagerRefId="Package.ConnectionManagers[ClientesExistentes]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[COD_CAV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="COD_CAV"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[COD_CAV]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[CPF]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="CPF"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CPF]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CPF]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[CNPJ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="CNPJ"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CNPJ]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CNPJ]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[LOJA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="LOJA"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[LOJA]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[LOJA]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="NOME"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[NOME_FANT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="NOME_FANT"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NOME_FANT]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME_FANT]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[ENDERECO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="ENDERECO"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[ENDERECO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ENDERECO]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[TIPO_CLI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="TIPO_CLI"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[TIPO_CLI]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[TIPO_CLI]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[ESTADO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ESTADO"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[ESTADO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ESTADO]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[CIDADE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="CIDADE"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CIDADE]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CIDADE]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[CEP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="CEP"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CEP]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CEP]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[BAIRRO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="BAIRRO"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[BAIRRO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[BAIRRO]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[CONTATO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="CONTATO"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CONTATO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CONTATO]" />
+                    <inputColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].Columns[NATUREZA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="NATUREZA"
+                      externalMetadataColumnId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NATUREZA]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NATUREZA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="COD_CAV" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CPF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="CPF" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NOME_FANT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME_FANT" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[TIPO_CLI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TIPO_CLI" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ESTADO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CEP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="CEP" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="BAIRRO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CONTATO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[NATUREZA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="NATUREZA" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input].ExternalColumns[A1_XCODCAV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="A1_XCODCAV" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\SA1\Clientes Lyceum"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Clientes Lyceum"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">DECLARE @DATA_INI DATE
+DECLARE @DATA_FIM DATE   
+
+SET @DATA_INI = '2019-08-01'
+SET @DATA_FIM = '2019-12-31'  
+
+
+SELECT DISTINCT
+ ISNULL (CASE WHEN RESP.CPF_TITULAR IS NULL  
+  THEN RESP.CGC_TITULAR  
+  ELSE RESP.CPF_TITULAR END,'')					AS COD_CAV,  
+  
+ ISNULL (RESP.CPF_TITULAR,'')					AS CPF,  
+ ISNULL (RESP.CGC_TITULAR,'')					AS CNPJ,  
+ '01'											AS LOJA,  
+ ISNULL 
+	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),40),';',',')
+		,'')									AS NOME,
+ ISNULL 
+	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),20),';',',')
+		,'')									AS NOME_FANT,  
+ ISNULL 
+	(REPLACE((LTRIM(RESP.ENDERECO)+', '+RESP.END_NUM),';',',') 
+		,'')									AS ENDERECO,  
+ 'F'											AS TIPO_CLI,  
+ ISNULL (CASE WHEN MUN.UF = '00' THEN 'SP'
+			ELSE MUN.UF END ,'')				AS ESTADO,  
+ ISNULL (REPLACE(MUN.NOME,';',','),'')			AS CIDADE,  
+ 
+ ISNULL (RESP.CEP ,'')							AS CEP,  
+ ISNULL (CASE WHEN RESP.CEP = '00000000' THEN 'NAO INFORMADO'
+			ELSE REPLACE(RESP.BAIRRO,';',',')END 
+			,'')								AS BAIRRO,  
+ ISNULL 
+	(REPLACE(CONVERT(VARCHAR,ltrim(RESP.TITULAR),40),';',',')
+		,'')									AS CONTATO,  
+ ISNULL (CASE WHEN RESP.CPF_TITULAR IS NULL THEN '501'  
+			ELSE '504' END,'')					AS NATUREZA  
+  
+FROM  
+  LY_ALUNO AS ALU  
+ LEFT JOIN LY_PESSOA AS PES ON (ALU.PESSOA=PES.PESSOA)  
+ LEFT JOIN LY_COBRANCA AS COB ON (ALU.ALUNO = COB.ALUNO)  
+ LEFT JOIN LY_CURSO AS CUR ON (COB.CURSO = CUR.CURSO)  
+ LEFT JOIN LY_ITEM_CRED AS ICRED ON (COB.COBRANCA = ICRED.COBRANCA )--AND TIPO_ENCARGO IS NULL AND TIPODESCONTO IS NULL)  
+ LEFT JOIN LY_ITEM_LANC AS ILAN ON (COB.COBRANCA = ILAN.COBRANCA)  
+ LEFT OUTER JOIN LY_BOLETO AS BOL ON (ILAN.BOLETO = BOL.BOLETO AND BOL.BOLETO IS NOT NULL)  
+ LEFT OUTER JOIN LY_RESP_FINAN AS RESP ON (COB.RESP = RESP.RESP)  
+ LEFT OUTER JOIN HADES.dbo.HD_MUNICIPIO AS MUN ON (RESP.END_MUNICIPIO = MUN.MUNICIPIO)  
+ LEFT OUTER JOIN FCAV_IMPCONT_CAD AS FCAD ON (ALU.TURMA_PREF = FCAD.TURMA) -- OR T.TURMA = FCAD.TURMA OR HIST.TURMA = FCAD.TURMA)  
+
+   
+   
+WHERE  
+-- *** SE CASO N�O HOUVER REGISTROS DE CR�DITOS, O FILTRO SER� NO FATURAMENTO  
+--ALU.ALUNO = 'C201700389'
+ ILAN.DATA &gt;= @DATA_INI  
+AND ILAN.DATA &lt;= (select cast(@data_fim as varchar)+' 23:59:59.000')  
+  
+--  ***** FINAL DO COMENT�RIO DOS DADOS DA SA1  
+  
+
+
+-- ******** ABAIXO - AREA DE TESTES  ***********</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SA1\Clientes Lyceum.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[jupiter.LYCEUM.crystal]"
+                  connectionManagerRefId="Package.ConnectionManagers[jupiter.LYCEUM.crystal]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[COD_CAV]"
+                      length="19"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]"
+                      name="COD_CAV"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CPF]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CPF]"
+                      length="14"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CPF]"
+                      name="CPF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CNPJ]"
+                      length="19"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CNPJ]"
+                      name="CNPJ"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[LOJA]"
+                      length="2"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[LOJA]"
+                      name="LOJA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME]"
+                      name="NOME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME_FANT]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NOME_FANT]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME_FANT]"
+                      name="NOME_FANT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[ENDERECO]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ENDERECO]"
+                      name="ENDERECO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[TIPO_CLI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[TIPO_CLI]"
+                      length="1"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[TIPO_CLI]"
+                      name="TIPO_CLI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
+                      length="2"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ESTADO]"
+                      name="ESTADO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CIDADE]"
+                      name="CIDADE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CEP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CEP]"
+                      length="9"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CEP]"
+                      name="CEP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[BAIRRO]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[BAIRRO]"
+                      name="BAIRRO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CONTATO]"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CONTATO]"
+                      name="CONTATO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NATUREZA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NATUREZA]"
+                      length="3"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NATUREZA]"
+                      name="NATUREZA"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="COD_CAV" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CPF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="CPF" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NOME_FANT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME_FANT" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[TIPO_CLI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TIPO_CLI" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ESTADO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CEP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="CEP" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="BAIRRO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CONTATO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].ExternalColumns[NATUREZA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="NATUREZA" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[COD_CAV]"
+                      name="COD_CAV" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CPF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CPF]"
+                      name="CPF" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CNPJ]"
+                      name="CNPJ" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[LOJA]"
+                      name="LOJA" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NOME]"
+                      name="NOME" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NOME_FANT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NOME_FANT]"
+                      name="NOME_FANT" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ENDERECO]"
+                      name="ENDERECO" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[TIPO_CLI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[TIPO_CLI]"
+                      name="TIPO_CLI" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ESTADO]"
+                      name="ESTADO" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CIDADE]"
+                      name="CIDADE" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CEP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CEP]"
+                      name="CEP" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[BAIRRO]"
+                      name="BAIRRO" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[CONTATO]"
+                      name="CONTATO" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NATUREZA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[NATUREZA]"
+                      name="NATUREZA" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SA1\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="1046"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SA1\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ClientesNovos]"
+                  connectionManagerRefId="Package.ConnectionManagers[ClientesNovos]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[COD_CAV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="COD_CAV"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[COD_CAV]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[CPF]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="CPF"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CPF]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CPF]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[CNPJ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="CNPJ"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CNPJ]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CNPJ]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[LOJA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="LOJA"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LOJA]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[LOJA]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[NOME]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="NOME"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[NOME_FANT]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="NOME_FANT"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME_FANT]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NOME_FANT]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[ENDERECO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="ENDERECO"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ENDERECO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ENDERECO]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[TIPO_CLI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="TIPO_CLI"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TIPO_CLI]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[TIPO_CLI]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[ESTADO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ESTADO"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ESTADO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[ESTADO]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[CIDADE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="CIDADE"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CIDADE]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CIDADE]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[CEP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="CEP"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CEP]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CEP]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[BAIRRO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="BAIRRO"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BAIRRO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[BAIRRO]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[CONTATO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8000"
+                      cachedName="CONTATO"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CONTATO]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[CONTATO]" />
+                    <inputColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].Columns[NATUREZA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="NATUREZA"
+                      externalMetadataColumnId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NATUREZA]"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[NATUREZA]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="COD_CAV" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CPF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="CPF" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LOJA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="LOJA" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NOME_FANT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="NOME_FANT" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[TIPO_CLI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="TIPO_CLI" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[ESTADO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ESTADO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CEP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="CEP" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="BAIRRO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8000"
+                      name="CONTATO" />
+                    <externalMetadataColumn
+                      refId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[NATUREZA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="NATUREZA" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\SA1\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT A1_CGC AS COD_CAV FROM SA1010 WHERE SUBSTRING(A1_DTCAD,1,4) = '2019'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT A1_CGC AS COD_CAV FROM SA1010 WHERE SUBSTRING(A1_DTCAD,1,4) = '2019') [refTable]
+where [refTable].[COD_CAV] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="COD_CAV" dataType="DT_STR" length="14" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SA1\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[jupiter.DADOSADVP12.gabriel.scalione]"
+                  connectionManagerRefId="Package.ConnectionManagers[jupiter.DADOSADVP12.gabriel.scalione]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SA1\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SA1\Lookup.Inputs[Lookup Input].Columns[COD_CAV]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="COD_CAV"
+                      lineageId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output].Columns[COD_CAV]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">COD_CAV</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SA1\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\SA1\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SA1\Lookup.Outputs[Lookup Match Output].Columns[COD_CAV]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="14"
+                      lineageId="Package\SA1\Lookup.Outputs[Lookup Match Output].Columns[COD_CAV]"
+                      name="COD_CAV"
+                      truncationRowDisposition="IgnoreFailure">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">COD_CAV</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SA1\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\SA1\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SA1\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\SA1\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SA1\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SA1\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SA1\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SA1\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SA1.Paths[Lookup Match Output]"
+              endId="Package\SA1\Clientes Existentes.Inputs[Flat File Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\SA1\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\SA1.Paths[Lookup No Match Output]"
+              endId="Package\SA1\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\SA1\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\SA1.Paths[OLE DB Source Output]"
+              endId="Package\SA1\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\SA1\Clientes Lyceum.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{68AA9708-060F-409A-A55C-43E9B90B6C6A}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{7B57208F-ABA4-4CF6-A85B-E0AC73F792C5}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="97,42"
+          Id="Package\SA1"
+          TopLeft="88,151" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SA1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\SA1\Clientes Lyceum"
+          TopLeft="219.5,5.5" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\SA1\Lookup"
+          TopLeft="240.5,107.5" />
+        <EdgeLayout
+          Id="Package\SA1.Paths[OLE DB Source Output]"
+          TopLeft="297,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SA1\Clientes Existentes"
+          TopLeft="395.5,213.5" />
+        <EdgeLayout
+          Id="Package\SA1.Paths[Lookup Match Output]"
+          TopLeft="314.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="164.5,64"
+              Start="0,0"
+              End="164.5,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.1361256544503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.1361256544503"
+                    Point2="0,26.1361256544503"
+                    Point3="4,26.1361256544503" />
+                  <mssgle:LineSegment
+                    End="160.5,26.1361256544503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="160.5,26.1361256544503"
+                    Point2="164.5,26.1361256544503"
+                    Point3="164.5,30.1361256544503" />
+                  <mssgle:LineSegment
+                    End="164.5,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="34.05861328125,31.1361256544503,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42"
+          Id="Package\SA1\Flat File Destination"
+          TopLeft="60,211" />
+        <EdgeLayout
+          Id="Package\SA1.Paths[Lookup No Match Output]"
+          TopLeft="279.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-133.5,61.5"
+              Start="0,0"
+              End="-133.5,54">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.1151832460733" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.1151832460733"
+                    Point2="0,25.1151832460733"
+                    Point3="-4,25.1151832460733" />
+                  <mssgle:LineSegment
+                    End="-129.5,25.1151832460733" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-129.5,25.1151832460733"
+                    Point2="-133.5,25.1151832460733"
+                    Point3="-133.5,29.1151832460733" />
+                  <mssgle:LineSegment
+                    End="-133.5,54" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-122.55638671875,30.1151832460733,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SA1\Clientes Lyceum">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SA1\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
