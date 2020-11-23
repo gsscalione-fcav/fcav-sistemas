@@ -31,7 +31,7 @@ SELECT
  CASE WHEN DATEDIFF(day, GETDATE(), V.DT_INICIO) < 0 THEN 0
  ELSE DATEDIFF(day, GETDATE(), V.DT_INICIO) 
  END AS DIAS_RESTANTES,
- 'http://sga.vanzolini.org.br:8080/web/converte_link_portal.asp' +  
+ 'https://sga.vanzolini.org.br/web/converte_link_portal.asp' +  
  '?OFERTA_DE_CURSO=' + CONVERT(VARCHAR, OFERTA.OFERTA_DE_CURSO) +  
  '&tagturma=' + REPLACE(ISNULL(V.TURMA, OFERTA.CONCURSO), ' ', '%20') AS LINK,
  V.COD_CURSO AS CURSO
