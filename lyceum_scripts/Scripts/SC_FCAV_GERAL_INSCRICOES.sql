@@ -28,8 +28,10 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'thais%'
+WHERE NOME LIKE 'JESSICA%'
 AND HABILITADO = 'S'
+
+select * from fcav_webusers where "USER" like 'mirella%'
 
 ----# BLOQUEIO DE USUARIO #------
 
@@ -39,13 +41,11 @@ set	HABILITADO = 'S',
 	ALTERAR_SENHA = 'S'
 WHERE NOME LIKE 'Joaquim Sargaco%'
 
+
 update fcav_webusers
 set
-	PASS = '123456',
-	CARGO = 'Consultor',
-	EMAIL = 'joaquim.sargaco@vanzolinicert.org.br',
-	STATUS = '0'
-where ID = '1'
+	PASS = '140739'
+WHERE ID = '88'
 
 */
 
