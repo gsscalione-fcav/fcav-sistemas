@@ -14,7 +14,7 @@
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202000129'
+DECLARE @ALUNO VARCHAR(20) = 'C202000128'
 
 declare @lanc_debito numeric
 
