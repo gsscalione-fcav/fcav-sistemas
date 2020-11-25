@@ -94,25 +94,30 @@ AS
 ----------------------------------------------------
 -- Define o nome e e-mail
 ----------------------------------------------------
-	SELECT 
-		@destinatario = E_MAIL,
-		@nome_aluno = pe.NOME_COMPL
-	FROM LY_ALUNO AL
-	INNER JOIN LY_PESSOA PE
-		ON AL.PESSOA = PE.PESSOA
-	WHERE
-		AL.ALUNO = @aluno
+--Produção
+	--SELECT 
+	--	@destinatario = E_MAIL,
+	--	@nome_aluno = pe.NOME_COMPL
+	--FROM LY_ALUNO AL
+	--INNER JOIN LY_PESSOA PE
+	--	ON AL.PESSOA = PE.PESSOA
+	--WHERE
+	--	AL.ALUNO = @aluno
 
+--Homologação
+	set @encaminha_email = 'sgades@vanzolini.com.br'
 ----------------------------------------------------
+--Produção
+	--IF(@unidade_fisica = 'USP' or @curso like 'CEAI'or @curso like 'A-PDT')
+	--BEGIN 
+	--	SET @encaminha_email = 	'secretariausp@vanzolini.com.br'
+	--END
+	--ELSE BEGIN 
+	--	SET @encaminha_email = 'secretariapta@vanzolini.com.br' 
+	--END
 
-	IF(@unidade_fisica = 'USP' or @curso like 'CEAI'or @curso like 'A-PDT')
-	BEGIN 
-		SET @encaminha_email = 	'secretariausp@vanzolini.com.br'
-	END
-	ELSE BEGIN 
-		SET @encaminha_email = 'secretariapta@vanzolini.com.br' 
-	END
-
+--Homologação
+	set @encaminha_email = 'sgades@vanzolini.com.br'
 ---------------------------------------------
 
 IF (@unidade_ensino = 'CAPAC') 
@@ -327,16 +332,16 @@ BEGIN
 	declare @v_profile varchar(100)
 
 	set @v_profile = -- Desenvolvimento/homologação       
-					 --'FCAV_HOMOLOGACAO'
+					 'VANZOLINI_MAIL_V23'
 					 -- Produção        
-					 'VANZOLINI_BD'
+					 --'VANZOLINI_BD'
 
 	EXEC MSDB.dbo.SP_SEND_DBMAIL 
 			@profile_name =  @v_profile,  
 			@recipients = @destinatario,    
 			@copy_recipients = @encaminha_email,
 			@reply_to = @encaminha_email,
-			@blind_copy_recipients = 'suporte_techne@vanzolini.com.br',    
+			@blind_copy_recipients = 'sgades@vanzolini.com.br',    
 			@subject = @assunto,    
 			@body = @texto,    
 			@body_format = HTML;
