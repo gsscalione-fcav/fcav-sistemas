@@ -14,30 +14,26 @@
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202000128'
+DECLARE @ALUNO VARCHAR(20) = 'C202000032'
 
 declare @lanc_debito numeric
 
+--Verifica o código da dívida do aluno
 select @lanc_debito = LANC_DEB from LY_LANC_DEBITO where ALUNO = @ALUNO
 
+--Verifica quais são os descontos aplicados na dívida
 select * 
 from  LY_DESCONTO_DEBITO 
 WHERE LANC_DEB  = @lanc_debito
 
-
---UPDATE  LY_DESCONTO_DEBITO 
---SET
---	VALOR = 225.00
---WHERE LANC_DEB = @lanc_debito
-
+--Verifica quais são as cobranças lançadas do aluno.
 SELECT * 
 FROM LY_ITEM_LANC 
 WHERE COBRANCA IN (SELECT COBRANCA 
 				   FROM LY_COBRANCA 
 				   WHERE ALUNO = @ALUNO)
 
-
-	select * from LY_MATRICULA where ALUNO = @ALUNO
+select * from LY_MATRICULA where ALUNO = @ALUNO
 
 /********************************************************************************
 Executar os 2 deletes abaixo, colocando o Lanc_deb da dívida estornada.
