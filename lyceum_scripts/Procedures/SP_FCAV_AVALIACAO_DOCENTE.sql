@@ -230,7 +230,8 @@ AS
 			AR.PERGUNTAS,
 			AR.RESPOSTA,
 			AR.VALOR,
-			AR.NOTA
+			AR.NOTA,
+			tu.DEPENDENCIA as SALA
 			
 			
 		INTO #tmp_avaliacao_aluno_turma 
@@ -242,6 +243,9 @@ AS
 			ON  AL.ALUNO		= AR.ALUNO
 			AND AL.DISCIPLINA	= AD.DISCIPLINA
 			AND AL.CODTUR = SUBSTRING(AR.COD_AVAL,1,LEN(CODTUR))
+		inner join LY_TURMA tu
+			on tu.turma = al.TURMA
+			and tu.disciplina = al.DISCIPLINA
 				
 		GROUP  BY 
 			
@@ -270,7 +274,8 @@ AS
 			AR.PERGUNTAS,
 			AR.RESPOSTA,
 			AR.VALOR,
-			AR.NOTA
+			AR.NOTA,
+			tu.DEPENDENCIA
 
 	--Preencha a tabela FCAV_AVALIACAO_DOCENTE
 		BEGIN
