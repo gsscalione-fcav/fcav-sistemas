@@ -76,13 +76,20 @@ AS
 					END
 			END AS
 			NOTA,
+			
 			SUBSTRING(
-				REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''), 
+				REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''), ---1º parametro da substring
 				CASE WHEN PQ.APLICACAO LIKE 'DIS%'OR PQ.APLICACAO LIKE 'INF%' OR PQ.APLICACAO LIKE 'DI2%' THEN 4
 					 WHEN PQ.APLICACAO LIKE 'DO%' OR PQ.APLICACAO LIKE 'DI%' THEN 3
 					 ELSE 1
-				END ,
-				100) AS COD_AVAL
+				END ,				---2º parametro da substring
+				100		--3º parametro da substring
+				) 
+				+ 
+				CASE WHEN PQ.QUESTIONARIO = 'Aval_Parcial_Mod4' THEN 'P'
+					ELSE ''
+				END
+				AS COD_AVAL
 
 			INTO #tmp_respostas_alunos 
 		FROM 
@@ -141,6 +148,8 @@ AS
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
 
+		WHERE convert(date,AQ.DT_FIM + 30) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+			
 		----------------------------------------------------------------------------
 		--Determina Tabela Temporaria com Codigo da Avaliacao para Disciplina
 		----------------------------------------------------------------------------
@@ -227,7 +236,7 @@ AS
 			AR.NOME_AVALIADO,
 			AR.QUESTAO,
 			AR.TIPO_QUESTAO,
-			AR.PERGUNTAS,
+			RTRIM(REPLACE(AR.PERGUNTAS,' (Obrigatório)','')) AS PERGUNTAS,
 			AR.RESPOSTA,
 			AR.VALOR,
 			AR.NOTA,
