@@ -148,7 +148,7 @@ AS
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
 
-		WHERE convert(date,AQ.DT_FIM + 30) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+		WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
 			
 		----------------------------------------------------------------------------
 		--Determina Tabela Temporaria com Codigo da Avaliacao para Disciplina
