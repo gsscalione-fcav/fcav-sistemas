@@ -23,7 +23,8 @@ BEGIN
 		 INNER JOIN LY_OFERTA_CURSO OC ON CO.OFERTA_DE_CURSO = OC.OFERTA_DE_CURSO
 		 WHERE ID_COMPRA_OFERTA = @id_compra
 
-		SET @script_analytics = '<script>gtag(''event'',''compra'', {​​​​​​​​''event_category'':''atualizacao'',''event_label'':''' + @curso +''',''value'':''' + CONVERT(VARCHAR,CONVERT(DECIMAL(8,2), @valor)) + ''', ''non_interaction'': true}​​​​​​​​);</script>'
+		SET @script_analytics = '<script>gtag(''event'',''compra'', {​​​​​​​​''event_category'':''atualizacao'',''event_label'':''' + @curso +''',''value'':''' + CONVERT(VARCHAR,CONVERT(DECIMAL(8,2), @valor)) + ''', ''non_interaction'': true}​​​​​​​​);</script>
+								 <script>window[''GoogleAnalyticsObject''] = ''ga'';window[''ga''] = window[''ga''] || function() {(window[''ga''].q = window[''ga''].q || []).push(arguments)};</script>'
 	END
 
 	IF @nome_sistema = 'ProcessoSeletivo'
@@ -37,7 +38,8 @@ BEGIN
 		 WHERE C.CONCURSO = @concurso
 		   AND C.CANDIDATO = @canditato
 
-		SET @script_analytics = '<script>gtag(''event'',''inscricao'', {​​​​​​​​''event_category'':''especializacao'',''event_label'':''' + @curso +''',''value'':''' + CONVERT(VARCHAR,CONVERT(DECIMAL(8,2), @valor)) + ''', ''non_interaction'': true}​​​​​​​​);</script>'
+		SET @script_analytics = '<script>gtag(''event'',''inscricao'', {​​​​​​​​''event_category'':''especializacao'',''event_label'':''' + @curso +''',''value'':''' + CONVERT(VARCHAR,CONVERT(DECIMAL(8,2), @valor)) + ''', ''non_interaction'': true}​​​​​​​​);</script>
+								<script>window[''GoogleAnalyticsObject''] = ''ga'';window[''ga''] = window[''ga''] || function() {(window[''ga''].q = window[''ga''].q || []).push(arguments)};</script>'
 	END
 -- [FIM] Customização - Não escreva código após esta linha')
 END
