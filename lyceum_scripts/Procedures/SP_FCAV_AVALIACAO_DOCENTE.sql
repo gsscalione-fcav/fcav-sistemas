@@ -1,10 +1,10 @@
 /*
     SP utilizada na JOB que alimenta a tabela SP_FCAV_AVALIACAO_DOCENTE
 	
-	SELECT COD_AVAL, * FROM #tmp_respostas_alunos WHERE APLICACAO LIKE '%CEAIT34SABTCCHMW%'
-	SELECT * FROM #tmp_avaliacao_disciplinas  WHERE APLICACAO LIKE '%DISCEAIT34SABTCCHMW%'
-	SELECT * FROM #tmp_alunos_turma_disicplina WHERE TURMA LIKE 'CEAI-2020/3%' AND DISCIPLINA LIKE 'CEAI%TCC%'
-	SELECT * FROM #tmp_avaliacao_aluno_turma WHERE  TURMA LIKE 'D-DBDON%' AND DISCIPLINA LIKE 'CEAI%TCC%'
+	SELECT COD_AVAL, * FROM #tmp_respostas_alunos WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
+	SELECT * FROM #tmp_avaliacao_disciplinas  WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
+	SELECT * FROM #tmp_alunos_turma_disicplina WHERE TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%bdd%'
+	SELECT * FROM #tmp_avaliacao_aluno_turma WHERE   TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%TCC%'
 	SELECT * FROM FCAV_AVALIACAO_DOCENTE WHERE COD_AVAL LIKE 'DDBDON%'
 
 	EXEC SP_FCAV_AVALIACAO_DOCENTE
@@ -78,7 +78,7 @@ AS
 			NOTA,
 			
 			SUBSTRING(
-				REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''), ---1º parametro da substring
+				REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''),'0A',''), ---1º parametro da substring
 				CASE WHEN PQ.APLICACAO LIKE 'DIS%'OR PQ.APLICACAO LIKE 'INF%' OR PQ.APLICACAO LIKE 'DI2%' THEN 4
 					 WHEN PQ.APLICACAO LIKE 'DO%' OR PQ.APLICACAO LIKE 'DI%' THEN 3
 					 ELSE 1
@@ -148,7 +148,7 @@ AS
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
 
-		WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+	--	WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
 			
 		----------------------------------------------------------------------------
 		--Determina Tabela Temporaria com Codigo da Avaliacao para Disciplina
@@ -210,6 +210,26 @@ AS
 				AL.ANO,
 				AL.SEMESTRE
 		
+
+		----------------------------------------------------------------------------
+		--- SALAS DA TURMAS
+		----------------------------------------------------------------------------
+		SELECT DISTINCT
+			CASE WHEN TU.CURSO = 'CEAI' THEN AL.TURMA_CEAI
+				ELSE TU.TURMA
+			END AS TURMA,
+			tu.DISCIPLINA,
+			TU.DEPENDENCIA AS SALA
+			INTO #tb_salas_turmas
+		FROM 
+		  LY_TURMA TU
+		  LEFT JOIN VW_FCAV_ALUNOS_MATRICULADOS_CEAI AL
+			ON AL.TURMA_ORIGEM = TU.TURMA
+			AND AL.DISCIPLINA = TU.DISCIPLINA
+			AND AL.ANO = TU.ANO
+			AND AL.SEMESTRE = TU.SEMESTRE
+
+
 		----------------------------------------------------------------------------
 		-- CRIAÇÃO DA TABELA TEMPORÁRIA QUE IRÁ ALIMENTAR A FCAV_AVALIACAO_DOCENTE
 		----------------------------------------------------------------------------
@@ -240,19 +260,22 @@ AS
 			AR.RESPOSTA,
 			AR.VALOR,
 			AR.NOTA,
-			tu.DEPENDENCIA as SALA
+			tu.SALA 
 			
 			
 		INTO #tmp_avaliacao_aluno_turma 
 		  
 		FROM  #tmp_respostas_alunos AR
+
 		INNER JOIN #tmp_avaliacao_disciplinas AD 
 			ON AD.COD_AVAL = AR.COD_AVAL
+
 		INNER JOIN #tmp_alunos_turma_disicplina AL
 			ON  AL.ALUNO		= AR.ALUNO
 			AND AL.DISCIPLINA	= AD.DISCIPLINA
 			AND AL.CODTUR = SUBSTRING(AR.COD_AVAL,1,LEN(CODTUR))
-		inner join LY_TURMA tu
+
+		LEFT JOIN #tb_salas_turmas tu
 			on tu.turma = al.TURMA
 			and tu.disciplina = al.DISCIPLINA
 				
@@ -284,7 +307,7 @@ AS
 			AR.RESPOSTA,
 			AR.VALOR,
 			AR.NOTA,
-			tu.DEPENDENCIA
+			tu.SALA
 
 	--Preencha a tabela FCAV_AVALIACAO_DOCENTE
 		BEGIN
