@@ -3,13 +3,19 @@
 
 	SELECT * FROM ly_boleto where boleto in (select distinct boleto from ly_item_lanc where aluno = 'A202000797')
 	select * from vw_cobranca_boleto where cobranca = 208838
-	select distinct cobranca, boleto from ly_item_lanc where aluno = 'A202000797'
+	select distinct cobranca, boleto from ly_item_lanc where aluno = 'A202100080'
 */
 
 
+
+/******************
+1 - Informe no parametro @boleto o número do boleto
+
+*******************/
+
 DECLARE @boleto T_NUMERO
 
-SET @boleto = 200217
+SET @boleto = 201071
 
 	SELECT BOLETO,
 		OBS ,
@@ -62,7 +68,12 @@ SET
 WHERE
 	BOLETO = @boleto
 
+-- Executar o passo 1 até aqui !!!
+--############################################
 
+/**
+Este passo só utilizado se houver a necessidade do financeiro de utilizar a mesma RPS para outro boleto.
+**/
 	update #tmp_boleto
 	set
 		BOLETO = 200339

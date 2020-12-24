@@ -4,9 +4,10 @@
 	SELECT COD_AVAL, * FROM #tmp_respostas_alunos WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
 	SELECT * FROM #tmp_avaliacao_disciplinas  WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
 	SELECT * FROM #tmp_alunos_turma_disicplina WHERE TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%bdd%'
+	SELECT * FROM #tb_salas_turmas
 	SELECT * FROM #tmp_avaliacao_aluno_turma WHERE   TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%TCC%'
-	SELECT * FROM FCAV_AVALIACAO_DOCENTE WHERE COD_AVAL LIKE 'DDBDON%'
-
+	SELECT * FROM FCAV_AVALIACAO_DOCENTE WHERE COD_AVAL LIKE 'CEAI20203BDDNNT%'
+	
 	EXEC SP_FCAV_AVALIACAO_DOCENTE
 	
 Criação: 23/04/2019
@@ -80,13 +81,14 @@ AS
 			SUBSTRING(
 				REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''),'0A',''), ---1º parametro da substring
 				CASE WHEN PQ.APLICACAO LIKE 'DIS%'OR PQ.APLICACAO LIKE 'INF%' OR PQ.APLICACAO LIKE 'DI2%' THEN 4
-					 WHEN PQ.APLICACAO LIKE 'DO%' OR PQ.APLICACAO LIKE 'DI%' THEN 3
+					 WHEN PQ.APLICACAO LIKE 'DO%' OR PQ.APLICACAO LIKE 'DI%' OR PQ.APLICACAO LIKE 'IN%' THEN 3
 					 ELSE 1
 				END ,				---2º parametro da substring
-				100		--3º parametro da substring
+				19					--3º parametro da substring
 				) 
 				+ 
 				CASE WHEN PQ.QUESTIONARIO = 'Aval_Parcial_Mod4' THEN 'P'
+					-- WHEN PQ.QUESTIONARIO = 'Aval_Online' THEN 'O'
 					ELSE ''
 				END
 				AS COD_AVAL
@@ -147,8 +149,7 @@ AS
 				LEFT JOIN LY_CONCEITOS_QUEST QU 
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
-
-	--	WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+		WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
 			
 		----------------------------------------------------------------------------
 		--Determina Tabela Temporaria com Codigo da Avaliacao para Disciplina

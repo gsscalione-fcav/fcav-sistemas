@@ -1,5 +1,6 @@
 ﻿/*    
 
+select * from ly_oferta_curso where oferta_de_curso = 12625
 
  select * from FCAV_CANDIDATOS where candidato = '202020249'
 
@@ -13,7 +14,7 @@ SELECT * FROM VW_FCAV_CRONOGRAMA_TURMA_COORDENADOR WHERE
 Gera
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 128219,NULL,NULL,NULL,NULL ,NULL
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 128197,NULL,NULL,NULL,NULL ,NULL
-/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Mara%Iza%',NULL,NULL,NULL ,NULL
+/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Rafael%Barçante%',NULL,NULL,NULL ,NULL
 /*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Jack %',NULL,NULL,NULL ,NULL
 /*cpf			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, '31273654897', NULL, NULL, NULL
 /*e_mail		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, NULL,'%danilonck@outlook.com%', NULL, NULL
@@ -28,10 +29,10 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'JESSICA%'
+WHERE NOME LIKE 'alyne%'
 AND HABILITADO = 'S'
 
-select * from fcav_webusers where nome like '%fernando%'
+select * from fcav_webusers where nome like '%JESSICA%'
 
 ----# BLOQUEIO DE USUARIO #------
 
