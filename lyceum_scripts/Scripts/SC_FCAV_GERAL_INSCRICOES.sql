@@ -29,7 +29,7 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'alyne%'
+WHERE NOME LIKE 'ariane%'
 AND HABILITADO = 'S'
 
 select * from fcav_webusers where nome like '%JESSICA%'
