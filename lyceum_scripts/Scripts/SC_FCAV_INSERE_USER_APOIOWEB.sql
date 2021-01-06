@@ -24,12 +24,12 @@ DELETE FCAV_WEBUSERS WHERE ID = 84
 go
 
 EXEC PR_FCAV_INSERE_USUARIO_APOIOWEB
-	'jonatas',
-	'190989',
-    'Jonatas Santos',
-    'TI',
-    'jonatas.santos@vanzolini.com.br',
-    '0',
+	'matheus',
+	'511039',
+    'Matheus Silva',
+    'Educação',
+    'matheus_silva@vanzolini.com.br',
+    '4',
     NULL,
     NULL,
     NULL

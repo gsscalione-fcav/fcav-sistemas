@@ -18,4 +18,12 @@ select (
     select '' + numero from cte
     for xml path(''), type, root('txt')
     ).value ('/txt[1]', 'varchar(max)')
-option (maxrecursion 0)
+option (maxrecursion 0) 
+
+
+
+---------------------------------------------------------
+-- Ou
+---------------------------------------------------------
+
+select 	concat(replicate('0',cast(6-len(cast(RAND()*1000000 as int)) as varchar)),cast(cast(RAND()*1000000 as int) as varchar)) SENHA_GERADA
