@@ -10,7 +10,7 @@ GO
 -- These are the items that would have been sent  
 -- to danw.  
 
-select
+select top 100
 	items.* 
     ,l.description 
 from dbo.sysmail_mailitems as items  
