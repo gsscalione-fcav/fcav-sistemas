@@ -410,13 +410,20 @@ AS
     ---------------------------------------------------------------------------------------       
     --ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS      
     --Produção 
-	IF (@unidade_fisica = 'USP' OR @unidade_fisica = 'Online' OR @unidade_fisica = 'Online USP')
+	IF (@unidade_fisica = 'USP' OR (@unidade_fisica = 'Online' AND @unidade_ensino != 'ATUAL') OR @unidade_fisica = 'Online USP')
     BEGIN      
       SET @encaminha_email = 'secretariausp@vanzolini.com.br; '
     END
 	ELSE
 	BEGIN
-		SET @encaminha_email = 'secretariapta@vanzolini.com.br; '
+		IF(@unidade_fisica = 'Online' AND @unidade_ensino = 'ATUAL')
+		BEGIN
+			SET @encaminha_email = 'secretariausp@vanzolini.com.br; secretariapta@vanzolini.com.br; '
+		END
+		ELSE
+		BEGIN
+			SET @encaminha_email = 'secretariapta@vanzolini.com.br; '
+		END	
 	END
        
  --   Homologação      
