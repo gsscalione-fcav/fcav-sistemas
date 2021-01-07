@@ -29,10 +29,10 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'gabriel%'
+WHERE NOME LIKE 'robson%'
 AND HABILITADO = 'S'
 
-select * from fcav_webusers where nome like '%JESSICA%'
+select * from fcav_webusers order by id
 
 ----# BLOQUEIO DE USUARIO #------
 
