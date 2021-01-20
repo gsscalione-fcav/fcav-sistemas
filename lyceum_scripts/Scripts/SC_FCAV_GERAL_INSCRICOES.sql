@@ -29,10 +29,10 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'robson%'
+WHERE NOME LIKE 'adriano%'
 AND HABILITADO = 'S'
 
-select * from fcav_webusers order by id
+select * from fcav_webusers where nome like 'Adriano%' order by id
 
 ----# BLOQUEIO DE USUARIO #------
 
@@ -45,8 +45,8 @@ WHERE NOME LIKE 'Gabriel Serrano Scalione%'
 
 update fcav_webusers
 set
-	PASS = '140739'
-WHERE ID = '88'
+	PASS = '4r4r4r'
+WHERE ID = '82'
 
 */
 
