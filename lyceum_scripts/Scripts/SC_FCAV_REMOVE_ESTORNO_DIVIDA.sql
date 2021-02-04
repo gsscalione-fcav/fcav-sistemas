@@ -14,7 +14,7 @@
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202000079'
+DECLARE @ALUNO VARCHAR(20) = 'C202000111'
 
 declare @lanc_debito numeric
 
@@ -43,13 +43,13 @@ DELETE LY_DESCONTO_DEBITO WHERE LANC_DEB in (SELECT LANC_DEB FROM LY_LANC_DEBITO
 
 --Volta o desconto do plano de pagamento ou voucher se houver.
 
-update LY_DESCONTO_DEBITO
-set
-	valor = 225.00
-where
-	LANC_DEB = 150336
-	and MOTIVO_DESCONTO = 'PlanoPagamento'
-
+--update LY_DESCONTO_DEBITO
+--set
+--	valor = 450.00
+--where
+--	LANC_DEB = 150640
+--	and (MOTIVO_DESCONTO = 'PlanoPagamento'
+--	or MOTIVO_DESCONTO = 'Voucher')
 /********************************************************************************
 Vincula a dívida novamente na matricula ou pre-matricula do aluno
 ********************************************************************************/
