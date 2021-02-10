@@ -28,6 +28,7 @@ GO
 --****************************************************************************
 -- 2 -- CONFERE SE CREDITO E DEBITO BATEM
 --****************************************************************************
+begin
 	WITH CONF_DEBITO 
 	AS (SELECT
 		  IMP_COBRANCA,
@@ -59,35 +60,43 @@ GO
 		INNER JOIN CONF_SUM CONF
 		  ON TEMP.IMP_COBRANCA = CONF.IMP_COBRANCA
 		 WHERE CONF.CALC <> 0
- GO
+end 
+GO
 
- SELECT * FROM LY_ITEM_LANC WHERE COBRANCA IN (208504, 208545)
-
- UPDATE LY_ITEM_LANC
- SET
-	NATUREZA = 'CCGPON T 53'
- WHERE COBRANCA IN (208504, 208545)
-
- SELECT * FROM LY_ITEM_CRED WHERE COBRANCA = 208545
 --****************************************************************************
 -- 3 -- VERIFICA SE TEM CLASSE VALOR CRED OU DEB EM BRANCO DE ACORDO COM O TIPO_LANC
 --****************************************************************************
-	SELECT 
-		* 
-	FROM 
-		LYCEUM.DBO.FCAV_IMPORTCONTABIL  
+BEGIN
+	SELECT SUBSTRING(HISTORICO,CHARINDEX(' ',HISTORICO,1)+1,6) as cobranca,* 
+	FROM LYCEUM.DBO.FCAV_IMPORTCONTABIL  
 	WHERE (TIPO_LANC = 3 AND CLASSE_VALOR_CRED = '' AND CLASSE_VALOR_DEB = '')
 	   OR (TIPO_LANC = 2 AND CLASSE_VALOR_CRED = '')
 	   OR (TIPO_LANC = 1 AND CLASSE_VALOR_DEB = '')
 	   OR (CC_CRED ='' AND CC_DEB ='')  
+
+END
 GO
+
+--****************************************************************************
+-- 4 -- VERIFICA CENTRO DE CUSTO INATIVO / EXPIRADO / BLOQUEADO
+--****************************************************************************
+BEGIN
+	SELECT CTT_TX_GER, CTT_CLVL, *
+		FROM DADOSADVP12.dbo.CTT010
+		WHERE  D_E_L_E_T_ = ''
+		AND (CTT_BLOQ = '1' OR CTT_STATUS = 'I' OR CTT_DTEXSF < CONVERT(varchar,getdate(),112))
+		AND CTT_CUSTO collate Latin1_General_CI_AI  IN (SELECT DISTINCT ISNULL(CC_DEB,CC_CRED) CENTRO_CUSTO
+						  FROM LYCEUM.DBO.FCAV_IMPORTCONTABIL ) 
+END
+GO
+
 	--****************************************************************************
 	--		IDENTIFICAR O CENTRO DE CUSTO / CUSTO ATIVIDADE / CLASSE VALOR		--
 	--****************************************************************************
-	
+BEGIN	
 	DECLARE @cobranca numeric
 
-	SET @cobranca = 199969			-- < -- Informe a cobrança
+	SET @cobranca = 214541			-- < -- Informe a cobrança
 
 	SELECT DISTINCT TURMA, 
 					CENTRO_DE_CUSTO,
@@ -100,7 +109,51 @@ GO
 		like (SELECT DISTINCT NATUREZA 
 			FROM   LYCEUM.dbo.LY_ITEM_LANC 
 			WHERE  COBRANCA =  @cobranca)
+END
+GO				  
+		--****************************************************************************
+		--					LIBERACAO DO CENTRO DE CUSTO							--
+		--****************************************************************************
+BEGIN
+		declare @centro_custo varchar(9)
 
+		set @centro_custo = '313603003' -- INFORME O CENTRO DE CUSTO
+
+
+		SELECT CTT_TX_GER, CTT_CLVL, *
+		FROM DADOSADVP12.dbo.CTT010
+		WHERE  D_E_L_E_T_ = ''
+		and CTT_CUSTO = @centro_custo
+
+
+		--CENTRO DE CUSTO VENCIDO
+			UPDATE DADOSADVP12.dbo.CTT010
+			SET
+				CTT_DTEXSF = CONVERT(varchar,getdate()+1,112) ---Data de Vencimento
+			WHERE CTT_CUSTO IN (@centro_custo)
+			and CTT_DTEXSF < CONVERT(varchar,getdate(),112)
+
+		--CENTRO DE CUSTO BLOQUEADO
+			UPDATE DADOSADVP12.dbo.CTT010
+			SET
+				CTT_BLOQ = '2'			--- 2 desbloqueio - 1 bloqueia
+			WHERE  --CTT_DTEXIS >= '20190118'AND 
+			CTT_CUSTO IN (@centro_custo)
+			AND CTT_BLOQ = '1'
+
+		--CENTRO DE CUSTO INATIVO
+			UPDATE DADOSADVP12.dbo.CTT010
+			SET
+				CTT_STATUS = 'A'			--- A Ativo - I Inativo
+			WHERE  --CTT_DTEXIS >= '20190118'AND 
+			CTT_CUSTO IN (@centro_custo)
+			AND CTT_STATUS = 'I'
+
+		SELECT CTT_TX_GER, CTT_CLVL, *
+		FROM DADOSADVP12.dbo.CTT010
+		WHERE  D_E_L_E_T_ = ''
+		and CTT_CUSTO = @centro_custo
+END
 GO
 
 --****************************************************************************
@@ -135,51 +188,6 @@ GO
 	ORDER BY	CT2_LOTE,CT2_DOC DESC
 
 
---****************************************************************************
---					LIBERACAO DO CENTRO DE CUSTO							--
---****************************************************************************
-
-BEGIN	
-		declare @centro_custo varchar(9)
-
-		set @centro_custo = '506036215' -- INFORME O CENTRO DE CUSTO
-
-		SELECT CTT_TX_GER, CTT_CLVL, *
-		FROM DADOSADVP12.dbo.CTT010
-		WHERE  D_E_L_E_T_ = ''
-		and CTT_CUSTO = @centro_custo
-
-
-		--CENTRO DE CUSTO VENCIDO
-			UPDATE DADOSADVP12.dbo.CTT010
-			SET
-				CTT_DTEXSF = CONVERT(varchar,getdate()+1,112) ---Data de Vencimento
-			WHERE CTT_CUSTO IN (@centro_custo)
-
-
-		--CENTRO DE CUSTO BLOQUEADO
-			UPDATE DADOSADVP12.dbo.CTT010
-			SET
-				CTT_BLOQ = '2'			--- 2 desbloqueio - 1 bloqueia
-			WHERE  --CTT_DTEXIS >= '20190118'AND 
-			CTT_CUSTO IN (@centro_custo)
-			AND CTT_BLOQ = '1'
-
-		--CENTRO DE CUSTO INATIVO
-			UPDATE DADOSADVP12.dbo.CTT010
-			SET
-				CTT_STATUS = 'A'			--- A Ativo - I Inativo
-			WHERE  --CTT_DTEXIS >= '20190118'AND 
-			CTT_CUSTO IN (@centro_custo)
-			AND CTT_STATUS = 'I'
-
-		SELECT CTT_TX_GER, CTT_CLVL, *
-		FROM DADOSADVP12.dbo.CTT010
-		WHERE  D_E_L_E_T_ = ''
-		and CTT_CUSTO = @centro_custo
-END
-
---****************************************************************************
 
 GO
 
@@ -189,9 +197,9 @@ GO
 --			BLOCO PARA CONSULTAR AS CLIENTES SA1				--
 --****************************************************************************
 
-SELECT TOP 10 * FROM DADOSADVP12.dbo.SA1010 WHERE A1_XCODCAV = '40222295864'
+SELECT TOP 10 * FROM DADOSADVP12.dbo.SA1010 WHERE A1_XCODCAV = '61160438001101'
 
-SELECT * FROM LYCEUM.dbo.LY_RESP_FINAN WHERE CPF_TITULAR ='40222295864'
+SELECT * FROM LYCEUM.dbo.LY_RESP_FINAN WHERE CGC_TITULAR ='61160438001101'
 	
 
 	--************************************************************************
