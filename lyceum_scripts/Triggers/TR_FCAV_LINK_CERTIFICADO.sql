@@ -25,14 +25,17 @@ BEGIN
 	DECLARE @aluno varchar(20),
 			@curso varchar(20),
 			@turma varchar(20),
-			@url_aprovado varchar(255)
+			@url_aprovado varchar(255),
+			@aprovacao varchar(1)
 
 	/* Carrega as variáveis */
 	SELECT 
 		@aluno = ALUNO,
 		@curso = CURSO,
 		@turma = TURMA,
-		@url_aprovado = URL_APROVACAO
+		@url_aprovado = URL_APROVACAO,
+		@aprovacao = APROVACAO
+
 	FROM 
 		INSERTED
 
@@ -40,20 +43,20 @@ BEGIN
 	  Se for verdadeiro insere na tabela de Aviso do Lyceum o link do certificado.
 	  Se for falso verifica se url_aprovado está vazio e apaga a linha referente ao certificado.*/
 
-	IF @url_aprovado IS NOT NULL 
+	IF @url_aprovado IS NOT NULL AND @aprovacao = 'S'
 	BEGIN
 		INSERT INTO LYCEUM.DBO.LY_AVISO
 		(ALUNO,DTINI,DTFIM,MENSAGEM,CURSO,SERIE,TIPO_AVISO,UNID_RESPONSAVEL,UNID_FISICA,
 			TURNO,CURRICULO,CONCURSO,DATA_INCLUSAO,USUARIO,DESTINO,ORDEM,LOTE,ANEXO_ID)
 		VALUES
-		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+500,102),'<p><a href="'+ @url_aprovado +'">Link para o Certificado '+ @turma +'</a></p>',
+		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+500,102),'Link para o Certificado '+ @turma +': <p><a href="'+ @url_aprovado +'" target="_blank" >Clique Aqui</a></p>',
 			@curso,NULL,'I',NULL,NULL,NULL,NULL,NULL,CONVERT(DATE,GETDATE(),102),'zeus',NULL,NULL,NULL,NULL)	
 	END
 	ELSE 
 	BEGIN
-		IF @url_aprovado IS NULL 
+		IF @aprovacao = 'N'
 		BEGIN
-			DELETE LYCEUM.DBO.LY_AVISO WHERE @aluno = ALUNO AND MENSAGEM LIKE '%Link para o Certificado%' 
+			DELETE LYCEUM.DBO.LY_AVISO WHERE ALUNO = @aluno AND CURSO = @curso AND  MENSAGEM LIKE '%Link para o Certificado%' 
 		END
 	END
 
