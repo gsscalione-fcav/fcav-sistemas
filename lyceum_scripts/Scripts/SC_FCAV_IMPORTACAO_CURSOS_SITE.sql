@@ -2,8 +2,8 @@
 	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_ATUALIZA_PORTAL 12720,'S'
 
 	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_EMAIL_COMUNICACAO 12604,'S'
-
-	SELECT DISTINCT curso, curriculo, turma, ano, semestre periodo, unid_fisica, oferta_de_curso, concurso, contrato FROM VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS WHERE TURMA = 'CCUPON T 32'
+	select * from ly_curso where nome like '%soft skills%'
+	SELECT DISTINCT curso, curriculo, turma, ano, semestre periodo, unid_fisica, oferta_de_curso, concurso, contrato FROM VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS WHERE curso = 'D-DSSON'
 
 */
 
