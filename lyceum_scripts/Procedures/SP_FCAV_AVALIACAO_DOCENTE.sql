@@ -1,13 +1,15 @@
 /*
     SP utilizada na JOB que alimenta a tabela SP_FCAV_AVALIACAO_DOCENTE
 	
-	SELECT COD_AVAL, * FROM #tmp_respostas_alunos WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
-	SELECT * FROM #tmp_avaliacao_disciplinas  WHERE APLICACAO LIKE '%CEAI20203BDDNNT%'
-	SELECT * FROM #tmp_alunos_turma_disicplina WHERE TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%bdd%'
+	SELECT COD_AVAL, * FROM #tmp_respostas_alunos WHERE APLICACAO LIKE '%DDBDONT02DBDRdO%'
+	SELECT * FROM #tmp_avaliacao_disciplinas  WHERE APLICACAO LIKE '%DDBDONT02DBDRdO%'
+	SELECT * FROM #tmp_alunos_turma_disicplina WHERE TURMA LIKE 'D%DBDON%' AND DISCIPLINA LIKE 'CEAI%bdd%'
 	SELECT * FROM #tb_salas_turmas
 	SELECT * FROM #tmp_avaliacao_aluno_turma WHERE   TURMA LIKE 'CEAI%2020%3%' AND DISCIPLINA LIKE 'CEAI%TCC%'
 	SELECT * FROM FCAV_AVALIACAO_DOCENTE WHERE COD_AVAL LIKE 'CEAI20203BDDNNT%'
 	
+	SELECT * FROM VW_FCAV_MATRICULA_E_PRE_MATRICULA WHERE TURMA LIKE 'D%DBDON%' 
+
 	EXEC SP_FCAV_AVALIACAO_DOCENTE
 	
 Criação: 23/04/2019
@@ -149,7 +151,8 @@ AS
 				LEFT JOIN LY_CONCEITOS_QUEST QU 
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
-		WHERE convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+		WHERE	convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+			AND AQ.QUESTIONARIO LIKE '%Mod1'
 			
 		----------------------------------------------------------------------------
 		--Determina Tabela Temporaria com Codigo da Avaliacao para Disciplina
@@ -196,8 +199,7 @@ AS
 			INNER JOIN LY_CURSO CS
 				ON CS.CURSO = AL.CURSO
 			WHERE 
-				AL.CONCURSO IS NOT NULL
-				AND AL.ANO >= 2018
+				AL.ANO >= 2018
 				AND AL.SIT_MATRICULA = 'Matriculado'
 		GROUP BY CS.FACULDADE,
 				CS.CURSO,
