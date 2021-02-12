@@ -28,6 +28,17 @@ BEGIN
 			@url_aprovado varchar(255),
 			@aprovacao varchar(1)
 
+	-- variaveis para o e-mail
+	DECLARE @nomealuno varchar(100),
+			@nomecurso varchar(100),
+			@emailaluno varchar(200),
+			@encaminha_email varchar(200),
+			@unidade_fisica varchar(20),
+			@assunto varchar(100),      
+			@texto varchar(8000)   
+
+	/**Bloco para disponibilizar o certificado na tela de aviso da Central do Aluno.**/
+
 	/* Carrega as variáveis */
 	SELECT 
 		@aluno = ALUNO,
@@ -40,8 +51,8 @@ BEGIN
 		INSERTED
 
 	/*Verifica se o certificado foi liberado. 
-	  Se for verdadeiro insere na tabela de Aviso do Lyceum o link do certificado.
-	  Se for falso verifica se url_aprovado está vazio e apaga a linha referente ao certificado.*/
+	  Se for verdadeiro e se o link existe, insere na tabela de Aviso do Lyceum o link do certificado.
+	  Se for falso, verifica se a aprovação é N, sendo verdadeira, apaga a linha referente ao certificado.*/
 
 	IF @url_aprovado IS NOT NULL AND @aprovacao = 'S'
 	BEGIN
@@ -60,5 +71,80 @@ BEGIN
 		END
 	END
 
+
+	/**Bloco para Envio do e-mail para o aluno**/
+		-------------------------------------------------------------   
+		-- DADOS DO ALUNO
+		SELECT      
+			@nomealuno = P.NOME_COMPL,
+			@emailaluno = LOWER(LTRIM(RTRIM(P.E_MAIL)))      
+		FROM LYCEUM.dbo.LY_ALUNO A
+			 INNER JOIN LYCEUM.dbo.LY_PESSOA P
+				ON P.PESSOA = A.PESSOA
+		WHERE A.ALUNO = @aluno
+
+		-------------------------------------------------------------   
+		-- DADOS DO CURSO
+        SELECT      
+            @nomecurso = CS.NOME,      
+            @unidade_fisica = OC.UNIDADE_FISICA             
+		FROM lyceum.dbo.LY_OFERTA_CURSO OC      
+			INNER JOIN lyceum.dbo.LY_CURSO CS      
+				ON (OC.CURSO = CS.CURSO)      
+        WHERE CS.CURSO = @curso  
+
+		-------------------------------------------------------------      
+		--ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS        
+		--Produção        
+		IF (@unidade_fisica = 'USP' or @unidade_fisica = 'Online USP'or @unidade_fisica = 'Online') BEGIN      
+				
+				SET @encaminha_email = 'secretariausp@vanzolini.com.br; '      
+		END      
+		ELSE BEGIN  
+			IF (@unidade_fisica = 'Paulista') BEGIN
+				SET @encaminha_email = 'secretariapta@vanzolini.com.br'  
+			END  
+			ELSE BEGIN
+				SET @encaminha_email = 'secretariapta@vanzolini.com.br; secretariausp@vanzolini.com.br'  
+			END
+		END    
+
+		---------------------------------------------------------------------------------------                              
+		/* MENSAGEM PADRÃO PARA OS ALUNOS INGRESSOS DE PROCESSO SELETIVO*/        
+		---------------------------------------------------------------------------------------          
+		SET @assunto = 'Certificado: ' + @nomecurso + ' - ' + @turma + ''
+		-------------------------------------------------------------   
+		SET @texto = 
+				'Olá, ' + @nomealuno + '!
+				<br><br>
+				Tudo bem?
+				<br><br>
+				Informamos que o seu certificado digital, referente ao curso '+ @nomecurso +', turma '+ right(@turma,CHARINDEX(' ', REVERSE(LTRIM(RTRIM(@turma))))-1) +', 
+				está disponível na Central do Aluno > AVISOS > Avisos e Ocorrências, em Mensagens Recebidas. 
+				<br><br> 
+				Clique no Aviso para visualizar a mensagem e clicar no link do Certificado. 
+				<br><br> 	
+				Caso ainda tenha dúvida.
+				<br><br>
+				Entre em contato conosco: 
+				<br><br>
+				<b>Secretaria Acadêmica PTA</b>: Via e-mail secretariapta@vanzolini.com.br ou pelo telefone: (11) 3145-3700.  
+				<br>        
+				<b>Secretaria Acadêmica USP</b>: Via e-mail secretariausp@vanzolini.com.br ou pelo telefone: (11) 5525-5837.
+				<br><br>
+				Conte com a gente para o que precisar!' 
+		-------------------------------------------------------------            
+		EXEC MSDB.dbo.SP_SEND_DBMAIL @profile_name =      
+										-- Desenvolvimento/homologação         
+										--FCAV_HOMOLOGACAO,          
+										-- Produção          
+										VANZOLINI_BD,      
+										@recipients = @emailaluno,
+										@reply_to = @encaminha_email,
+										@copy_recipients = @encaminha_email,      
+										@blind_copy_recipients = 'suporte_techne@vanzolini.com.br',      
+										@subject = @assunto,      
+										@body = @texto,      
+										@body_format = HTML;   
 END
 GO
