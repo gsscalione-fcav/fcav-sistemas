@@ -14,7 +14,7 @@
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202000111'
+DECLARE @ALUNO VARCHAR(20) = 'C202000043'
 
 declare @lanc_debito numeric
 
@@ -36,7 +36,7 @@ WHERE COBRANCA IN (SELECT COBRANCA
 select * from LY_MATRICULA where ALUNO = @ALUNO
 
 /********************************************************************************
-Executar os 2 deletes abaixo, colocando o Lanc_deb da dívida estornada.
+Executar o delete abaixo, colocando o Lanc_deb da dívida estornada.
 ********************************************************************************/
 
 DELETE LY_DESCONTO_DEBITO WHERE LANC_DEB in (SELECT LANC_DEB FROM LY_LANC_DEBITO WHERE ALUNO = @ALUNO) AND (MOTIVO_DESCONTO like '%Estorno%')
@@ -50,6 +50,8 @@ DELETE LY_DESCONTO_DEBITO WHERE LANC_DEB in (SELECT LANC_DEB FROM LY_LANC_DEBITO
 --	LANC_DEB = 150640
 --	and (MOTIVO_DESCONTO = 'PlanoPagamento'
 --	or MOTIVO_DESCONTO = 'Voucher')
+
+
 /********************************************************************************
 Vincula a dívida novamente na matricula ou pre-matricula do aluno
 ********************************************************************************/

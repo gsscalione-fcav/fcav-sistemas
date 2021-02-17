@@ -1,3 +1,6 @@
+use msdb
+go
+
 --Teste em Produção
 EXEC MSDB.dbo.SP_SEND_DBMAIL
 		@PROFILE_NAME =
@@ -26,13 +29,15 @@ from dbo.sysmail_allitems as items
 left join dbo.sysmail_event_log as l  
     on items.mailitem_id = l.mailitem_id  
 where	
-		--subject like 'confirmação%'
+		subject like 'Teste de envio pelo Lyceum Produção%'
 		--items.recipients like '%danw%' or 
 		--items.copy_recipients like '%danw%' or 
 		--items.blind_copy_recipients like '%atendimentousp%' 
-		send_request_date between '2018-10-22 17:00:00.000' and '2018-10-22 23:59:59.999'
-		and items.sent_status not like 'sent'
+		--send_request_date between '2018-10-22 17:00:00.000' and '2018-10-22 23:59:59.999'
+		--and items.sent_status not like 'sent'
 	order by mailitem_id desc
+
+
 
 
 --Teste em Homologação 

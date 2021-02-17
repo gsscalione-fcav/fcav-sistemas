@@ -122,11 +122,11 @@ BEGIN
 				Informamos que o seu certificado digital, referente ao curso '+ @nomecurso +', turma '+ right(@turma,CHARINDEX(' ', REVERSE(LTRIM(RTRIM(@turma))))-1) +', 
 				está disponível na Central do Aluno > AVISOS > Avisos e Ocorrências, em Mensagens Recebidas. 
 				<br><br> 
-				Clique no Aviso para visualizar a mensagem e clicar no link do Certificado. 
-				<br><br> 	
-				Caso ainda tenha dúvida.
+				Acesse o link: <a href="https://sga.vanzolini.org.br/AOnline/" target="_blank">https://sga.vanzolini.org.br/AOnline/</a>
 				<br><br>
-				Entre em contato conosco: 
+				Clique em Avisos > link para o certificado. 
+				<br><br> 	
+				Caso tenha alguma dúvida, entre em contato conosco através dos canais abaixo:
 				<br><br>
 				<b>Secretaria Acadêmica PTA</b>: Via e-mail secretariapta@vanzolini.com.br ou pelo telefone: (11) 3145-3700.  
 				<br>        

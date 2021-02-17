@@ -10,21 +10,22 @@ GO
 -- These are the items that would have been sent  
 -- to danw.  
 
-select top 100
+
+--CONSULTA ENVIO DOS E-MAILS
+select top 10 items.sent_status,
 	items.* 
     ,l.description 
-from dbo.sysmail_mailitems as items  
+from dbo.sysmail_allitems as items  
 left join dbo.sysmail_event_log as l  
     on items.mailitem_id = l.mailitem_id  
-where	
-		subject like '%Confirmação%'
-		--and items.recipients like '%@ej.com.br%'
+--where	
+		--subject like 'Teste de envio pelo Lyceum Produção%'
+		--items.recipients like '%danw%' or 
 		--items.copy_recipients like '%danw%' or 
-		--items.blind_copy_recipients like '%atendimentousp%'  
-		--and send_request_date between '2019-02-05 00:00:00.000' and '2019-02-05 23:59:59.999'
-
-order by mailitem_id desc
-GO  
+		--items.blind_copy_recipients like '%atendimentousp%' 
+		--send_request_date between '2018-10-22 17:00:00.000' and '2018-10-22 23:59:59.999'
+		--and items.sent_status not like 'sent'
+	order by mailitem_id desc
 
 --sysmail_help_status_sp  
 
