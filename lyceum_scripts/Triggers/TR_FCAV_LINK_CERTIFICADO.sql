@@ -34,6 +34,7 @@ BEGIN
 			@emailaluno varchar(200),
 			@encaminha_email varchar(200),
 			@unidade_fisica varchar(20),
+			@unidade_ensino VARCHAR(20),
 			@assunto varchar(100),      
 			@texto varchar(8000)   
 
@@ -87,27 +88,31 @@ BEGIN
 		-- DADOS DO CURSO
         SELECT      
             @nomecurso = CS.NOME,      
-            @unidade_fisica = OC.UNIDADE_FISICA             
+            @unidade_fisica = OC.UNIDADE_FISICA,
+			@unidade_ensino = CS.FACULDADE
 		FROM lyceum.dbo.LY_OFERTA_CURSO OC      
 			INNER JOIN lyceum.dbo.LY_CURSO CS      
 				ON (OC.CURSO = CS.CURSO)      
         WHERE CS.CURSO = @curso  
 
 		-------------------------------------------------------------      
-		--ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS        
-		--Produção        
-		IF (@unidade_fisica = 'USP' or @unidade_fisica = 'Online USP'or @unidade_fisica = 'Online') BEGIN      
-				
-				SET @encaminha_email = 'secretariausp@vanzolini.com.br; '      
-		END      
-		ELSE BEGIN  
-			IF (@unidade_fisica = 'Paulista') BEGIN
-				SET @encaminha_email = 'secretariapta@vanzolini.com.br'  
-			END  
-			ELSE BEGIN
-				SET @encaminha_email = 'secretariapta@vanzolini.com.br; secretariausp@vanzolini.com.br'  
+		 --ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS      
+			--Produção 
+			IF (@unidade_fisica = 'USP' OR (@unidade_fisica = 'Online' AND @unidade_ensino != 'ATUAL') OR @unidade_fisica = 'Online USP')
+			BEGIN      
+			  SET @encaminha_email = 'secretariausp@vanzolini.com.br; '
 			END
-		END    
+			ELSE
+			BEGIN
+				IF(@unidade_fisica = 'Online' AND @unidade_ensino = 'ATUAL')
+				BEGIN
+					SET @encaminha_email = 'secretariausp@vanzolini.com.br; secretariapta@vanzolini.com.br; '
+				END
+				ELSE
+				BEGIN
+					SET @encaminha_email = 'secretariapta@vanzolini.com.br; '
+				END	
+			END
 
 		---------------------------------------------------------------------------------------                              
 		/* MENSAGEM PADRÃO PARA OS ALUNOS INGRESSOS DE PROCESSO SELETIVO*/        
