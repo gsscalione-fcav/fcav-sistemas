@@ -3,7 +3,10 @@
 
 	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_EMAIL_COMUNICACAO 12604,'S'
 	select * from ly_curso where nome like '%soft skills%'
-	SELECT DISTINCT curso, curriculo, turma, ano, semestre periodo, unid_fisica, oferta_de_curso, concurso, contrato FROM VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS WHERE curso = 'D-DSSON'
+	SELECT DISTINCT *
+		--curso, curriculo, turma, ano, semestre periodo, unid_fisica, oferta_de_curso, concurso, contrato 
+	FROM VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS 
+	WHERE TURMA = 'CCGBON T 69'
 
 */
 
@@ -14,7 +17,7 @@ GO
 DECLARE @turma T_CODIGO
 declare @tp_ingresso varchar(2)
 
-SET @turma = 'A-FAL27001 T 27'
+SET @turma = 'CEQP T 73'
 
 -------------------------------------------------------------------------------------------
 -- 1 -- MONTA STRING PARA FAZER O INSERT NA TABELA IMPORTA_TURMAS DA BASE DE DADOS MYSQL DO SITE DA VANZOLINI
