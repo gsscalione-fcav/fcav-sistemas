@@ -24,7 +24,7 @@ WHERE
 	CURRICULO = 'MBA-EP 2021/1'
  
 
- SELECT   @CARGA_HORARIA = @HORAS + ':' + @MINUTOS + ' (' + @HOR_EXTENSO + ' horas e ' + @MIN_EXTENSO + ' minutos)'
+ SELECT   @CARGA_HORARIA = @HORAS + 'h' + @MINUTOS + 'min (' + @HOR_EXTENSO + ' horas e ' + @MIN_EXTENSO + ' minutos)'
 
  SELECT @CARGA_HORARIA
 
