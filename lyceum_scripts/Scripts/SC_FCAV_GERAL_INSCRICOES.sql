@@ -1,25 +1,22 @@
 ﻿/*    
 
-select * from ly_oferta_curso where oferta_de_curso = 12625
 
- select * from FCAV_CANDIDATOS where candidato = '202020249'
-
- select * from ly_aluno where candidato = '202020249'
+ select * from VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS where turma = 'MBA-EP T 02'
 --
 
 Aluno Editor: A201400091
 Senha: A201400091
 
 SELECT * FROM VW_FCAV_CRONOGRAMA_TURMA_COORDENADOR WHERE 
-Gera
+
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 129702,NULL,NULL,NULL,NULL ,NULL
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 128197,NULL,NULL,NULL,NULL ,NULL
-/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Fernanda Gomes Potinatti%',NULL,NULL,NULL ,NULL
+/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Rafael Ferreira Hazenfratz%',NULL,NULL,NULL ,NULL
 /*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Jack %',NULL,NULL,NULL ,NULL
 /*cpf			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, '73385757191', NULL, NULL, NULL
-/*e_mail		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, NULL,'%manutencao.belem%', NULL, NULL
+/*e_mail		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, NULL,'%scalione@gmail.com%', NULL, NULL
 /*candidato		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,'202020179',NULL
-/*aluno			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,NULL,'D202100001'
+	
 
 SELECT 
 	habilitado, 
@@ -49,6 +46,8 @@ set
 WHERE ID = '82'
 
 */
+
+ 
 
 if OBJECT_ID('TempDB.dbo.#TMP_CANDIDATO_ALUNO') IS NOT NULL
 begin
