@@ -4,7 +4,7 @@
  - VIEW PARA TRAZER A RELAÇÃO DE ALUNOS QUE FIZERAM A INSCRICAO POR VENDA DIRETA.    
         
 
-      select * from VW_FCAV_ALUNOS_VENDA_DIRETA where turma = 'A-AT T 12'  
+      select * from VW_FCAV_ALUNOS_VENDA_DIRETA where turma = 'A-ASMON T 11'  
     select * from VW_FCAV_EXTFIN_LY where turma = 'A-45001.18 T 02'  
 
 Atualização:        
@@ -369,9 +369,9 @@ AS
   WHERE  TU.TP_INGRESSO = 'VD' 
          --AND TU.TURMA = 'A-AGM T 01'  
          --and al.ALUNO = 'A201900155'  
-         AND EXISTS (SELECT 1 
-                     FROM   LY_PEDIDO_PGTO_COBRANCAS 
-                     WHERE  COBRANCA = EX.COBRANCA) 
+         --AND EXISTS (SELECT 1 
+         --            FROM   LY_PEDIDO_PGTO_COBRANCAS 
+         --            WHERE  COBRANCA = EX.COBRANCA) 
          AND EX.BOLETO IS NULL 
   GROUP  BY TU.UNIDADE_RESPONSAVEL, 
             TU.TURMA, 
