@@ -113,7 +113,7 @@ BEGIN
             --'suporte_techne@vanzolini.org.br'
 
             -- Produção
-            'lucas.silva@vanzolini.com.br;adriano.oshima@vanzolini.com.br'
+            'suportemkt@vanzolini.com.br'
 
         ---------------------------------------------------------------------------------------   
         --ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS  

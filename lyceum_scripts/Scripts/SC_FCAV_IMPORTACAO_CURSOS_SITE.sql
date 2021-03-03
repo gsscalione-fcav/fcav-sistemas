@@ -1,5 +1,5 @@
 /*
-	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_ATUALIZA_PORTAL 12664,'S'
+	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_ATUALIZA_PORTAL 12613,'S'
 
 	EXEC PR_FCAV_LYCEUM_OFERTA_CURSO_EMAIL_COMUNICACAO 12604,'S'
 	select * from ly_curso where nome like '%soft skills%'
@@ -17,7 +17,7 @@ GO
 DECLARE @turma T_CODIGO
 declare @tp_ingresso varchar(2)
 
-SET @turma = 'A-ASFON T 15'
+SET @turma = 'A-YBON T 06'
 
 -------------------------------------------------------------------------------------------
 -- 1 -- MONTA STRING PARA FAZER O INSERT NA TABELA IMPORTA_TURMAS DA BASE DE DADOS MYSQL DO SITE DA VANZOLINI

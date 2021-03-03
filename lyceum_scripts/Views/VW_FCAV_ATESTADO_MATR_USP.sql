@@ -3,6 +3,8 @@
 
 -- Finalidade: Trazer a relação de alunos para o relatório de Atestado de Matrícula emitido pelo Lyceum. 
 
+-- SELECT * FROM VW_FCAV_ATESTADO_MATR_USP WHERE aluno in ('E201910015')
+
 -- Criado por: Jonatas Souza
 -- Data de criação 15/10/2020
 
@@ -71,6 +73,7 @@ AS (SELECT DISTINCT
         WHEN CURSO.FACULDADE = 'ESPEC' THEN 'Especialização'
     END AS UNID_RESP,
     TUR.TURMA,
+	dbo.FN_FCAV_CAR_HORARIA_EXT(TUR.CURRICULO) as CARGA_HORARIA_CURSO,
     CAST(CURR.AULAS_PREVISTAS AS numeric) AS CARGA_HOR,
     dbo.FN_FCAV_NUM_EXTENSO(CURR.AULAS_PREVISTAS) AS CARGA_HOR_EXT,
     (SELECT
@@ -110,6 +113,7 @@ GROUP BY VW.ALUNO,
          CPF,
          TUR.CURSO,
          CURSO.NOME,
+		 tur.CURRICULO,
          tur.UNIDADE_RESPONSAVEL,
          CURSO.FACULDADE,
          TUR.TURMA,
@@ -129,6 +133,7 @@ SELECT
     CURSO,
     UNID_RESP,
     TURMA,
+	CARGA_HORARIA_CURSO,
     CARGA_HOR,
     CARGA_HOR_EXT,
     GERENTE
@@ -142,6 +147,7 @@ GROUP BY TURMA,
          NOME,
          CURSO,
          UNID_RESP,
+		 CARGA_HORARIA_CURSO,
          CARGA_HOR,
          CARGA_HOR_EXT,
          GERENTE

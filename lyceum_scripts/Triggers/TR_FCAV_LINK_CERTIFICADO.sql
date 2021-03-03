@@ -63,17 +63,9 @@ BEGIN
 		VALUES
 		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+500,102),'Link para o Certificado '+ @turma +': <p><a href="'+ @url_aprovado +'" target="_blank" >Clique Aqui</a></p>',
 			@curso,NULL,'I',NULL,NULL,NULL,NULL,NULL,CONVERT(DATE,GETDATE(),102),'zeus',NULL,NULL,NULL,NULL)	
-	END
-	ELSE 
-	BEGIN
-		IF @aprovacao = 'N'
-		BEGIN
-			DELETE LYCEUM.DBO.LY_AVISO WHERE ALUNO = @aluno AND CURSO = @curso AND  MENSAGEM LIKE '%Link para o Certificado%' 
-		END
-	END
 
 
-	/**Bloco para Envio do e-mail para o aluno**/
+		/**Bloco para Envio do e-mail para o aluno**/
 		-------------------------------------------------------------   
 		-- DADOS DO ALUNO
 		SELECT      
@@ -151,5 +143,16 @@ BEGIN
 										@subject = @assunto,      
 										@body = @texto,      
 										@body_format = HTML;   
+	END
+	ELSE 
+	BEGIN
+		IF @aprovacao = 'N'
+		BEGIN
+			DELETE LYCEUM.DBO.LY_AVISO WHERE ALUNO = @aluno AND CURSO = @curso AND  MENSAGEM LIKE '%Link para o Certificado%' 
+		END
+	END
+
+
+	
 END
 GO
