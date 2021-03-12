@@ -16,14 +16,14 @@ GO
 DECLARE @boleto numeric
 
 --Informe o código do boleto
-SET @boleto = 201458    
+SET @boleto = 202931    
 
 select COBRANCA, BOLETO, ALUNO,ANO,MES,NUM_COBRANCA,convert(varchar, DATA_DE_VENCIMENTO,103) as DATA_DE_VENCIMENTO  from VW_COBRANCA_BOLETO where BOLETO = @boleto
 
 update LY_COBRANCA 
 set
 	--Atualize a data de vencimento para a data que o financeiro informar.
-	DATA_DE_VENCIMENTO = '2021-02-01 23:59:59.000'
+	DATA_DE_VENCIMENTO = '2021-04-07 23:59:59.000'
 where 
 	cobranca in (select COBRANCA from VW_COBRANCA_BOLETO where BOLETO = @boleto)
 
