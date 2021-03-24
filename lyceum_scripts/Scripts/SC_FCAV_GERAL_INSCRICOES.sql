@@ -13,11 +13,12 @@ SELECT * FROM VW_FCAV_CRONOGRAMA_TURMA_COORDENADOR WHERE
 
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 129702,NULL,NULL,NULL,NULL ,NULL
 /*pessoa		-*/ EXEC PR_FCAV_CONSULTA_PESSOA 128197,NULL,NULL,NULL,NULL ,NULL
-/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Jessica Magalhães Lima%',NULL,NULL,NULL ,NULL
+/*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Renan Barion Pizzo Ferreira%',NULL,NULL,NULL ,NULL
 /*nome			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,'%Jack %',NULL,NULL,NULL ,NULL
 /*cpf			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, '73385757191', NULL, NULL, NULL
 /*e_mail		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL, NULL, NULL,'%scalione@%', NULL, NULL
 /*candidato		-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,'202020179',NULL
+/*aluno			-*/ EXEC PR_FCAV_CONSULTA_PESSOA NULL,NULL,NULL,NULL,NULL,'E202030024'
 	
 
 SELECT 
@@ -28,10 +29,10 @@ SELECT
 	ALTERAR_SENHA
 FROM 
 	HD_USUARIO 
-WHERE NOME LIKE 'adriano%'
+WHERE NOME LIKE 'elivana%'
 AND HABILITADO = 'S'
 
-select * from fcav_webusers where nome like 'Adriano%' order by id
+select * from fcav_webusers where nome like 'Jessica%' order by id
 
 ----# BLOQUEIO DE USUARIO #------
 
@@ -45,7 +46,7 @@ WHERE NOME LIKE 'Gabriel Serrano Scalione%'
 update fcav_webusers
 set
 	PASS = '4r4r4r'
-WHERE ID = '82'
+WHERE ID = '91'
 
 */
 

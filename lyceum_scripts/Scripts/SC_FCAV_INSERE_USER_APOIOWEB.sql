@@ -24,11 +24,11 @@ DELETE FCAV_WEBUSERS WHERE ID = 84
 go
 
 EXEC PR_FCAV_INSERE_USUARIO_APOIOWEB
-	'matheus',
-	'511039',
-    'Matheus Silva',
-    'Educação',
-    'matheus_silva@vanzolini.com.br',
+	'kelly',
+	'144658',
+    'Kelly Tomaz',
+    'ComercialPTA',
+    'jady.silveira@vanzolini.com.br',
     '4',
     NULL,
     NULL,
