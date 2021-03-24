@@ -313,38 +313,76 @@ AS
 				   E-mail de contato: cursos@vanzolini.com.br.'    
             END --FIM IF CURSOS ONLINE      
             ELSE    
-            BEGIN    
-                ---------------------------------------------------------------------------------------                          
-                /* MENSAGEM PARA OS CURSOS DE VENDA DIRETA */    
-                ---------------------------------------------------------------------------------------    
-                SET @assunto = 'Confirmação de Pré-Matrícula'    
+            BEGIN
+				---------------------------------------------------------------------------------------                          
+				/* MENSAGEM PARA OS CURSOS DE EXAMES AGILE SCRUM*/    
+				---------------------------------------------------------------------------------------  
+				IF @curso LIKE 'A-EAS%'
+				BEGIN
+					  
+					SET @assunto = 'Confirmação de Pré-Matrícula'    
     
-                SET @mensagem =    
-                'Olá '+ @nome_compl +', tudo bem?
-				  <br><br>
-						Ficamos muito felizes com a sua inscrição no curso ' + @nome_curso + ' Turma ' + @turma_pref + ', com início previsto para ' + @inicio_turma + '.
-					<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
-				    <br>
-				    <br> 
-						<u><b>Próximos passos:</b></u>
-					<br>
-						1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
-					<br>
-						2) Aguarde o contato da Secretaria para confirmação de oferecimento do curso.
-				   <br>
-				   <br>
-						<u><b>Vantagens:</b></u>
-				   <br>
-						Agora você faz parte da Comunidade de Alunos Vanzolini e já pode aproveitar o desconto exclusivo de <b> 20% nos cursos rápidos </b> 
-						indicados no <a href="https://vanzolini.org.br/tipo/atualizacao/?palavra=&filtro-area=cursos-institucionais&filtro-mes=">site</a> com a etiqueta <b>CAMPANHA - ALUNO VANZOLINI</b>.
-				   <br>
-				   <br>
-						Use o voucher <b>ALUNOVANZOLINI20</b> na etapa de pagamento para obter o desconto.
-				   <br><br>
-					Desconto não cumulativo.
-				   <br><br>
-					Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
-				   <br>'    
+					SET @mensagem =    
+					'Olá '+ @nome_compl +', tudo bem?
+					  <br><br>
+							Ficamos muito felizes com a sua inscrição no curso ' + @nome_curso + ' Turma ' + @turma_pref + '.
+						<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
+						<br>
+						<br> 
+							<u><b>Próximos passos:</b></u>
+						<br>
+							1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
+						<br>
+							2) Aguarde o contato da Secretaria para confirmação de oferecimento do curso.
+					   <br>
+					   <br>
+							<u><b>Vantagens:</b></u>
+					   <br>
+							Agora você faz parte da Comunidade de Alunos Vanzolini e já pode aproveitar o desconto exclusivo de <b> 20% nos cursos rápidos </b> 
+							indicados no <a href="https://vanzolini.org.br/tipo/atualizacao/?palavra=&filtro-area=cursos-institucionais&filtro-mes=">site</a> com a etiqueta <b>CAMPANHA - ALUNO VANZOLINI</b>.
+					   <br>
+					   <br>
+							Use o voucher <b>ALUNOVANZOLINI20</b> na etapa de pagamento para obter o desconto.
+					   <br><br>
+						Desconto não cumulativo.
+					   <br><br>
+						Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
+					   <br>'    
+				END
+				ELSE
+				BEGIN
+					---------------------------------------------------------------------------------------                          
+					/* MENSAGEM PARA OS CURSOS DE VENDA DIRETA */    
+					---------------------------------------------------------------------------------------    
+					SET @assunto = 'Confirmação de Pré-Matrícula'    
+    
+					SET @mensagem =    
+					'Olá '+ @nome_compl +', tudo bem?
+					  <br><br>
+							Ficamos muito felizes com a sua inscrição no curso ' + @nome_curso + ' Turma ' + @turma_pref + ', com início previsto para ' + @inicio_turma + '.
+						<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
+						<br>
+						<br> 
+							<u><b>Próximos passos:</b></u>
+						<br>
+							1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
+						<br>
+							2) Aguarde o contato da Secretaria para confirmação de oferecimento do curso.
+					   <br>
+					   <br>
+							<u><b>Vantagens:</b></u>
+					   <br>
+							Agora você faz parte da Comunidade de Alunos Vanzolini e já pode aproveitar o desconto exclusivo de <b> 20% nos cursos rápidos </b> 
+							indicados no <a href="https://vanzolini.org.br/tipo/atualizacao/?palavra=&filtro-area=cursos-institucionais&filtro-mes=">site</a> com a etiqueta <b>CAMPANHA - ALUNO VANZOLINI</b>.
+					   <br>
+					   <br>
+							Use o voucher <b>ALUNOVANZOLINI20</b> na etapa de pagamento para obter o desconto.
+					   <br><br>
+						Desconto não cumulativo.
+					   <br><br>
+						Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
+					   <br>' 
+				   END
             END    
         END    
     END --FIM DA COMPRA DE CURSO 
