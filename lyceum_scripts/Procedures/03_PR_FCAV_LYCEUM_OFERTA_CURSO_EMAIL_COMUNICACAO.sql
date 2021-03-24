@@ -156,7 +156,7 @@ AS
 				BEGIN
                
 					SET @destinatario =
-					'secretariapta@vanzolini.org.br; cursos@vanzolini.com.br; suportemkt@vanzolini.com.br;'
+					'secretariapta@vanzolini.com.br; cursos@vanzolini.com.br; suportemkt@vanzolini.com.br;'
                END
             END
 
