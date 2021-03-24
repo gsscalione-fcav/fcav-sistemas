@@ -16,6 +16,8 @@ BEGIN
 	EXEC sp_change_users_login 'Auto_Fix', 'gabriel.scalione'
 	-- jonatas.santos
 	EXEC sp_change_users_login 'Auto_Fix', 'jonatas.santos'
+	-- CERT_USR
+	EXEC sp_change_users_login 'Auto_Fix', 'CERT_USR'
 
 END
 GO
@@ -96,4 +98,26 @@ BEGIN
 	EXEC sp_change_users_login 'Auto_Fix', 'lyceumsa'
 	-- gabriel.scalione
 	EXEC sp_change_users_login 'Auto_Fix', 'gabriel.scalione'
+END
+
+/*-----------------------------------------------------------
+CORRIGIR MAPEAMENTO PARA O BANCO LYCEUM_MEDIA
+-----------------------------------------------------------*/
+USE LYCEUM_MEDIA
+BEGIN
+	-- cronos
+	EXEC sp_change_users_login 'Auto_Fix', 'cronos'
+	-- lyceumsa
+	EXEC sp_change_users_login 'Auto_Fix', 'lyceumsa'
+	-- ApoioWeb
+	EXEC sp_change_users_login 'Auto_Fix', 'ApoioWeb'
+	-- Crystal
+	EXEC sp_change_users_login 'Auto_Fix', 'crystal'
+
+	-- gabriel.scalione
+	EXEC sp_change_users_login 'Auto_Fix', 'gabriel.scalione'
+	-- jonatas.santos
+	EXEC sp_change_users_login 'Auto_Fix', 'jonatas.santos'
+	-- CERT_USR
+	EXEC sp_change_users_login 'Auto_Fix', 'CERT_USR'
 END
