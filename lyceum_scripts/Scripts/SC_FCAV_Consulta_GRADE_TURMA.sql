@@ -1,0 +1,37 @@
+SELECT 
+	*
+FROM VW_FCAV_CONFERENCIA_DE_CADASTRADOS_TURMAS
+WHERE
+	TURMA = 'MBA-EP T 01'
+
+SELECT * FROM LY_OPCOES_OFERTA WHERE TURMA = 'MBA-EP T 01'
+
+select
+	TURMA, 
+	T.CURRICULO AS CURRICULO_TURMA,
+	T.ANO,
+	T.SEMESTRE,
+	t.DISCIPLINA as DISCIPLINA_TURMA,
+	t.SERIE as SERIE_TURMA, 
+	g.DISCIPLINA as disciplina_grade, 
+	g.SERIE_IDEAL as serie_grade,
+	g.CURRICULO AS curriculo_grade
+from 
+	 LY_TURMA t
+	left join LY_GRADE g
+	on g.DISCIPLINA = t.DISCIPLINA
+	AND G.SERIE_IDEAL  = T.SERIE
+	AND G.CURRICULO = T.CURRICULO
+where TURMA = 'MBA-EP T 01' order by DT_INICIO
+
+select * from LY_GRADE where CURRICULO = 'MBA-EP 2020/3'
+
+select 
+	* 
+from 
+	LY_TURMA 
+where TURMA = 'MBA-EP T 01' 
+and NUM_ALUNOS is null
+order by DT_INICIO
+
+select * from LY_CONCURSO
