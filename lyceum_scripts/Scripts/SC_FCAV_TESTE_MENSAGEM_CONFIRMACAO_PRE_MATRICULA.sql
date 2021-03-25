@@ -36,12 +36,19 @@ DECLARE @aluno varchar(20), @concurso varchar(20), @candidato varchar(20), @curs
 	--A-EASM
 	--A-EASPON
 	--A-EASP
-SELECT @curso = 'A-EASFON', 
-	   @nome_compl = 'Daniel Zangirolami', 
-	   @nome_curso = 'Exame - Agile Scrum Master (Anywhere)', 
-	   @turma_pref = 'A-EASMON T 01', 
-	   @aluno = 'A202002792'
+SET @aluno = 'A202002792'
 
+SELECT @curso = CS.CURSO, 
+	   @nome_compl = AL.NOME_COMPL, 
+	   @nome_curso = CS.NOME, 
+	   @turma_pref = TURMA_PREF 
+	   
+FROM 
+	LY_ALUNO AL
+	INNER JOIN LY_CURSO CS
+		ON CS.CURSO = AL.CURSO
+WHERE 
+	ALUNO = @aluno
 
   -------------------------------------------------------------      
     --BLOCO DE MENSAGENS      
@@ -182,7 +189,7 @@ SELECT @curso = 'A-EASFON',
 					SET @mensagem =    
 					'Olá '+ @nome_compl +', tudo bem?
 					  <br><br>
-							Ficamos muito felizes com a sua inscrição no curso ' + @nome_curso + ' Turma ' + @turma_pref + '.
+							Ficamos muito felizes com a sua inscrição no ' + @nome_curso + ' Turma ' + @turma_pref + '.
 						<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
 						<br>
 						<br> 
@@ -190,19 +197,9 @@ SELECT @curso = 'A-EASFON',
 						<br>
 							1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
 						<br>
-							2) Aguarde o contato da Secretaria para confirmação de oferecimento do curso.
+							2) Aguarde por e-mail as orientações para realizar/agendar o exame.
 					   <br>
 					   <br>
-							<u><b>Vantagens:</b></u>
-					   <br>
-							Agora você faz parte da Comunidade de Alunos Vanzolini e já pode aproveitar o desconto exclusivo de <b> 20% nos cursos rápidos </b> 
-							indicados no <a href="https://vanzolini.org.br/tipo/atualizacao/?palavra=&filtro-area=cursos-institucionais&filtro-mes=">site</a> com a etiqueta <b>CAMPANHA - ALUNO VANZOLINI</b>.
-					   <br>
-					   <br>
-							Use o voucher <b>ALUNOVANZOLINI20</b> na etapa de pagamento para obter o desconto.
-					   <br><br>
-						Desconto não cumulativo.
-					   <br><br>
 						Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
 					   <br>'    
 				END
