@@ -21,18 +21,18 @@ declare @pessoa varchar(20)declare @candidato varchar(20)declare @concurso varch
 declare @validapessoa varchar(1)declare @validacandidato varchar(1) declare @validaaluno varchar(1)		
 declare @validafinanceiro varchar(1)
 
-set @candidato = '202110029'-- '201720339'	-- Digite o candidato e abaixo valide se o script irá apagar o candidato e aluno ou somente o aluno.
-set @concurso  =  'CEGP T 77'--'CEGP T 67'	-- Digite o concurso do candidato.
+set @candidato = '202100646'-- '201720339'	-- Digite o candidato e abaixo valide se o script irá apagar o candidato e aluno ou somente o aluno.
+set @concurso  =  'CCUPON T 33'--'CEGP T 67'	-- Digite o concurso do candidato.
 
 
 -- Para apagar a pessoa altere o valor para 'S'
 set @validapessoa	 = 'N'
 -- Para apagar o candidato altere o valor para 'S'
-set @validacandidato = 'S'
+set @validacandidato = 'N'
 -- Para apagar o aluno altere o valor para 'S'
-set @validaaluno = 'N'
+set @validaaluno = 'S'
 -- Para apagar as cobranças do aluno altere o valor para 'S'. Não removi as Dívidas geradas, somentes as cobranças e plano de pagamento.
-set @validafinanceiro = 'N'
+set @validafinanceiro = 'S'
 
 
 ----------------------------------------------------------------------------------

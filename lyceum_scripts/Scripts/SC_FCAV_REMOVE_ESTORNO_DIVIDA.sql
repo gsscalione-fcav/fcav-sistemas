@@ -14,7 +14,7 @@
 	VERIFICAR DESCONTO VÁLIDO NO PLANO DE PAGAMENTO
 ********************************************************************************/
 
-DECLARE @ALUNO VARCHAR(20) = 'C202100005'
+DECLARE @ALUNO VARCHAR(20) = 'C202100061'
 
 declare @lanc_debito numeric
 
@@ -45,9 +45,9 @@ DELETE LY_DESCONTO_DEBITO WHERE LANC_DEB in (SELECT LANC_DEB FROM LY_LANC_DEBITO
 
 --update LY_DESCONTO_DEBITO
 --set
---	valor = 450.00
+--	valor = 125.00
 --where
---	LANC_DEB = 150640
+--	LANC_DEB = 153814
 --	and (MOTIVO_DESCONTO = 'PlanoPagamento'
 --	or MOTIVO_DESCONTO = 'Voucher')
 
