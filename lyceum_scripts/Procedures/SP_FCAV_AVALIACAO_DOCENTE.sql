@@ -84,6 +84,7 @@ AS
 				REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(PQ.APLICACAO,' ',''),'/',''),'-',''),'_',''),'0A',''), ---1º parametro da substring
 				CASE WHEN PQ.APLICACAO LIKE 'DIS%'OR PQ.APLICACAO LIKE 'INF%' OR PQ.APLICACAO LIKE 'DI2%' OR PQ.APLICACAO LIKE 'PAR%' THEN 4
 					 WHEN PQ.APLICACAO LIKE 'DO%' OR PQ.APLICACAO LIKE 'DI%' OR PQ.APLICACAO LIKE 'IN%' OR PQ.APLICACAO LIKE 'PA%' THEN 3
+					 WHEN PQ.APLICACAO LIKE '%DO%' THEN 4  
 					 ELSE 1
 				END ,				---2º parametro da substring
 				19					--3º parametro da substring
