@@ -34,7 +34,7 @@ FROM
 WHERE NOME LIKE 'elivana%'
 AND HABILITADO = 'S'
 
-select * from fcav_webusers where nome like 'Jessica%' order by id
+select * from fcav_webusers where nome like 'Ariane%' order by id
 
 ----# BLOQUEIO DE USUARIO #------
 
@@ -48,7 +48,7 @@ WHERE NOME LIKE 'Gabriel Serrano Scalione%'
 update fcav_webusers
 set
 	PASS = '4r4r4r'
-WHERE ID = '91'
+WHERE nome like 'Ariane%'
 
 */
 

@@ -94,29 +94,11 @@ BEGIN
         CURSO AS CODIGO,
         RELACAO_DOCUMENTOS,
         COORDENADOR,
-        VICE_COORD
+        VICE_COORD,
+		LINK
     FROM VW_FCAV_INFO_CURSO_PORTAL
     WHERE
 		TURMA IN (@turma)
-    GROUP BY DT_IMPORT,
-             DESCRICAO_COMPL,
-             CARGA_HORARIA,
-             FACULDADE,
-             CURSO,
-			 TURMA,
-             RELACAO_DOCUMENTOS,
-             COORDENADOR,
-             VICE_COORD,
-             APRESENTACAO_CURSO,
-             OBJETIVOS,
-             PROGRAMA,
-             PUBLICO_ALVO,
-             CORPO_DOCENTE,
-             DIFERENCIAL,
-             CERTIFICACAO,
-             METODOLOGIA,
-             SISTEMA_AVALIACAO,
-             INVESTIMENTO
     ORDER BY DT_IMPORT DESC
 END
 

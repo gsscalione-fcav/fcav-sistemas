@@ -16,7 +16,7 @@ GO
 DECLARE @boleto numeric
 
 --Informe o código do boleto
-SET @boleto = 203744    
+SET @boleto = 203705    
 
 select COBRANCA, BOLETO, ALUNO,ANO,MES,NUM_COBRANCA,convert(varchar, DATA_DE_VENCIMENTO,103) as DATA_DE_VENCIMENTO  from VW_COBRANCA_BOLETO where BOLETO = @boleto
 
