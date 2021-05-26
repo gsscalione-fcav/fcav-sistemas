@@ -19,7 +19,7 @@ GO
 DECLARE @turma T_CODIGO
 declare @tp_ingresso varchar(2)
 
-SET @turma = 'A-OKRON T 01'
+SET @turma = 'A-LGPD T 41'
 
 -------------------------------------------------------------------------------------------
 -- 1 -- MONTA STRING PARA FAZER O INSERT NA TABELA IMPORTA_TURMAS DA BASE DE DADOS MYSQL DO SITE DA VANZOLINI
