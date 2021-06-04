@@ -1,0 +1,447 @@
+/*
+	exec sp_teste_ep_a_APoI_Ly_aluno 
+						@pessoa,
+						@aluno , 
+						@concurso, 
+						@candidato, 
+						@curso,    
+						@turno, 
+						@curriculo, 
+						@nome_compl,    
+						@turma_pref, 
+						@unidade_fisica,
+						@unidade_ensino
+
+*/
+    
+CREATE Or ALTER PROCEDURE sp_teste_ep_a_APoI_Ly_aluno 
+	@pessoa numeric(10),
+	@aluno varchar(20), 
+	@concurso varchar(20), 
+	@candidato varchar(20), 
+	@curso varchar(20),    
+	@turno varchar(20), 
+	@curriculo varchar(20), 
+	@nome_compl varchar(100),    
+	@turma_pref varchar(20), 
+	@unidade_fisica varchar(20),
+	@unidade_ensino varchar(20)
+
+AS    
+    -- [INÍCIO] Customização - Não escreva código antes desta linha                            
+    -------------------------------------                      
+    --VARIAVEIS      
+    DECLARE @max_alunos numeric    
+    DECLARE @alu_inscritos numeric    
+    
+    DECLARE @nome_curso varchar(300)    
+    
+    --DECLARE @grupoDoAluno varchar(20)    
+    
+    DECLARE @endereco varchar(100)    
+    DECLARE @destinatario varchar(100)    
+    DECLARE @encaminha_email varchar(200)    
+    DECLARE @assunto varchar(100)    
+    DECLARE @mensagem varchar(8000)    
+	DECLARE @manual_aluno varchar(4000)
+	DECLARE @perfilaluno varchar(2000)
+	DECLARE @email_unidfisica varchar(200)
+
+	DECLARE	@link_manual_aluno varchar(500)
+	DECLARE @inicio_turma VARCHAR(10)
+
+ 
+	SET @encaminha_email = NULL
+	SET @email_unidfisica = NULL 
+	SET @alu_inscritos = 0    
+    SET @max_alunos = 0    
+   
+
+	select 
+		@inicio_turma = CONVERT(VARCHAR,DT_INICIO,103)
+	from 
+		VW_FCAV_INI_FIM_CURSO_TURMA 
+	WHERE
+		TURMA_PREF = @turma_pref
+		AND CURSO = @curso
+		AND CURRICULO = @curriculo
+		AND TURNO = @turno 
+   
+    ------------------------------------                          
+    --DEFINE A DATA DE INGRESSO DO ALUNO                                             
+    UPDATE LY_ALUNO    
+    SET DT_INGRESSO = GETDATE()    
+    WHERE ALUNO = @aluno    
+    
+    
+    --------------------------------------------      
+    -- TRAZ O NOME DO CURSO      
+    SELECT    
+        @nome_curso = NOME    
+    FROM LY_CURSO    
+    WHERE CURSO = @curso    
+
+	
+    -------------------------------------------------------------      
+    -- INSERE A UNIDADE DE ENSINO SE VIER VAZIA                          
+    IF @unidade_ensino IS NULL    
+    BEGIN    
+        SET @unidade_ensino = (SELECT    
+            FACULDADE    
+        FROM LY_CURSO    
+        WHERE CURSO = @curso)    
+    
+        UPDATE LY_ALUNO    
+        SET UNIDADE_ENSINO = @unidade_ensino    
+        WHERE ALUNO = @aluno    
+    END    
+
+	-------------------------------------------------------------
+	--INSERE O FORMULÁRIO DE PERFIL DE ALUNO NA TELA DE AVISO NA CENTRAL DO ALUNO
+	IF(@concurso IN ('CCGP T 52', 'CEGP T 73') and not exists (select 1 from ly_aviso where ALUNO = @aluno ))
+	BEGIN
+		
+		SET @perfilaluno = CASE  WHEN @unidade_ensino = 'CAPAC' THEN 'https://forms.gle/hTWKq9HC3i6YxhdE9'
+							     WHEN @unidade_ensino = 'ESPEC' THEN 'https://forms.gle/dsjMZYg4dTJiDx2x6'
+								 ELSE ''
+						   END
+		
+		INSERT INTO LY_AVISO
+		(ALUNO,DTINI,DTFIM,MENSAGEM,CURSO,SERIE,TIPO_AVISO,UNID_RESPONSAVEL,UNID_FISICA,
+		 TURNO,CURRICULO,CONCURSO,DATA_INCLUSAO,USUARIO,DESTINO,ORDEM,LOTE,ANEXO_ID)
+		VALUES
+		(@aluno,CONVERT(DATE,GETDATE(),102),CONVERT(DATE,GETDATE()+60,102),'<p><a href="'+ @perfilaluno +'">Clique aqui para preencher o Formulário de Perfil de Aluno</a></p>',
+		@curso,NULL,'I',NULL,NULL,NULL,NULL,@concurso,CONVERT(DATE,GETDATE(),102),'Gabriel.Scalion',NULL,NULL,NULL,NULL)	
+
+	END
+	-------------------------------------------------------------
+	-- LINK PARA O MANUAL DO ALUNO
+	SELECT 
+		@link_manual_aluno = '<a href="'+ISNULL(DESCR,'')+'">Clique aqui</a> para visualizar o Manual do Aluno. <br><br>'
+	FROM	
+		HD_TABELAITEM 
+	WHERE 
+		TABELA = 'LinkManualAluno'
+		AND ITEM = @unidade_ensino
+
+	-------------------------------------------------------------      
+    -- INSERE O MANUAL DO ALUNO CONFORME A UNIDADE ENSINO
+	
+	IF(EXISTS(SELECT 1 FROM HD_TABELAITEM  
+    WHERE TABELA = 'ManualAluno'  AND ITEM = @curso))
+	BEGIN
+		
+		set @manual_aluno = CASE WHEN @unidade_ensino = 'ESPEC' THEN
+								--ESPEC	
+								@link_manual_aluno
+							WHEN @unidade_ensino = 'CAPAC' THEN
+								--CAPAC
+								@link_manual_aluno
+							ELSE
+								''
+							END
+	END
+	ELSE 
+	BEGIN
+		SET @manual_aluno = ''
+    END
+    -------------------------------------------------------------      
+    --TRAZ O E-MAIL DO ALUNO          
+   SELECT    
+        @destinatario = E_MAIL    
+    FROM LY_PESSOA    
+    WHERE PESSOA = @pessoa    
+  
+ -------------------------------------------------------------  
+ --TRAZ o endereço da unidade física  
+ SELECT   
+  @endereco =    
+   DBO.FN_FCAV_PRIMEIRA_MAIUSCULA(ENDERECO)  
+   + ', ' + ISNULL(END_NUM ,'-')  
+   + ', ' + ISNULL(END_COMPL,'-')   
+   + ', ' + DBO.FN_FCAV_PRIMEIRA_MAIUSCULA(ISNULL(BAIRRO,''))  
+   + ', ' + REPLACE(DBO.FN_FCAV_PRIMEIRA_MAIUSCULA(HM.NOME),'Sao Paulo', 'São Paulo')  
+   + ' - '+ HM.UF  
+ FROM LY_UNIDADE_FISICA UN  
+  INNER JOIN HD_MUNICIPIO HM  
+   ON HM.MUNICIPIO = UN.MUNICIPIO  
+ WHERE UN.UNIDADE_FIS = @unidade_fisica  
+    
+     
+    -------------------------------------------------------------      
+    --BLOCO DE MENSAGENS      
+    IF (@concurso IS NULL)    
+    BEGIN    
+    
+        --MENSAGEM PARA OS ALUNOS DA PALESTRA, CONFIRMAÇÃO OU LISTA DE ESPERA                          
+        IF (@unidade_ensino = 'PALES')    
+        BEGIN    
+            --BUSCA O NÚMERO MÁXIMO DE ALUNOS DA TURMA PARA AS PALESTRAS          
+            SELECT TOP 1    
+                @max_alunos = ISNULL(MAX(C.VAGAS), T.NUM_ALUNOS)    
+            FROM LY_TURMA T    
+            INNER JOIN LY_CURSO C    
+                ON C.CURSO = T.CURSO    
+            INNER JOIN VW_FCAV_INI_FIM_CURSO_TURMA VT    
+			   ON VT.TURMA = T.TURMA    
+						WHERE (T.UNIDADE_RESPONSAVEL = 'PALES')
+						AND T.CLASSIFICACAO = 'EmInscricao'    
+						AND T.CURRICULO = @curriculo    
+						AND VT.TURMA = T.TURMA    
+						GROUP BY c.VAGAS,    
+								 t.NUM_ALUNOS    
+    
+            --CONTA O NÚMERO DE ALUNOS PRE_MATRICULADOS EM PALESTRAS           
+                
+            SELECT    
+                @alu_inscritos = ISNULL(COUNT(P.ALUNO), 0)    
+            FROM LY_PRE_MATRICULA P    
+            INNER JOIN LY_TURMA T    
+               ON P.TURMA = T.TURMA    
+            INNER JOIN LY_OPCOES_OFERTA OO    
+			   ON OO.TURMA = T.TURMA    
+				  INNER JOIN LY_OFERTA_CURSO OC    
+			   ON OC.OFERTA_DE_CURSO = OO.OFERTA_DE_CURSO    
+            WHERE (T.UNIDADE_RESPONSAVEL = 'PALES')  
+            AND T.CLASSIFICACAO = 'EmInscricao'    
+            AND T.CURRICULO = @curriculo    
+            AND P.TURMA = T.TURMA    
+    
+            ---------------------------------------------------------------------------------------                          
+            /* MENSAGEM PARA ALUNOS CONFIRMADOS */    
+            ---------------------------------------------------------------------------------------        
+            IF (@alu_inscritos <= @max_alunos)    
+            BEGIN    
+                SET @assunto = 'Inscrição realizada com sucesso'    
+    
+                SET @mensagem =    
+					'Prezado(a) '+ @nome_compl +',       
+					 <br><br>      
+					 Agradecemos sua inscrição no curso ' + @nome_curso + '.       
+					 <br><br>      
+					 Aguarde o contato da Secretaria Acadêmica para confirmar a sua vaga.      
+					 <br><br>                          
+					 Seu código de ALUNO é: ' + @aluno + '      
+					 <br><br>                          
+					 Qualquer dúvida entre em contato conosco:       
+					 <br>       
+					 <ul>                         
+					  <li> pelo e-mail: atendimento@vanzolini.com.br ; ou                         
+					  <li> pelo telefone: (11)3145-3700      
+					 </ul>   
+					   '    
+            END    
+            ELSE    
+            BEGIN    
+                ---------------------------------------------------------------------------------------                          
+				/* MENSAGEM PARA ALUNOS EM LISTA DE ESPERA */    
+                ---------------------------------------------------------------------------------------        
+                IF (@alu_inscritos > @max_alunos)    
+                BEGIN    
+                    SET @assunto = 'LISTA DE ESPERA'    
+    
+                    SET @mensagem =    
+                    'Prezado(a) '+ @nome_compl +',       
+					   <br><br>      
+					   Agradecemos sua inscrição para ' + @nome_curso + '.      
+					   <br><br>      
+					   Sua inscrição está em LISTA DE ESPERA.      
+					   <br><br>                           
+					   Aguarde o contato da Secretaria Acadêmica para confirmação, pois todas as nossas vagas foram preenchidas.       
+					   <br><br>                          
+					   Seu código de ALUNO é: ' + @aluno + '      
+					   <br><br>                          
+					   Qualquer dúvida entre em contato conosco:       
+					   <br>       
+					   <ul>                         
+						<li> pelo e-mail: atendimento@vanzolini.com.br ou                         
+						<li> pelo telefone: (11)3145-3700      
+					   </ul>      
+					  '    
+                END    
+            END    
+		END --FIM DO IF 'PALES'      
+        ELSE    
+        BEGIN  
+             	---------------------------------------------------------------------------------------                          
+            /* MENSAGEM PARA ALUNOS DE CURSOS ONLINE */    
+            ---------------------------------------------------------------------------------------       
+            IF (@unidade_fisica = 'Online')    
+            BEGIN    
+                SET @assunto = 'Confirmação de Pré-Matrícula'    
+    
+                SET @mensagem =    
+                'Prezado(a) '+ @nome_compl +',
+				  <br><br>      
+                  
+				   Agradecemos sua inscrição no curso ' + @nome_curso + '
+				   <br><br>      
+                
+				   Acesse o link https://sga.vanzolini.org.br/AOnline/.
+				   <br><br>      
+                
+				   Neste ambiente você poderá visualizar seu histórico de cursos,
+				   imprimir boletos, notas fiscais, solicitar serviços como declarações e afins.
+				   <br><br>
+                
+				   Seu código de ALUNO é: ' + @aluno + '
+				   <br>      
+				   Seu login e senha são os mesmos que usou para fazer sua inscrição.
+				   <br><br>
+                
+				   Em breve enviaremos em seu e-mail as instruções para dar início ao seu curso.
+				   <br><br>
+                
+				   E-mail de contato: cursos@vanzolini.com.br.'    
+            END --FIM IF CURSOS ONLINE      
+            ELSE    
+            BEGIN
+				---------------------------------------------------------------------------------------                          
+				/* MENSAGEM PARA OS CURSOS DE EXAMES AGILE SCRUM*/    
+				---------------------------------------------------------------------------------------  
+				IF @curso LIKE 'A-EAS%'
+				BEGIN
+					  
+					SET @assunto = 'Confirmação de Pré-Matrícula'    
+    
+					SET @mensagem =    
+					'Olá '+ @nome_compl +', tudo bem?
+					  <br><br>
+							Ficamos muito felizes com a sua inscrição no ' + @nome_curso + ' Turma ' + @turma_pref + '.
+						<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
+						<br>
+						<br> 
+							<u><b>Próximos passos:</b></u>
+						<br>
+							1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
+						<br>
+							2) Aguarde por e-mail as orientações para realizar/agendar o exame.
+					   <br>
+					   <br>
+						Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
+					   <br>'    
+				END
+				ELSE
+				BEGIN
+					---------------------------------------------------------------------------------------                          
+					/* MENSAGEM PARA OS CURSOS DE VENDA DIRETA */    
+					---------------------------------------------------------------------------------------    
+					SET @assunto = 'Confirmação de Pré-Matrícula'    
+    
+					SET @mensagem =    
+					'Olá '+ @nome_compl +', tudo bem?
+					  <br><br>
+							Ficamos muito felizes com a sua inscrição no curso ' + @nome_curso + ' Turma ' + @turma_pref + ', com início previsto para ' + @inicio_turma + '.
+						<br>Seu código de ALUNO é: <b>' + @aluno + '</b>.
+						<br>
+						<br> 
+							<u><b>Próximos passos:</b></u>
+						<br>
+							1) Efetue o pagamento, conforme opção escolhida. Caso já tenha realizado através de cartão de crédito, desconsidere este passo;
+						<br>
+							2) Aguarde o contato da Secretaria para confirmação de oferecimento do curso.
+					   <br>
+					   <br>
+							<u><b>Vantagens:</b></u>
+					   <br>
+							Agora você faz parte da Comunidade de Alunos Vanzolini e já pode aproveitar o desconto exclusivo de <b> 20% nos cursos rápidos </b> 
+							indicados no <a href="https://vanzolini.org.br/tipo/atualizacao/?palavra=&filtro-area=cursos-institucionais&filtro-mes=">site</a> com a etiqueta <b>CAMPANHA - ALUNO VANZOLINI</b>.
+					   <br>
+					   <br>
+							Use o voucher <b>ALUNOVANZOLINI20</b> na etapa de pagamento para obter o desconto.
+					   <br><br>
+						Desconto não cumulativo.
+					   <br><br>
+						Caso tenha qualquer dúvida, entre em contato conosco através do e-mail secretariapta@vanzolini.com.br, WhatsApp (11) 97197-7187 ou telefone (11) 3145-3700 (opção 2).
+					   <br>' 
+				   END
+            END    
+        END    
+    END --FIM DA COMPRA DE CURSO 
+	ELSE 
+	BEGIN
+		---------------------------------------------------------------------------------------                          
+        /* MENSAGEM PARA OS CURSOS PROCESSOS SELETIVOS */    
+        ---------------------------------------------------------------------------------------    
+        SET @assunto = 'Confirmação de Pré-Matrícula'    
+    
+        SET @mensagem =    
+			'Olá, '+ @nome_compl + '!
+			<br>
+			<br>
+			Tudo bem?
+			<br>
+			<br>
+			Informamos que a sua Pré-Matrícula na turma '+ @turma_pref +' no curso de '+ @nome_curso +' foi concluída com sucesso.
+			<br>
+			<br>
+			Seu código de ALUNO é: '+ @aluno +'.
+			<br>
+			<br>
+			<u><b>Próximas etapas:</b></u>
+			<br>
+			<br>
+			<b>1)</b> Efetue o pagamento, conforme opção escolhida;
+			<br>
+			<br>
+			<b>2)</b> Envie por e-mail todos os documentos listados abaixo:
+			<ul>
+				<li>Diploma (frente e verso) ou Declaração de Conclusão (com data da colação de grau). Digitalizar o documento original. (*)</li>
+					Obs.: Nos cursos presenciais, é necessário apresentar a via original no primeiro dia de aula para validação.
+				<li>CPF, RG e Comprovante de Residência;</li>
+				<li>01 foto 3x4 (pode ser selfie);</li>
+				<li>Contrato de Prestação de Serviços Educacionais (o Contrato deve ser entregue no primeiro dia de aula em 2 vias assinadas e rubricadas pelo Responsável Financeiro, Beneficiário e Testemunhas em arquivo único, contendo todas as páginas. (*)
+				<br>Obs.: a) Estão impedidos de assinar como testemunhas menores de 18 anos; b) Nos cursos EaD fazer o envio de todas as páginas assinadas e rubricadas somente por e-mail em arquivo digitalizado.</li>
+			</ul>
+			(*) Cursos de Difusão estão isentos da entrega.
+			<br>
+			<br>
+			<b>3)</b> Aguarde a confirmação da turma via e-mail pela Secretaria Acadêmica.
+			<br>
+			<br>
+			'+ @manual_aluno +'
+			<br>
+			<br>
+			<b>Secretaria Acadêmica PTA:</b> Via e-mail secretariapta@vanzolini.com.br ou pelo telefone: (11) 3145-3700.
+			<br>
+			<br>
+			<b>Secretaria Acadêmica USP:</b> Via e-mail secretariausp@vanzolini.com.br ou pelo telefone: (11) 5525-5837.
+			<br>
+			<br>
+			<b>Horário de Atendimento:</b> Segundas a Sextas-feiras, das 08h00 às 20h30 e aos Sábados, das 08h00 às 12h00
+			<br>
+			<br>
+			<b>Local de realização do curso:</b>  '+ @endereco +'
+			<br>
+			<br>
+			<b>Secretaria Acadêmica</b>'
+	END
+    
+    ---------------------------------------------------------------------------------------       
+    --ENCAMINHAMENTO DE CÓPIA PARA AS SECRETARIAS      
+    --Produção 
+	IF (@unidade_fisica = 'USP' OR (@unidade_fisica = 'Online' AND @unidade_ensino != 'ATUAL') OR @unidade_fisica = 'Online USP')
+    BEGIN      
+      SET @encaminha_email = 'secretariausp@vanzolini.com.br; '
+    END
+	ELSE
+	BEGIN
+		IF(@unidade_fisica = 'Online' AND @unidade_ensino = 'ATUAL')
+		BEGIN
+			SET @encaminha_email = 'secretariausp@vanzolini.com.br; secretariapta@vanzolini.com.br; '
+		END
+		ELSE
+		BEGIN
+			SET @encaminha_email = 'secretariapta@vanzolini.com.br; '
+		END	
+	END
+       
+ --   Homologação      
+    --SET @encaminha_email = 'suporte_techne@vanzolini.com.br'      
+    --SET @assunto = 'Homologação - ' + @assunto      
+    
+	---------------------------------------------------------------------------------------
+	                   
+     select @destinatario AS destinatario,  @encaminha_email as encaminha_email, @assunto as assunto, @mensagem as mensagem    
+    
+-- [FIM] Customização - Não escreva código após esta linha 
