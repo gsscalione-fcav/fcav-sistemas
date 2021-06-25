@@ -152,7 +152,7 @@ AS
 				LEFT JOIN LY_CONCEITOS_QUEST QU 
 					ON QU.CONCEITO = CO.CONCEITO 
 						AND QU.TIPO = CO.TIPO 
-		WHERE	convert(date,AQ.DT_FIM + 15) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
+		WHERE	convert(date,AQ.DT_FIM + 30) >= convert(date,getdate())   ---limite para trazer somente as avaliações que estão abertas e por um periodo de 15 dias após encerramento.
 			--AND AQ.QUESTIONARIO LIKE '%Mod1'
 			
 		----------------------------------------------------------------------------
@@ -189,7 +189,7 @@ AS
 			AL.SEMESTRE,
 			CASE WHEN CS.CURSO = 'CEAI' AND AL.TURMA != 'CEAI T 34 SAB' THEN REPLACE(REPLACE(REPLACE(AC.TURMA_CEAI,' ',''),'/',''),'-','')
 				 WHEN CS.CURSO = 'A-GPMPON' THEN REPLACE(REPLACE(REPLACE(REPLACE(AL.TURMA,' ',''),'/',''),'-',''),'ON','')
-				ELSE REPLACE(REPLACE(REPLACE(AL.TURMA,' ',''),'/',''),'-','') 
+				ELSE REPLACE(REPLACE(REPLACE(REPLACE(AL.TURMA,' ',''),'/',''),'-',''),'.','') 
 			END AS CODTUR
 			into  #tmp_alunos_turma_disicplina
 		FROM 
