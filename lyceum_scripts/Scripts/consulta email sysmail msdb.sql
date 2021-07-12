@@ -12,14 +12,14 @@ GO
 
 
 --CONSULTA ENVIO DOS E-MAILS
-select top 10 items.sent_status,
+select items.sent_status,
 	items.* 
     ,l.description 
 from dbo.sysmail_allitems as items  
 left join dbo.sysmail_event_log as l  
     on items.mailitem_id = l.mailitem_id  
---where	
-		--subject like 'Teste de envio pelo Lyceum Produção%'
+where	
+		subject like '%MBA-EP-DAS - 2021/1 - Divulgação de Nota%'
 		--items.recipients like '%danw%' or 
 		--items.copy_recipients like '%danw%' or 
 		--items.blind_copy_recipients like '%atendimentousp%' 
