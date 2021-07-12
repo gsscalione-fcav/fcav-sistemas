@@ -9,7 +9,7 @@ SET @DATA_INI = cast(GETDATE()- 90 as date)
 SET @DATA_FIM = cast(GETDATE() as date)
 
 
-SET @COBRANCA =  215416
+SET @COBRANCA =  219215
     
 BEGIN
 
