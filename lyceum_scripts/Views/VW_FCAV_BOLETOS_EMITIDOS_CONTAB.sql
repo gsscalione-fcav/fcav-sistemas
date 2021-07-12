@@ -6,12 +6,13 @@
 		cobranca IN (201080)
 		and descricao like 'Mens%'
 	GROUP BY COBRANCA
-
-	select * from ly_aluno where aluno in('C201700096')
-	select * from ly_cobranca where cobranca IN (32168)
-	select * from ly_item_lanc where cobranca IN (201080)
-	select * from VW_FCAV_COBRANCA_DEB_CRED where cobranca IN ( 32168)
-	select * from VW_FCAV_BOLETOS_EMITIDOS_CONTAB where COBRANCA in (23379,23380,32168,53482,53483,53485,69467,199969,199970)
+	select * from ly_turma where turma = 'CEAI T 41'
+	select * from ly_aluno where aluno in('E202120020')
+	select * from ly_cobranca where cobranca IN (218798)
+	select * from ly_item_lanc where cobranca IN (218798)
+	select * from FCAV_IMPCONT_CAD where turma like 'CEAI t 41%'
+	select * from VW_FCAV_COBRANCA_DEB_CRED where cobranca IN ( 218798)
+	select * from VW_FCAV_BOLETOS_EMITIDOS_CONTAB where COBRANCA in (218798)
 
 */
 
@@ -25,7 +26,7 @@ WITH ALUNOS_BOLETOS AS
 		AL.NOME_COMPL, 
 		AL.SIT_ALUNO, 
 		CS.CURSO,
-		FCAD.TURMA AS NATUREZA,
+		AL.TURMA_PREF AS NATUREZA,
 		CO.COBRANCA, 
 		CO.DATA_DE_VENCIMENTO AS DATA_DE_VENCIMENTO, 
 		IL.DESCRICAO, 
@@ -62,16 +63,14 @@ WITH ALUNOS_BOLETOS AS
 			ON	DC.COBRANCA = CO.COBRANCA
 		LEFT JOIN LY_CURSO CS
 			ON	CS.CURSO = AL.CURSO
-		--	AND CS.FACULDADE IN ('ATUAL','ESPEC','CAPAC','DIFUS')
-		LEFT JOIN FCAV_IMPCONT_CAD AS FCAD ON (AL.TURMA_PREF = FCAD.TURMA)
 	where exists(select 1 from ly_boleto bo2 where bo2.boleto = bo.BOLETO)
 
 	GROUP BY
 		AL.ALUNO, 
 		AL.NOME_COMPL, 
 		AL.SIT_ALUNO,
-		CS.CURSO, 
-		FCAD.TURMA,
+		CS.CURSO,
+		AL.TURMA_PREF,
 		CO.COBRANCA, 
 		CO.DATA_DE_GERACAO,
 		CO.DATA_DE_VENCIMENTO , 
@@ -89,49 +88,27 @@ WITH ALUNOS_BOLETOS AS
 		DC.PAGAR, 
 		DC.PAGO, 
 		DC.SALDO	
+)
 
-),
-ALUNOS_TURMAS 
+, ALUNOS_TURMAS 
 AS (
 	SELECT
 		pm.ALUNO,
-		TU.TURMA,
+		CCT.TURMA,
 		pm.CURRICULO,
-		TU.CENTRO_DE_CUSTO
-	FROM 
-		VW_ALUNO_CURSO PM
-		INNER join LY_TURMA TU
-			on tu.TURMA  = pm.TURMA_PREF
-			and tu.SERIE = 1
-		where SIT_ALUNO != 'Cancelado'
-		and tu.UNIDADE_RESPONSAVEL not like 'PALES'
-		--AND PM.ALUNO = 'E201530085'
-	group by pm.ALUNO,
-		tu.TURMA,
-		pm.CURRICULO,
-		TU.CENTRO_DE_CUSTO
-
-	union all
-
-	SELECT
-		pm.ALUNO,
-		TU.TURMA,
-		pm.CURRICULO,
-		TU.CENTRO_DE_CUSTO
+		CCT.TURMA_CC AS CENTRO_DE_CUSTO
 	FROM 
 		VW_ALUNO_CURSO PM 
-		left join LY_TURMA TU
-			on tu.TURMA  = pm.TURMA_PREF
-			and tu.SERIE = 1
-	where SIT_ALUNO = 'Cancelado'
-		AND PM.NOME_COMPL != 'Aluno Editor de Tela'
+		left join VW_FCAV_CENTRO_CUSTO_TURMA_HADES_SIGA CCT
+			on CCT.TURMA  = pm.TURMA_PREF
+	where PM.NOME_COMPL != 'Aluno Editor de Tela'
+		and PM.FACULDADE not like 'PALES'
 	group by pm.ALUNO,
 		pm.TURMA_PREF,
-		tu.TURMA,
+		CCT.TURMA,
 		pm.CURRICULO,
-		TU.CENTRO_DE_CUSTO
+		CCT.TURMA_CC
 )
-
 --Consulta final
 SELECT
 	AB.ALUNO,
@@ -160,7 +137,7 @@ FROM ALUNOS_TURMAS AL
 		ON AB.ALUNO = AL.ALUNO
 where 
 	 VALOR_PAGAR >= 0	--  //As cobrancas que tinham acordo não estavam aparecendo no relatório. chamado 28765
-	-- COBRANCA in (130084)
+	-- and COBRANCA in (218798)
 GROUP BY
 	AB.ALUNO,
 	AB.NOME_COMPL,
